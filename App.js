@@ -11,7 +11,6 @@ import {store, persistor} from './src/store/store';
 export default App = () => {
   //   const [user, setUser] = React.useState({});
   console.disableYellowBox = true;
-  console.log('hello');
   return (
     <>
       {/* <UserContext.Provider value={{user, setUser}}> */}

@@ -10,6 +10,8 @@ import HomeScreen from '../screens/App/Home';
 import Size from '../constants/Size';
 import Profile from '../screens/App/Profile';
 import BottomTabIcons from '../components/BottomTabIcons';
+import Icon from '../assets/Icons';
+import color from '../constants/color';
 
 //Screens
 
@@ -33,7 +35,13 @@ const Stack = createNativeStackNavigator();
 //     );
 //   };
 
-const homeIcon = ({focused}) => <BottomTabIcons focused={focused} />;
+const homeIcon = ({focused}) => (
+  <BottomTabIcons
+    focused={focused}
+    icon={Icon.HOME}
+    iconSelected={Icon.HOME_SELECTED}
+  />
+);
 
 export const BottomNavigator = ({}) => {
   return (
@@ -44,6 +52,7 @@ export const BottomNavigator = ({}) => {
         tabBarShowLabel: false,
         tabBarStyle: {
           height: Size.HEADER_FOOTER_SIZE,
+          backgroundColor: color.BACKGROUND,
         },
       }}>
       <Tab.Screen
@@ -53,7 +62,7 @@ export const BottomNavigator = ({}) => {
         }}
         component={HomeScreen}
       />
-      <Tab.Screen name="Profile" component={Profile} />
+      {/* <Tab.Screen name="Profile" component={Profile} /> */}
     </Tab.Navigator>
   );
 };
