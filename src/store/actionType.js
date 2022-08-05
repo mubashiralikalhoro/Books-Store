@@ -1,0 +1,5 @@
+export const USER_LOGOUT = 'USER_LOGOUT';
+export const USER_LOGIN = 'USER_LOGIN';
+
+// RESOURCES
+export const UPDATE_RESOURCES = 'UPDATE_RESOURCES';
