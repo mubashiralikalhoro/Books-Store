@@ -22,12 +22,12 @@ export default HomeScreenPromo;
 
 const styles = StyleSheet.create({
   container: {
-    height: Size.HEIGTH * 0.3,
+    height: Size.HEIGHT * 0.3,
     width: Size.WIDTH,
     // position: 'absolute',
   },
   image: {
-    height: Size.HEIGTH * 0.3,
+    height: Size.HEIGHT * 0.3,
     width: Size.WIDTH,
   },
   scrollView: {

@@ -6,14 +6,18 @@ import {
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {Image, View, Dimensions, Text} from 'react-native';
 import {Images} from '../assets/images';
-import HomeScreen from '../screens/App/Home';
 import Size from '../constants/Size';
-import Profile from '../screens/App/Profile';
-import BottomTabIcons from '../components/BottomTabIcons';
+
 import Icon from '../assets/Icons';
 import color from '../constants/color';
+import BottomTabIcons from '../components/BottomTabIcons';
 
 //Screens
+import HomeScreen from '../screens/App/Home';
+import CartScreen from '../screens/App/Cart';
+import FavoriteScreen from '../screens/App/Favourites';
+import NotificationScreen from '../screens/App/Notifications';
+import ProfileScreen from '../screens/App/Profile';
 
 // dimenstion
 const {width, height} = Dimensions.get('window');
@@ -21,25 +25,40 @@ const {width, height} = Dimensions.get('window');
 const Tab = createBottomTabNavigator();
 const Stack = createNativeStackNavigator();
 
-// const TabImage =
-//   name =>
-//   ({focused}) => {
-//     return (
-//       <View style={{width: width * 0.06, height: width * 0.06}}>
-//         <Image
-//           source={Images[(!focused ? 'Un' : '') + name]}
-//           style={{width: '100%', height: '100%'}}
-//           resizeMode="contain"
-//         />
-//       </View>
-//     );
-//   };
-
 const homeIcon = ({focused}) => (
   <BottomTabIcons
     focused={focused}
     icon={Icon.HOME}
     iconSelected={Icon.HOME_SELECTED}
+  />
+);
+
+const favIcon = ({focused}) => (
+  <BottomTabIcons
+    focused={focused}
+    icon={Icon.FAVORITE}
+    iconSelected={Icon.FAVORITE_SELECTED}
+  />
+);
+const cartIcon = ({focused}) => (
+  <BottomTabIcons
+    focused={focused}
+    icon={Icon.CART}
+    iconSelected={Icon.CART_SELECTED}
+  />
+);
+const profileIcon = ({focused}) => (
+  <BottomTabIcons
+    focused={focused}
+    icon={Icon.ACCOUNT}
+    iconSelected={Icon.ACCOUNT_SELECTED}
+  />
+);
+const notiIcon = ({focused}) => (
+  <BottomTabIcons
+    focused={focused}
+    icon={Icon.NOTIFICATION}
+    iconSelected={Icon.NOTIFICATION_SELECTED}
   />
 );
 
@@ -56,13 +75,40 @@ export const BottomNavigator = ({}) => {
         },
       }}>
       <Tab.Screen
+        name="Favorite"
+        options={{
+          tabBarIcon: favIcon,
+        }}
+        component={FavoriteScreen}
+      />
+      <Tab.Screen
+        name="Cart"
+        options={{
+          tabBarIcon: cartIcon,
+        }}
+        component={CartScreen}
+      />
+      <Tab.Screen
         name="Home"
         options={{
           tabBarIcon: homeIcon,
         }}
         component={HomeScreen}
       />
-      {/* <Tab.Screen name="Profile" component={Profile} /> */}
+      <Tab.Screen
+        name="Notification"
+        options={{
+          tabBarIcon: notiIcon,
+        }}
+        component={NotificationScreen}
+      />
+      <Tab.Screen
+        name="Profile"
+        options={{
+          tabBarIcon: profileIcon,
+        }}
+        component={ProfileScreen}
+      />
     </Tab.Navigator>
   );
 };

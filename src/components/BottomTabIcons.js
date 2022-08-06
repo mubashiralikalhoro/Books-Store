@@ -43,7 +43,7 @@ const styles = StyleSheet.create({
 
   normalView: {},
   IconStyle: {
-    width: Size.ICON * 0.7,
-    height: Size.ICON * 0.7,
+    width: Size.ICON * 0.5,
+    height: Size.ICON * 0.5,
   },
 });

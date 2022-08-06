@@ -22,9 +22,6 @@ import Books from '../../../dummy/Books';
 
 //third party library
 
-// dimenstion
-const {width, height} = Dimensions.get('window');
-
 const HomeScreen = ({navigation, ...props}) => {
   const [headerShown, setHeaderShown] = useState(false);
 
@@ -44,7 +41,7 @@ const HomeScreen = ({navigation, ...props}) => {
           <HomeScreenShowCat catName="Latest" books={Books} />
           <HomeScreenShowCat catName="Adventure" books={Books} />
           <HomeScreenShowCat catName="Romance" books={Books} />
-          <HomeScreenShowCat catName="Fantacy" books={Books} />
+          <HomeScreenShowCat catName="Fantasy" books={Books} />
         </ScrollView>
         <HomeScreenHeader opacity={headerShown} />
       </View>
