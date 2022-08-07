@@ -6,6 +6,5 @@ export default StyleSheet.create({
   TEXT_STYLE: {
     fontSize: Size.FONTSIZE,
     color: color.TEXT,
-    fontWeight: '500',
   },
 });
