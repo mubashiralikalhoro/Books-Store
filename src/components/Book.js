@@ -21,7 +21,7 @@ export default Book;
 
 const styles = StyleSheet.create({
   container: {
-    marginHorizontal: 1,
+    marginHorizontal: 2,
     width: Size.WIDTH * 0.3,
     height: Size.WIDTH * 0.6,
     // backgroundColor: 'red',
@@ -34,6 +34,6 @@ const styles = StyleSheet.create({
   bookCover: {
     width: Size.WIDTH * 0.3 - 10,
     height: (Size.WIDTH * 0.3 - 10) * 1.5,
-    borderRadius: 5,
+    borderRadius: Size.BORDER_RADIUS,
   },
 });

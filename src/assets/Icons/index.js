@@ -1,7 +1,9 @@
-const Icon = {
-  DRAWER: require('./drawer.png'),
-  SEARCH: require('./search.png'),
-  DISCOVER: require('./discover.png'),
+import darkMode from '../../dummy/DarkMode';
+
+const Icons = {
+  APPLE: require('./apple.png'),
+  GOOGLE: require('./google.png'),
+  FACEBOOK: require('./facebook.png'),
   HOME: require('./home2.png'),
   HOME_SELECTED: require('./home.png'),
   ACCOUNT: require('./account.png'),
@@ -12,5 +14,13 @@ const Icon = {
   CART_SELECTED: require('./cart2.png'),
   FAVORITE: require('./favourite.png'),
   FAVORITE_SELECTED: require('./favourite2.png'),
+  PAGE: require('./page.png'),
+  READS: require('./reads.png'),
+  DRAWER: require('./drawer.png'),
+  SEARCH: require('./search.png'),
+  DISCOVER: require('./discover.png'),
+  BACK: require('./back.png'),
+  DOLLAR: require('./dollar.png'),
 };
-export default Icon;
+
+export default Icons;

@@ -1,10 +1,11 @@
-import {View, Text, StyleSheet, ScrollView} from 'react-native';
+import {View, Text, StyleSheet, ScrollView, Pressable} from 'react-native';
 import React from 'react';
 import Size from '../constants/Size';
-import finalPropsSelectorFactory from 'react-redux/es/connect/selectorFactory';
 import GlobalStyle from '../constants/GlobalStyle';
 import Book from './Book';
 import Books from '../dummy/Books';
+import color from '../constants/color';
+import {useNavigation} from '@react-navigation/native';
 
 const getTen = books => {
   if (books.length > 10) {
@@ -19,16 +20,24 @@ const getTen = books => {
 };
 
 const HomeScreenShowCat = ({catName, books}) => {
+  const navigation = useNavigation();
   return (
     <View style={styles.container}>
-      {/*Header*/}
-      <View style={styles.header}>
-        <Text style={GlobalStyle.TEXT_STYLE}>{catName}</Text>
-        <View style={styles.managingView}></View>
-        <Text style={[GlobalStyle.TEXT_STYLE, styles.showMore]}>
-          Show more...
-        </Text>
-      </View>
+      <Pressable
+        onPress={() => {
+          navigation.push('BooksScreen', {catName, books});
+        }}>
+        {/*Header*/}
+        <View style={styles.header}>
+          <Text style={[GlobalStyle.TEXT_STYLE, {fontSize: Size.FONTSIZE + 5}]}>
+            {catName}
+          </Text>
+          <View style={styles.managingView}></View>
+          <Text style={[GlobalStyle.TEXT_STYLE, styles.showMore]}>
+            Show more...
+          </Text>
+        </View>
+      </Pressable>
       {/*Books View*/}
       <ScrollView
         horizontal
@@ -46,21 +55,21 @@ export default HomeScreenShowCat;
 
 const styles = StyleSheet.create({
   container: {
-    marginVertical: 5,
-    height: Size.HEIGHT * 0.3,
+    height: Size.HEIGHT * 0.28,
     width: Size.WIDTH,
     paddingHorizontal: Size.PADDING,
   },
   scrollView: {
     flex: 1,
-    marginTop: Size.PADDING,
+    marginTop: Size.PADDING / 2,
   },
   showMore: {
-    color: 'blue',
+    color: color.SHOW_MORE,
   },
 
   header: {
-    height: Size.FONTSIZE + 5,
+    paddingHorizontal: Size.PADDING,
+    height: Size.FONTSIZE + 8,
     alignItems: 'center',
     flexDirection: 'row',
   },

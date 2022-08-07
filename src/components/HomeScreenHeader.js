@@ -3,6 +3,7 @@ import React, {useState} from 'react';
 import Size from '../constants/Size';
 import Icon from '../assets/Icons';
 import color from '../constants/color';
+import {Colors} from 'react-native/Libraries/NewAppScreen';
 
 const HomeScreenHeader = ({opacity}) => {
   const opacityLevel = useState(new Animated.Value(0.3))[0];
@@ -58,15 +59,18 @@ const styles = StyleSheet.create({
   drawer: {
     width: Size.ICON,
     height: Size.ICON,
+    tintColor: color.TEXT,
   },
   search: {
     width: Size.ICON * 0.65,
     height: Size.ICON * 0.65,
     marginRight: Size.PADDING,
+    tintColor: color.TEXT,
   },
   discover: {
     height: Size.ICON * 0.75,
     width: Size.ICON * 2.4,
+    tintColor: color.TEXT,
   },
   arrange: {
     flex: 1,
