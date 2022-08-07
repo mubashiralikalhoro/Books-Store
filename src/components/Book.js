@@ -3,10 +3,12 @@ import React from 'react';
 import Size from '../constants/Size';
 import GlobalStyle from '../constants/GlobalStyle';
 import Pressable from 'react-native/Libraries/Components/Pressable/Pressable';
+import {useNavigation} from '@react-navigation/native';
 
 const Book = ({book}) => {
+  const navigation = useNavigation();
   return (
-    <Pressable>
+    <Pressable onPress={() => navigation.navigate('BookDetailsScreen', book)}>
       <View style={styles.container}>
         <Image source={book.bookCover} style={styles.bookCover} />
         <Text style={[GlobalStyle.TEXT_STYLE, styles.title]} numberOfLines={2}>

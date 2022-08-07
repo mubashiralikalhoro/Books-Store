@@ -1,17 +1,24 @@
 import darkMode from '../dummy/DarkMode';
 
+const defaultColors = {
+  // PRIMARY: '#5D2DFF',
+  PRIMARY: '#00599d',
+  PRIMARY_TEXT: 'white',
+  SHOW_MORE: '#3db6fc',
+};
+
 const colorsDark = {
-  PRIMARY: '#5D2DFF',
+  ...defaultColors,
+  isDark: true,
   BACKGROUND: 'black',
   TEXT: 'white',
-  SHOW_MORE: '#3db6fc',
   GRAY: 'grey',
 };
 const colors = {
-  PRIMARY: '#5D2DFF',
+  ...defaultColors,
+  isDark: false,
   BACKGROUND: 'white',
   TEXT: 'black',
-  SHOW_MORE: '#3db6fc',
   GRAY: 'grey',
 };
 

@@ -65,7 +65,7 @@ const notiIcon = ({focused}) => (
 export const BottomNavigator = ({}) => {
   return (
     <Tab.Navigator
-      initialRouteName="Home"
+      initialRouteName="HomeScreen"
       screenOptions={{
         headerShown: false,
         tabBarShowLabel: false,
@@ -75,35 +75,35 @@ export const BottomNavigator = ({}) => {
         },
       }}>
       <Tab.Screen
-        name="Favorite"
+        name="FavoriteScreen"
         options={{
           tabBarIcon: favIcon,
         }}
         component={FavoriteScreen}
       />
       <Tab.Screen
-        name="Cart"
+        name="CartScreen"
         options={{
           tabBarIcon: cartIcon,
         }}
         component={CartScreen}
       />
       <Tab.Screen
-        name="Home"
+        name="HomeScreen"
         options={{
           tabBarIcon: homeIcon,
         }}
         component={HomeScreen}
       />
       <Tab.Screen
-        name="Notification"
+        name="NotificationScreen"
         options={{
           tabBarIcon: notiIcon,
         }}
         component={NotificationScreen}
       />
       <Tab.Screen
-        name="Profile"
+        name="ProfileScreen"
         options={{
           tabBarIcon: profileIcon,
         }}

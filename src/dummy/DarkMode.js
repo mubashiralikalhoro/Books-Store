@@ -1,2 +1,1 @@
-let darkMode = true;
-export default darkMode;
+export default darkMode = 0;

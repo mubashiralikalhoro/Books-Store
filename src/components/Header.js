@@ -37,14 +37,14 @@ const styles = StyleSheet.create({
   },
   back: {
     marginLeft: Size.PADDING,
-    width: Size.ICON * 0.8,
-    height: Size.ICON * 0.8,
+    width: Size.ICON * 0.6,
+    height: Size.ICON * 0.6,
     tintColor: color.TEXT,
   },
   arrangingView: {
     marginRight: Size.PADDING,
-    width: Size.ICON * 0.8,
-    height: Size.ICON * 0.8,
+    width: Size.ICON * 0.6,
+    height: Size.ICON * 0.6,
   },
   text: {
     fontSize: Size.HEADER_FOOTER_SIZE * 0.4,

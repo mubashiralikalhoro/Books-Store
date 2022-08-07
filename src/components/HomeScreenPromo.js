@@ -23,7 +23,7 @@ const HomeScreenPromo = ({source}) => {
 
         <ScrollView horizontal pagingEnabled>
           {source.map((item, index) => (
-            <View key={index}>
+            <View key={index} style={styles.view}>
               <Image source={item} style={styles.image} />
             </View>
           ))}
@@ -42,7 +42,14 @@ const styles = StyleSheet.create({
   },
   image: {
     height: Size.HEIGHT * 0.3,
+    width: Size.WIDTH - Size.PADDING * 4,
+    borderBottomLeftRadius: Size.BORDER_RADIUS,
+    borderBottomRightRadius: Size.BORDER_RADIUS,
+  },
+  view: {
+    height: Size.HEIGHT * 0.3,
     width: Size.WIDTH,
+    paddingHorizontal: Size.PADDING * 2,
   },
   scrollView: {
     flex: 1,

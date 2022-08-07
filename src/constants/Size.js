@@ -1,6 +1,12 @@
-import {Dimensions} from 'react-native';
+import {Dimensions, useWindowDimensions} from 'react-native';
 
-const {width, height} = Dimensions.get('window');
+const {width, height} = useWindowDimensions();
+
+if (width > height) {
+  const temp = width;
+  width = height;
+  height = temp;
+}
 
 export default {
   PADDING: 10,

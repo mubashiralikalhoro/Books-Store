@@ -16,7 +16,7 @@ const Icons = {
   FAVORITE_SELECTED: require('./favourite2.png'),
   PAGE: require('./page.png'),
   READS: require('./reads.png'),
-  DRAWER: require('./drawer.png'),
+  LOGO: require('./drawer.png'),
   SEARCH: require('./search.png'),
   DISCOVER: require('./discover.png'),
   BACK: require('./back.png'),

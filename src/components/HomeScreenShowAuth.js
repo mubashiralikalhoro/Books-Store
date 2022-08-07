@@ -51,7 +51,7 @@ export default HomeScreenShowAuth;
 const styles = StyleSheet.create({
   container: {
     marginTop: 4,
-    height: Size.HEIGHT * 0.22,
+    height: Size.WIDTH * 0.27 * 1.7,
     width: Size.WIDTH,
     paddingHorizontal: Size.PADDING,
   },

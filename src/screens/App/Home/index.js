@@ -20,7 +20,7 @@ import {Images} from '../../../assets/images';
 import HomeScreenShowCat from '../../../components/HomeScreenShowCat';
 import Books from '../../../dummy/Books';
 import HomeScreenShowAuth from '../../../components/HomeScreenShowAuth';
-import {useNavigation, useRoute} from '@react-navigation/native';
+import AnimatedLogo from '../../../components/AnimatedLogo';
 
 //third party library
 
@@ -38,7 +38,7 @@ const HomeScreen = ({navigation}) => {
     <>
       <View style={styles.container}>
         <ScrollView showsVerticalScrollIndicator={false} onScroll={onScroll}>
-          <HomeScreenPromo source={[Images.book1, Images.book2]} />
+          <HomeScreenPromo source={[Images.bookAd, Images.bookAd2]} />
           <HomeScreenShowAuth />
           {/*Make this part dynamic*/}
           <HomeScreenShowCat catName="Latest" books={Books} />
@@ -48,6 +48,7 @@ const HomeScreen = ({navigation}) => {
           {/* ==================== */}
         </ScrollView>
         <HomeScreenHeader opacity={headerShown} />
+        <AnimatedLogo />
       </View>
     </>
   );

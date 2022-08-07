@@ -1,9 +1,9 @@
-import {View, Text, StyleSheet, Image, Animated} from 'react-native';
+import {View, Pressable, StyleSheet, Image, Animated} from 'react-native';
 import React, {useState} from 'react';
 import Size from '../constants/Size';
 import Icon from '../assets/Icons';
 import color from '../constants/color';
-import {Colors} from 'react-native/Libraries/NewAppScreen';
+import darkMode from '../dummy/DarkMode';
 
 const HomeScreenHeader = ({opacity}) => {
   const opacityLevel = useState(new Animated.Value(0.3))[0];
@@ -38,7 +38,8 @@ const HomeScreenHeader = ({opacity}) => {
   return (
     <View style={styles.container}>
       <Animated.View style={styles.shadowEffect(opacityLevel)}></Animated.View>
-      <Image source={Icon.DRAWER} style={styles.drawer} />
+      {/* <Image source={Icon.LOGO} style={styles.logo} /> */}
+      <View style={styles.logo} />
       <Image source={Icon.DISCOVER} style={styles.discover} />
       <View style={styles.arrange}></View>
       <Image source={Icon.SEARCH} style={styles.search} />
@@ -56,7 +57,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
   },
-  drawer: {
+  logo: {
     width: Size.ICON,
     height: Size.ICON,
     tintColor: color.TEXT,

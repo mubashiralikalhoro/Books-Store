@@ -5,6 +5,7 @@ import GlobalStyle from '../constants/GlobalStyle';
 import color from '../constants/color';
 import Icons from '../assets/Icons';
 import {Colors} from 'react-native/Libraries/NewAppScreen';
+import {useNavigation} from '@react-navigation/native';
 
 const Genre = ({name, index}) => {
   const textColor = () => {
@@ -30,7 +31,7 @@ const Genre = ({name, index}) => {
       <Text
         style={[
           GlobalStyle.TEXT_STYLE,
-          {fontSize: Size.FONTSIZE + 4, color: textColor()},
+          {fontSize: Size.FONTSIZE + 1, color: textColor()},
         ]}>
         {name}
       </Text>
@@ -70,40 +71,54 @@ const getThree = items => {
 };
 
 const BooksScreenItem = ({item}) => {
+  const navigation = useNavigation();
+  const toBookDetailsScreen = () => {
+    navigation.navigate('BookDetailsScreen', item);
+  };
   return (
     <View style={styles.container}>
-      <Image source={item.bookCover} style={styles.imageBack}></Image>
-      <Pressable style={{flex: 1, flexDirection: 'row'}}>
-        {/* Book Cover */}
-        <Image
-          source={item.bookCover}
-          resizeMode="cover"
-          style={styles.bookCover}
-        />
+      <View style={{flex: 1, flexDirection: 'row'}}>
+        <Pressable onPress={toBookDetailsScreen} style={styles.imageBack}>
+          <Image
+            source={item.bookCover}
+            style={[styles.imageBack, {opacity: 1}]}></Image>
+        </Pressable>
+        <Pressable onPress={toBookDetailsScreen}>
+          {/* Book Cover */}
+          <Image
+            source={item.bookCover}
+            resizeMode="cover"
+            style={styles.bookCover}
+          />
+        </Pressable>
         <View style={styles.detailsView}>
           {/* Book name and author */}
-          <View>
-            <Text style={[GlobalStyle.TEXT_STYLE, styles.bookName]}>
-              {item.bookName}
-            </Text>
-            <Text style={[GlobalStyle.TEXT_STYLE, styles.bookAuthorName]}>
-              {item.author}
-            </Text>
-          </View>
-          {/* Book Info */}
-          <View style={styles.bookInfo}>
-            <InfoComponent icon={Icons.PAGE} text={item.pages} left={0} />
-            <InfoComponent icon={Icons.READS} text={item.sells} left={20} />
-            <InfoComponent icon={Icons.DOLLAR} text={item.price} left={40} />
-          </View>
-          {/* Genre */}
-          <View style={styles.allGenresView}>
-            {getThree(item.genre).map((gen, index) => (
-              <Genre name={gen} key={index} index={index} />
-            ))}
-          </View>
+          <Pressable onPress={toBookDetailsScreen}>
+            <View>
+              <Text style={[GlobalStyle.TEXT_STYLE, styles.bookName]}>
+                {item.bookName}
+              </Text>
+              <Text style={[GlobalStyle.TEXT_STYLE, styles.bookAuthorName]}>
+                {item.author}
+              </Text>
+            </View>
+            {/* Book Info */}
+            <View style={styles.bookInfo}>
+              <InfoComponent icon={Icons.PAGE} text={item.pages} left={0} />
+              <InfoComponent icon={Icons.READS} text={item.sells} left={20} />
+              <InfoComponent icon={Icons.DOLLAR} text={item.price} left={40} />
+            </View>
+            {/* Genre */}
+            <View style={styles.allGenresView}>
+              {getThree(item.genre).map((gen, index) => (
+                <Genre name={gen} key={index} index={index} />
+              ))}
+            </View>
+          </Pressable>
+
+          <View>{/* TODO: add save and add to cart button here*/}</View>
         </View>
-      </Pressable>
+      </View>
     </View>
   );
 };
@@ -130,7 +145,7 @@ const styles = StyleSheet.create({
   imageBack: {
     width: '100%',
     height: '100%',
-    opacity: 0.15,
+    opacity: 0.05,
     borderRadius: Size.BORDER_RADIUS,
     position: 'absolute',
   },
