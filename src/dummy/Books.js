@@ -1,6 +1,6 @@
 import {Images} from '../assets/images';
 
-class Book {
+export class Book {
   constructor(
     id,
     bookName,

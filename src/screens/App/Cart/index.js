@@ -1,20 +1,40 @@
-import {View, Text, ScrollView} from 'react-native';
+import {View, Text, ScrollView, Image} from 'react-native';
 import React from 'react';
 import styles from './style';
-import GlobalStyle from '../../../constants/GlobalStyle';
 import CartScreenFooter from '../../../components/CartScreenFooter';
 import {Cart} from '../../../dummy/data';
-import Books from '../../../dummy/Books';
-
 import CartItem from '../../../components/CartItem';
+import Size from '../../../constants/Size';
+import color from '../../../constants/color';
+import Icons from '../../../assets/Icons';
+import GlobalStyle from '../../../constants/GlobalStyle';
+
+const NoItems = () => (
+  <View style={{alignItems: 'center', marginTop: Size.PADDING * 2}}>
+    <Image
+      source={Icons.CART}
+      style={{height: Size.ICON, width: Size.ICON, tintColor: color.TEXT}}
+    />
+    <Text style={[GlobalStyle.TEXT_STYLE, {marginTop: Size.PADDING}]}>
+      No Items in cart
+    </Text>
+  </View>
+);
+
 const CartScreen = () => {
   return (
     <View style={styles.container}>
-      <ScrollView style={styles.ScrollView}>
-        <View style={{height: 100}} />
-        <CartItem book={Books[0]} />
-      </ScrollView>
-      <CartScreenFooter cartData={Cart} />
+      {Cart.length === 0 && <NoItems />}
+      {Cart.length > 0 && (
+        <>
+          <ScrollView>
+            {Cart.map((item, index) => (
+              <CartItem book={item} key={index} />
+            ))}
+          </ScrollView>
+          <CartScreenFooter cartData={Cart} />
+        </>
+      )}
     </View>
   );
 };

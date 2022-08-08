@@ -18,7 +18,7 @@ const styles = StyleSheet.create({
     top: Size.HEIGHT / 2,
   },
   logo: {
-    tintColor: color.TEXT,
+    tintColor: color.PRIMARY_TEXT,
     height: '100%',
     width: '100%',
   },

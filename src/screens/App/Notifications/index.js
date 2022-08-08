@@ -1,10 +1,27 @@
-import {View, Text} from 'react-native';
+import {View, Text, Image} from 'react-native';
 import React from 'react';
+import styles from './style';
+import color from '../../../constants/color';
+import Icons from '../../../assets/Icons';
+import Size from '../../../constants/Size';
+import GlobalStyle from '../../../constants/GlobalStyle';
+
+const NoItems = () => (
+  <View style={{alignItems: 'center', marginTop: Size.PADDING * 2}}>
+    <Image
+      source={Icons.NOTIFICATION}
+      style={{height: Size.ICON, width: Size.ICON, tintColor: color.TEXT}}
+    />
+    <Text style={[GlobalStyle.TEXT_STYLE, {marginTop: Size.PADDING}]}>
+      No Notifications
+    </Text>
+  </View>
+);
 
 const NotificationScreen = () => {
   return (
-    <View>
-      <Text>NotificationScreen</Text>
+    <View style={styles.container}>
+      <NoItems />
     </View>
   );
 };

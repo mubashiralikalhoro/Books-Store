@@ -21,6 +21,9 @@ const Icons = {
   DISCOVER: require('./discover.png'),
   BACK: require('./back.png'),
   DOLLAR: require('./dollar.png'),
+  DELETE: require('./deleteIcon.png'),
+  PLUS: require('./plus.png'),
+  MINUS: require('./minus.png'),
 };
 
 export default Icons;

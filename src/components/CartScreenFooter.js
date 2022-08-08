@@ -57,8 +57,9 @@ const styles = StyleSheet.create({
     },
     shadowOpacity: 0.51,
     shadowRadius: 13.16,
-
     elevation: 20,
+    borderWidth: color.isDark && Platform.OS == 'android' ? 0.5 : 0,
+    borderColor: color.GRAY,
   },
   totalView: {
     width: Size.WIDTH * 0.8,
