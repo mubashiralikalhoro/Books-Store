@@ -1,4 +1,4 @@
-import {View, Text, Image} from 'react-native';
+import {View, Text, Image, SafeAreaView} from 'react-native';
 import React from 'react';
 import styles from './style';
 import color from '../../../constants/color';
@@ -7,7 +7,7 @@ import Size from '../../../constants/Size';
 import GlobalStyle from '../../../constants/GlobalStyle';
 
 const NoItems = () => (
-  <View style={{alignItems: 'center', marginTop: Size.PADDING * 2}}>
+  <SafeAreaView style={{alignItems: 'center', marginTop: Size.PADDING * 2}}>
     <Image
       source={Icons.NOTIFICATION}
       style={{height: Size.ICON, width: Size.ICON, tintColor: color.TEXT}}
@@ -15,7 +15,7 @@ const NoItems = () => (
     <Text style={[GlobalStyle.TEXT_STYLE, {marginTop: Size.PADDING}]}>
       No Notifications
     </Text>
-  </View>
+  </SafeAreaView>
 );
 
 const NotificationScreen = () => {

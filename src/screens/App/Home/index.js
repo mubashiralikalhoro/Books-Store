@@ -1,14 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import {
-  Text,
-  Dimensions,
-  SafeAreaView,
-  ScrollView,
-  View,
-  Image,
-  Button,
-  StatusBar,
-} from 'react-native';
+import {SafeAreaView, ScrollView} from 'react-native';
 
 //local imports
 
@@ -36,7 +27,7 @@ const HomeScreen = ({navigation}) => {
 
   return (
     <>
-      <View style={styles.container}>
+      <SafeAreaView style={styles.container}>
         <ScrollView showsVerticalScrollIndicator={false} onScroll={onScroll}>
           <HomeScreenPromo source={[Images.bookAd, Images.bookAd2]} />
           <HomeScreenShowAuth />
@@ -49,7 +40,7 @@ const HomeScreen = ({navigation}) => {
         </ScrollView>
         <HomeScreenHeader opacity={headerShown} />
         <AnimatedLogo />
-      </View>
+      </SafeAreaView>
     </>
   );
 };

@@ -8,10 +8,5 @@ const styles = StyleSheet.create({
     backgroundColor: color.BACKGROUND,
     alignItems: 'center',
   },
-  noItems: {
-    height: Size.ICON,
-    width: Size.ICON,
-    tintColor: color.TEXT,
-  },
 });
 export default styles;

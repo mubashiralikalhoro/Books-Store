@@ -1,4 +1,4 @@
-import {View, Text, ScrollView, Image} from 'react-native';
+import {View, Text, ScrollView, SafeAreaView, Image} from 'react-native';
 import React from 'react';
 import styles from './style';
 import CartScreenFooter from '../../../components/CartScreenFooter';
@@ -23,7 +23,7 @@ const NoItems = () => (
 
 const CartScreen = () => {
   return (
-    <View style={styles.container}>
+    <SafeAreaView style={styles.container}>
       {Cart.length === 0 && <NoItems />}
       {Cart.length > 0 && (
         <>
@@ -35,7 +35,7 @@ const CartScreen = () => {
           <CartScreenFooter cartData={Cart} />
         </>
       )}
-    </View>
+    </SafeAreaView>
   );
 };
 

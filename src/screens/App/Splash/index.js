@@ -19,7 +19,7 @@ const SplashScreen = ({navigation}) => {
   moveIn();
 
   const navigate = () => {
-    navigation.navigate('BottomNavigator');
+    navigation.navigate('SignInScreen');
   };
   setTimeout(navigate, 2000);
 

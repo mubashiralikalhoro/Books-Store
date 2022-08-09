@@ -26,7 +26,6 @@ const styles = StyleSheet.create({
     marginHorizontal: 2,
     width: Size.WIDTH * 0.3,
     height: Size.WIDTH * 0.6,
-    // backgroundColor: 'red',
     alignItems: 'center',
   },
   title: {

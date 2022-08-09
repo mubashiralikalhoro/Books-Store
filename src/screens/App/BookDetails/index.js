@@ -1,4 +1,4 @@
-import {View, Text, Image, ScrollView} from 'react-native';
+import {View, Text, Image, ScrollView, SafeAreaView} from 'react-native';
 import React from 'react';
 import {useNavigation, useRoute} from '@react-navigation/native';
 import Header from '../../../components/Header';
@@ -8,19 +8,6 @@ import Pressable from 'react-native/Libraries/Components/Pressable/Pressable';
 import BookDetailsScreenFooter from '../../../components/BookDetailsScreenFooter';
 import color from '../../../constants/color';
 import Icons from '../../../assets/Icons';
-
-// id,
-// bookName,
-// bookCover,
-// rating,
-// language,
-// pages,
-// author,
-// authorId,
-// genre,
-// sells,
-// description,
-// price,
 
 const InfoComponent = ({icon, text, left}) => (
   <>
@@ -47,7 +34,7 @@ const BookDetailsScreen = () => {
   const book = useRoute().params;
 
   return (
-    <View style={style.container}>
+    <SafeAreaView style={style.container}>
       <Header title={'Book Details'} />
       <ScrollView>
         <View style={style.imageView}>
@@ -84,7 +71,7 @@ const BookDetailsScreen = () => {
         </View>
       </ScrollView>
       <BookDetailsScreenFooter book={book} />
-    </View>
+    </SafeAreaView>
   );
 };
 

@@ -55,24 +55,18 @@ const NumberOfItems = ({no, setNo, book}) => {
 const borderRadius = Size.BORDER_RADIUS * 5;
 const CartItem = ({book}) => {
   const navigation = useNavigation();
-  const animatedFade = useState(new Animated.Value(1))[0];
   const remove = () => {
-    Animated.timing(animatedFade, {
-      toValue: 0,
-      duration: 200,
-      useNativeDriver: false,
-    }).start();
-    setTimeout(() => {
-      Cart.splice(Cart.indexOf(book), 1);
-    }, 200);
+    Cart.splice(Cart.indexOf(book), 1);
   };
+
   const [numberOfItems, setNumberOfItems] = useState(1);
+
   const openBook = () => {
     navigation.navigate('BookDetailsScreen', book);
   };
 
   return (
-    <Animated.View style={styles.container(animatedFade)}>
+    <View style={styles.container}>
       <Pressable onPress={openBook}>
         <View style={styles.containerMain}>
           <Image
@@ -100,20 +94,19 @@ const CartItem = ({book}) => {
           <RemoveButton onPress={remove} />
         </View>
       </Pressable>
-    </Animated.View>
+    </View>
   );
 };
 
 export default CartItem;
 
 const styles = StyleSheet.create({
-  container: op => ({
+  container: {
     marginVertical: Size.PADDING,
     width: Size.WIDTH,
     height: Size.ICON * 1.8,
     alignItems: 'center',
-    opacity: op,
-  }),
+  },
   containerMain: {
     flexDirection: 'row',
     width: Size.WIDTH * 0.9,
@@ -133,7 +126,7 @@ const styles = StyleSheet.create({
   },
   image: {
     height: Size.ICON * 1.8,
-    width: Size.ICON * 1.3,
+    width: Size.ICON * 1.4,
     borderTopLeftRadius: borderRadius,
     borderBottomLeftRadius: borderRadius,
   },

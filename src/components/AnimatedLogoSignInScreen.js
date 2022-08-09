@@ -3,36 +3,21 @@ import React, {useState} from 'react';
 import Size from '../constants/Size';
 import color from '../constants/color';
 import Icons from '../assets/Icons';
-import {useNavigation, useRoute} from '@react-navigation/native';
 
-const AnimatedLogo = () => {
-  const intialValue = () => {
-    if (1)
-      return {
-        x: (Size.WIDTH - Size.ICON * 2.5) / 2,
-        y: 0,
-      };
-    else
-      return {
-        x: (Size.WIDTH - Size.ICON * 2.5) / 2,
-        y: (Size.HEIGHT - Size.ICON * 2.5) / 2,
-      };
-  };
+const AnimatedLogoSigInScreen = () => {
   const duration = 1000;
-  const logoSize = useState(new Animated.Value(Size.ICON * 2.5))[0];
-  const position = useState(new Animated.ValueXY(intialValue()))[0];
+  const position = useState(
+    new Animated.ValueXY({
+      x: (Size.WIDTH - Size.ICON * 2.5) / 2,
+      y: (Size.HEIGHT - Size.ICON * 2.5) / 2,
+    }),
+  )[0];
 
   const moveLogo = () => {
-    Animated.timing(logoSize, {
-      toValue: Size.ICON,
-      duration: duration,
-      useNativeDriver: false,
-    }).start();
-
     Animated.timing(position, {
       toValue: {
         y: 0,
-        x: 0,
+        x: (Size.WIDTH - Size.ICON * 2.5) / 2,
       },
       duration: duration,
       useNativeDriver: false,
@@ -44,8 +29,8 @@ const AnimatedLogo = () => {
     <Animated.View
       style={[
         {
-          height: logoSize,
-          width: logoSize,
+          height: Size.ICON * 2.5,
+          width: Size.ICON * 2.5,
           position: 'absolute',
         },
         position.getLayout(),
@@ -62,4 +47,4 @@ const AnimatedLogo = () => {
   );
 };
 
-export default AnimatedLogo;
+export default AnimatedLogoSigInScreen;

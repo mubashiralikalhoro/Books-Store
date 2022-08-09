@@ -24,6 +24,8 @@ const Icons = {
   DELETE: require('./deleteIcon.png'),
   PLUS: require('./plus.png'),
   MINUS: require('./minus.png'),
+  BROKEN_HEART: require('./borkenHeart.png'),
+  LOCK: require('./lock.png'),
 };
 
 export default Icons;
