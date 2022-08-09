@@ -25,8 +25,8 @@ export default Author;
 const styles = StyleSheet.create({
   container: {
     alignItems: 'center',
-    justifyContent: 'flex-end',
-    height: Size.WIDTH * 0.27 * 1.3,
+    justifyContent: 'flex-start',
+    minHeight: Size.WIDTH * 0.27 * 1.3,
     width: Size.WIDTH * 0.27,
     borderRadius: Size.BORDER_RADIUS,
     backgroundColor: color.BACKGROUND,

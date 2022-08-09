@@ -8,6 +8,8 @@ if (width > height) {
   height = temp;
 }
 
+//12
+
 export default {
   PADDING: 10,
   FONTSIZE: 12,

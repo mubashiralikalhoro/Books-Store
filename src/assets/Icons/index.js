@@ -26,6 +26,8 @@ const Icons = {
   MINUS: require('./minus.png'),
   BROKEN_HEART: require('./borkenHeart.png'),
   LOCK: require('./lock.png'),
+  EMAIL: require('./email.png'),
+  CONFIRM: require('./check-mark.png'),
 };
 
 export default Icons;

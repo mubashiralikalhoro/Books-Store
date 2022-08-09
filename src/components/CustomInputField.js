@@ -14,6 +14,7 @@ const CustomInputField = ({
   style,
   secureTextEntry,
   value,
+  keyboardType,
 }) => {
   return (
     <View style={[styles.inputCon, style]}>
@@ -23,11 +24,14 @@ const CustomInputField = ({
         style={[styles.imageIcon, iconStyle]}
       />
       <TextInput
-        style={[styles.input, inputStyle]}
+        style={[GlobalStyle.TEXT_STYLE, styles.input, inputStyle]}
         onChangeText={onChangeText}
         value={value}
+        autoCapitalize={false}
+        autoCorrect={false}
+        spellCheck={false}
         placeholder={placeholder}
-        keyboardType="default"
+        keyboardType={keyboardType}
         placeholderTextColor={placeholderTextColor}
         secureTextEntry={secureTextEntry}
       />
@@ -39,19 +43,18 @@ export default CustomInputField;
 
 const styles = StyleSheet.create({
   input: {
-    ...GlobalStyle.TEXT_STYLE,
-    color: color.PRIMARY_TEXT,
+    fontWeight: '600',
     fontSize: Size.FONTSIZE + 2,
     width: Size.WIDTH * 0.5,
   },
   imageIcon: {
-    tintColor: color.PRIMARY_TEXT,
+    tintColor: color.TEXT,
     height: Size.ICON * 0.6,
     width: Size.ICON * 0.6,
     marginHorizontal: Size.PADDING,
   },
   inputCon: {
-    backgroundColor: color.PRIMARY,
+    backgroundColor: color.LIGHT_GRAY,
     width: Size.WIDTH * 0.9,
     borderRadius: Size.WIDTH * 0.078,
     marginTop: Size.HEIGHT * 0.02,

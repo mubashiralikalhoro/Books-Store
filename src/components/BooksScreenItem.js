@@ -1,4 +1,12 @@
-import {View, Text, StyleSheet, Image, Pressable} from 'react-native';
+import {
+  View,
+  Text,
+  StyleSheet,
+  Image,
+  Pressable,
+  ScrollView,
+  TouchableOpacity,
+} from 'react-native';
 import React from 'react';
 import Size from '../constants/Size';
 import GlobalStyle from '../constants/GlobalStyle';
@@ -71,6 +79,8 @@ const getThree = items => {
 };
 
 const BooksScreenItem = ({item}) => {
+  const addToCart = () => {};
+  const buyNow = () => {};
   const navigation = useNavigation();
   const toBookDetailsScreen = () => {
     navigation.navigate('BookDetailsScreen', item);
@@ -109,14 +119,27 @@ const BooksScreenItem = ({item}) => {
               <InfoComponent icon={Icons.DOLLAR} text={item.price} left={40} />
             </View>
             {/* Genre */}
-            <View style={styles.allGenresView}>
+            <ScrollView
+              style={styles.allGenresView}
+              horizontal
+              showsHorizontalScrollIndicator={false}>
               {getThree(item.genre).map((gen, index) => (
                 <Genre name={gen} key={index} index={index} />
               ))}
-            </View>
+            </ScrollView>
           </Pressable>
 
-          <View>{/* TODO: add save and add to cart button here*/}</View>
+          <View style={styles.viewCart}>
+            <Pressable style={styles.iconsView} onPress={addToCart}>
+              <Text style={[GlobalStyle.TEXT_STYLE, styles.text]}>
+                Add to cart
+              </Text>
+              <Image source={Icons.CART} style={styles.viewIcon} />
+            </Pressable>
+            <Pressable style={styles.iconsView} onPress={buyNow}>
+              <Text style={[GlobalStyle.TEXT_STYLE, styles.text]}>Buy Now</Text>
+            </Pressable>
+          </View>
         </View>
       </View>
     </View>
@@ -130,7 +153,7 @@ const styles = StyleSheet.create({
     marginBottom: Size.PADDING,
     borderRadius: 10,
     marginVertical: 2,
-    height: (Size.WIDTH * 0.3 - 10) * 1.5,
+    minHeight: (Size.WIDTH * 0.3 - 10) * 1.5,
     alignItems: 'center',
   },
   genreView: backgroundColor => ({
@@ -141,6 +164,7 @@ const styles = StyleSheet.create({
     height: Size.FONTSIZE + 14,
     borderRadius: (Size.FONTSIZE + 14) / 2,
     backgroundColor: backgroundColor,
+    marginVertical: Size.PADDING * 0.1,
   }),
   imageBack: {
     width: '100%',
@@ -151,7 +175,8 @@ const styles = StyleSheet.create({
   },
   bookCover: {
     width: Size.WIDTH * 0.3 - 10,
-    height: (Size.WIDTH * 0.3 - 10) * 1.5,
+    // height: (Size.WIDTH * 0.3 - 10) * 1.5,
+    height: '100%',
     borderRadius: Size.BORDER_RADIUS,
   },
   allGenresView: {
@@ -179,5 +204,44 @@ const styles = StyleSheet.create({
     width: 20,
     height: 20,
     tintColor: color.GRAY,
+  },
+  viewCart: {
+    marginTop: Size.PADDING,
+    paddingRight: Size.PADDING,
+    width: '100%',
+    flexDirection: 'row',
+    justifyContent: 'space-around',
+  },
+  viewIcon: {
+    marginLeft: Size.PADDING / 2,
+    height: Size.WIDTH * 0.035,
+    width: Size.WIDTH * 0.035,
+    tintColor: color.PRIMARY_TEXT,
+  },
+  iconsView: {
+    flexDirection: 'row',
+
+    paddingVertical: Size.PADDING,
+    width: Size.WIDTH * 0.3,
+    backgroundColor: color.PRIMARY,
+    borderRadius: Size.BORDER_RADIUS,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  heartView: {
+    width: Size.ICON * 0.8,
+    height: Size.ICON * 0.8,
+  },
+  iconHeartButton: {
+    position: 'absolute',
+    alignSelf: 'flex-end',
+    right: Size.PADDING,
+    top: Size.PADDING,
+    width: Size.ICON * 0.8,
+    height: Size.ICON * 0.8,
+  },
+  text: {
+    fontSize: Size.WIDTH * 0.035,
+    color: color.PRIMARY_TEXT,
   },
 });

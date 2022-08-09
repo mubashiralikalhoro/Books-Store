@@ -10,6 +10,7 @@ export default StyleSheet.create({
   },
 
   logo: {
+    tintColor: color.TEXT,
     height: Size.ICON * 2.5,
     width: Size.ICON * 2.5,
     resizeMode: 'contain',
@@ -51,7 +52,7 @@ export default StyleSheet.create({
     alignItems: 'center',
     borderRadius: Size.WIDTH * 0.7,
     alignSelf: 'center',
-    marginTop: Size.PADDING * 2,
+    marginTop: Size.PADDING * 3,
   },
 
   txt4: {
@@ -100,7 +101,7 @@ export default StyleSheet.create({
     marginTop: Size.PADDING,
   },
   line: {
-    borderTopColor: color.TEXT,
+    borderTopColor: color.GRAY,
     borderTopWidth: 2,
     width: '44%',
   },

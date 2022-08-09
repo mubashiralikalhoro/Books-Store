@@ -55,7 +55,8 @@ export default HomeScreenShowCat;
 
 const styles = StyleSheet.create({
   container: {
-    height: Size.WIDTH * 0.27 * 2.2,
+    minHeight: Size.WIDTH * 0.27 * 1.9,
+    marginVertical: Size.PADDING / 2,
     width: Size.WIDTH,
     paddingHorizontal: Size.PADDING,
   },

@@ -4,7 +4,7 @@ import styles from './style';
 
 const ProfileScreen = () => {
   return (
-    <SafeAreaView>
+    <SafeAreaView style={styles.container}>
       <Text>Profile</Text>
     </SafeAreaView>
   );

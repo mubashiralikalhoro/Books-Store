@@ -74,15 +74,16 @@ const styles = StyleSheet.create({
     fontSize: Size.FONTSIZE + 3,
   },
   checkOut: {
-    fontSize: Size.FONTSIZE * 1.5,
+    fontSize: Size.WIDTH * 0.05,
     color: color.PRIMARY_TEXT,
   },
   checkOutView: {
+    paddingVertical: Size.PADDING,
+    minHeight: Size.ICON / 2,
     marginBottom: Size.ICON,
     width: Size.WIDTH * 0.7,
     justifyContent: 'center',
     alignItems: 'center',
-    height: Size.FONTSIZE * 4,
     borderRadius: Size.FONTSIZE * 4,
     backgroundColor: color.PRIMARY,
   },

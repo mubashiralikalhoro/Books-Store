@@ -11,7 +11,8 @@ import BooksScreen from '../screens/App/Books';
 import SplashScreen from '../screens/App/Splash';
 import BookDetailsScreen from '../screens/App/BookDetails';
 import SignIn from '../screens/Auth/SignIn';
-
+import SignUp from '../screens/Auth/SignUp';
+import ForgetPassword from '../screens/Auth/ForgetPassword';
 //bottom tab
 import {BottomNavigator} from './bottom.navigator';
 
@@ -23,8 +24,11 @@ export const RootNavigator = ({}) => {
       initialRouteName="SplashScreen"
       screenOptions={{
         headerShown: false,
+        animationEnabled: false,
       }}>
       <Stack.Screen name="SignInScreen" component={SignIn} />
+      <Stack.Screen name="SignUpScreen" component={SignUp} />
+      <Stack.Screen name="ForgetPasswordScreen" component={ForgetPassword} />
       <Stack.Screen name="ProfileScreen" component={ProfileScreen} />
       <Stack.Screen name="NotificationScreen" component={NotificationScreen} />
       <Stack.Screen name="HomeScreen" component={HomeScreen} />

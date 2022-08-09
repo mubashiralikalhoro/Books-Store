@@ -104,13 +104,13 @@ const styles = StyleSheet.create({
   container: {
     marginVertical: Size.PADDING,
     width: Size.WIDTH,
-    height: Size.ICON * 1.8,
+    minHeight: Size.ICON * 1.8,
     alignItems: 'center',
   },
   containerMain: {
     flexDirection: 'row',
     width: Size.WIDTH * 0.9,
-    height: Size.ICON * 1.8,
+    minHeight: Size.ICON * 1.8,
     borderRadius: borderRadius,
     backgroundColor: color.BACKGROUND,
     shadowColor: color.TEXT,
@@ -125,7 +125,7 @@ const styles = StyleSheet.create({
     borderColor: color.GRAY,
   },
   image: {
-    height: Size.ICON * 1.8,
+    height: '100%',
     width: Size.ICON * 1.4,
     borderTopLeftRadius: borderRadius,
     borderBottomLeftRadius: borderRadius,
@@ -162,7 +162,6 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    width: Size.ICON * 1.1,
     height: Size.FONTSIZE + 10,
     backgroundColor: color.GRAY,
     borderRadius: (Size.FONTSIZE + 10) / 2,

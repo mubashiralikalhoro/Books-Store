@@ -25,7 +25,6 @@ const styles = StyleSheet.create({
   container: {
     marginHorizontal: 2,
     width: Size.WIDTH * 0.3,
-    height: Size.WIDTH * 0.6,
     alignItems: 'center',
   },
   title: {

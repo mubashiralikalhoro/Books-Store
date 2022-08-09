@@ -35,16 +35,17 @@ const SignIn = ({navigation}) => {
       </View>
 
       {/* InputField*/}
-      <KeyboardAvoidingView style={{marginTop: Size.HEIGHT * 0.05}}>
+      <KeyboardAvoidingView style={{marginTop: Size.PADDING * 2}}>
         <CustomInputField
           icon={Icon.ACCOUNT}
           placeholder="Email"
-          placeholderTextColor={color.PRIMARY_TEXT}
+          placeholderTextColor={color.TEXT}
+          keyboardType="email-address"
         />
         <CustomInputField
           icon={Icon.LOCK}
           placeholder="Password"
-          placeholderTextColor={color.PRIMARY_TEXT}
+          placeholderTextColor={color.TEXT}
           secureTextEntry={true}
         />
       </KeyboardAvoidingView>
@@ -52,9 +53,9 @@ const SignIn = ({navigation}) => {
       {/* FORGET PASSWORD */}
       <Pressable style={styles.forgotCon}>
         <Text
-          onPress={() => navigation.navigate('ForgotPassword')}
+          onPress={() => navigation.navigate('ForgetPasswordScreen')}
           style={[GlobalStyle.TEXT_STYLE, styles.forgotTxt]}>
-          Forget Password ?
+          Forget password?
         </Text>
       </Pressable>
 
@@ -88,15 +89,15 @@ const SignIn = ({navigation}) => {
       <TouchableOpacity
         onPress={() => navigation.navigate('BottomNavigator')}
         style={styles.signInCon}>
-        <Text style={styles.txt4}>SIGN IN</Text>
+        <Text style={[GlobalStyle.TEXT_STYLE, styles.txt4]}>SIGN IN</Text>
       </TouchableOpacity>
 
       {/*SIGN UP BUTTON*/}
       <View style={styles.lastCon}>
-        <Text style={styles.lastTxt}>
+        <Text style={[GlobalStyle.TEXT_STYLE, styles.lastTxt]}>
           Don't have an account?{' '}
           <Text
-            onPress={() => navigation.navigate('Signup')}
+            onPress={() => navigation.navigate('SignUpScreen')}
             style={{color: color.PRIMARY}}>
             Sign up
           </Text>

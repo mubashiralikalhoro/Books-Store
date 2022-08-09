@@ -12,10 +12,12 @@ import HomeScreenShowCat from '../../../components/HomeScreenShowCat';
 import Books from '../../../dummy/Books';
 import HomeScreenShowAuth from '../../../components/HomeScreenShowAuth';
 import AnimatedLogo from '../../../components/AnimatedLogo';
+import {useNavigation} from '@react-navigation/native';
 
 //third party library
 
 const HomeScreen = ({navigation}) => {
+  navigation.canGoBack(false);
   const [headerShown, setHeaderShown] = useState(false);
   const onScroll = e => {
     if (e.nativeEvent.contentOffset.y > 0) {

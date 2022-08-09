@@ -12,6 +12,7 @@ const colorsDark = {
   isDark: true,
   BACKGROUND: 'black',
   TEXT: 'white',
+  LIGHT_GRAY: '#5c5e5c',
   GRAY: 'grey',
 };
 const colors = {
@@ -19,6 +20,7 @@ const colors = {
   isDark: false,
   BACKGROUND: 'white',
   TEXT: 'black',
+  LIGHT_GRAY: '#c1c7c2',
   GRAY: 'grey',
 };
 

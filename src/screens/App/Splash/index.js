@@ -6,6 +6,7 @@ import style from './style';
 import Size from '../../../constants/Size';
 import color from '../../../constants/color';
 import AnimatedLogo from '../../../components/AnimatedLogo';
+import {useNavigation} from '@react-navigation/native';
 
 const SplashScreen = ({navigation}) => {
   const logoSize = useState(new Animated.Value(0))[0];
@@ -19,7 +20,7 @@ const SplashScreen = ({navigation}) => {
   moveIn();
 
   const navigate = () => {
-    navigation.navigate('SignInScreen');
+    navigation.replace('SignInScreen');
   };
   setTimeout(navigate, 2000);
 
