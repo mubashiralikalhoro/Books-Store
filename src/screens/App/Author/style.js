@@ -34,8 +34,9 @@ const styles = StyleSheet.create({
     fontSize: Size.WIDTH * 0.04,
   },
   info: {
+    paddingLeft: Size.PADDING * 2,
     alignSelf: 'center',
-    textAlign: 'center',
+    textAlign: 'justify',
   },
   bookView: {
     justifyContent: 'space-around',

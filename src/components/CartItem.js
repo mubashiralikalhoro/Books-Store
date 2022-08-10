@@ -72,29 +72,29 @@ const CartItem = ({book, numberOfItems}) => {
 
   return (
     <View style={styles.container}>
-      <Pressable onPress={openBook}>
-        <View style={styles.containerMain}>
-          <Image
-            source={book.bookCover}
-            style={styles.image}
-            resizeMode="stretch"
-          />
-          <View style={styles.disView}>
+      <View style={styles.containerMain}>
+        <Image
+          source={book.bookCover}
+          style={styles.image}
+          resizeMode="stretch"
+        />
+        <View style={styles.disView}>
+          <Pressable onPress={openBook}>
             <Text style={[GlobalStyle.TEXT_STYLE]}>{book.bookName}</Text>
-            <View style={styles.priceSection}>
-              <NumberOfItems no={numberOfItems} book={book} />
-              <Text
-                style={[
-                  GlobalStyle.TEXT_STYLE,
-                  {fontSize: Size.FONTSIZE + 2, fontWeight: '700'},
-                ]}>
-                ${book.price * numberOfItems}
-              </Text>
-            </View>
+          </Pressable>
+          <View style={styles.priceSection}>
+            <NumberOfItems no={numberOfItems} book={book} />
+            <Text
+              style={[
+                GlobalStyle.TEXT_STYLE,
+                {fontSize: Size.FONTSIZE + 2, fontWeight: '700'},
+              ]}>
+              ${book.price * numberOfItems}
+            </Text>
           </View>
-          <RemoveButton onPress={remove} />
         </View>
-      </Pressable>
+        <RemoveButton onPress={remove} />
+      </View>
     </View>
   );
 };

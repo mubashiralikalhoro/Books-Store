@@ -1,5 +1,5 @@
-import React, {useState} from 'react';
-import {ScrollView} from 'react-native';
+import React from 'react';
+
 import {
   SafeAreaView,
   Text,
@@ -7,9 +7,7 @@ import {
   View,
   TouchableOpacity,
   KeyboardAvoidingView,
-  TextInput,
   Pressable,
-  Dimensions,
 } from 'react-native';
 
 import styles from './style';

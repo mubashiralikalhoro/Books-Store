@@ -10,7 +10,7 @@ export default StyleSheet.create({
   },
 
   logo: {
-    height: Size.ICON * 2.5,
+    height: Size.HEIGHT * 0.2,
     width: Size.ICON * 2.5,
     resizeMode: 'contain',
   },

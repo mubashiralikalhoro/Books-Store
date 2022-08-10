@@ -2,12 +2,10 @@ import React from 'react';
 import {
   SafeAreaView,
   Text,
-  TextInput,
   Image,
   View,
   TouchableOpacity,
   KeyboardAvoidingView,
-  Pressable,
 } from 'react-native';
 
 import styles from './style';
@@ -53,7 +51,9 @@ const SignUp = ({navigation}) => {
   return (
     <SafeAreaView style={styles.container}>
       {/* Header Section*/}
-      <Image source={Icons.LOGO} style={styles.logo} />
+      <View style={{minHeight: Size.HEIGHT * 0.2}}>
+        <Image source={Icons.LOGO} style={styles.logo} />
+      </View>
       <View style={styles.welcomeCon}>
         <Text style={[GlobalStyle.TEXT_STYLE, {color: color.GRAY}]}>
           Welcome

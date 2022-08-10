@@ -11,12 +11,12 @@ export default StyleSheet.create({
     shadowColor: color.TEXT,
     shadowOffset: {
       width: 0,
-      height: 10,
+      height: 1,
     },
-    shadowOpacity: 0.51,
-    shadowRadius: 13.16,
+    shadowOpacity: 0.22,
+    shadowRadius: 2.22,
 
-    elevation: 20,
+    elevation: 3,
     borderColor: color.GRAY,
     borderWidth: Platform.OS == 'android' && color.isDark ? 0.5 : 0,
   },
