@@ -1,6 +1,30 @@
 import {Images} from '../assets/images';
 import {Book} from './Books';
 
+export class Notification {
+  constructor(id, image, text, time) {
+    this.id = id;
+    this.image = image;
+    this.text = text;
+    this.time = time;
+  }
+}
+
+export class CartItem {
+  constructor(book, quantity) {
+    this.book = book;
+    this.quantity = quantity;
+  }
+}
+
+export const Notifications = [
+  new Notification(
+    1,
+    Images.book1,
+    'Order placed successfully!',
+    '2022-08-10T06:53:22.621Z',
+  ),
+];
 export const Favorite = [
   new Book(
     1,
@@ -129,10 +153,3 @@ export const Cart = [
     100,
   ),
 ];
-
-export class CartItem {
-  constructor(book, quantity) {
-    this.book = book;
-    this.quantity = quantity;
-  }
-}

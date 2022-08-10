@@ -5,6 +5,8 @@ import color from '../../../constants/color';
 import Icons from '../../../assets/Icons';
 import Size from '../../../constants/Size';
 import GlobalStyle from '../../../constants/GlobalStyle';
+import {Notifications} from '../../../dummy/data';
+import Notification from '../../../components/Notification';
 
 const NoItems = () => (
   <SafeAreaView style={{alignItems: 'center', marginTop: Size.PADDING * 2}}>
@@ -21,7 +23,10 @@ const NoItems = () => (
 const NotificationScreen = () => {
   return (
     <View style={styles.container}>
-      <NoItems />
+      {Notifications.length == 0 && <NoItems />}
+      {Notifications.length > 0 && (
+        <Notification notification={Notifications[0]} />
+      )}
     </View>
   );
 };
