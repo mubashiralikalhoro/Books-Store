@@ -13,6 +13,7 @@ import BookDetailsScreen from '../screens/App/BookDetails';
 import SignIn from '../screens/Auth/SignIn';
 import SignUp from '../screens/Auth/SignUp';
 import ForgetPassword from '../screens/Auth/ForgetPassword';
+import AuthorScreen from '../screens/App/Author';
 //bottom tab
 import {BottomNavigator} from './bottom.navigator';
 
@@ -36,6 +37,7 @@ export const RootNavigator = ({}) => {
       <Stack.Screen name="CartScreen" component={CartScreen} />
       <Stack.Screen name="SplashScreen" component={SplashScreen} />
       <Stack.Screen name="BooksScreen" component={BooksScreen} />
+      <Stack.Screen name="AuthorScreen" component={AuthorScreen} />
       <Stack.Screen name="BookDetailsScreen" component={BookDetailsScreen} />
       {/* BOTTOM TAB */}
       <Stack.Screen name="BottomNavigator" component={BottomNavigator} />

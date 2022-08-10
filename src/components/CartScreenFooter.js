@@ -8,7 +8,7 @@ const CartScreenFooter = ({cartData}) => {
   const getTotalPrice = () => {
     let total = 0.0;
     cartData.forEach(element => {
-      total += element.price;
+      total += element.noOfItems * element.book.price;
     });
     return total;
   };

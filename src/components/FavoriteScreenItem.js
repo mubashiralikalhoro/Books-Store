@@ -12,6 +12,8 @@ import color from '../constants/color';
 import GlobalStyle from '../constants/GlobalStyle';
 import Icons from '../assets/Icons';
 import {useNavigation} from '@react-navigation/native';
+import {removeFav} from '../store/reducer/favorite';
+import {useDispatch} from 'react-redux';
 
 const borderRadius = Size.BORDER_RADIUS * 5;
 
@@ -45,6 +47,10 @@ const InfoComponent = ({icon, text, left}) => (
 
 const FavoriteScreenItem = ({book}) => {
   const navigation = useNavigation();
+  const dispatch = useDispatch();
+  const remove = () => {
+    dispatch(removeFav(book));
+  };
   const openBook = () => {
     navigation.navigate('BookDetailsScreen', book);
   };
@@ -63,27 +69,14 @@ const FavoriteScreenItem = ({book}) => {
               style={[GlobalStyle.TEXT_STYLE, {fontSize: Size.FONTSIZE * 1.1}]}>
               {book.bookName}
             </Text>
-            {/* <Text
-              style={[
-                GlobalStyle.TEXT_STYLE,
-                {fontSize: Size.FONTSIZE + 2, fontWeight: '700'},
-              ]}>
-              ${book.price}
-            </Text> */}
             <View style={styles.bookInfo}>
               <InfoComponent icon={Icons.PAGE} text={book.pages} left={0} />
               <InfoComponent icon={Icons.READS} text={book.sells} left={20} />
               <InfoComponent icon={Icons.DOLLAR} text={book.price} left={40} />
             </View>
           </View>
-          {/* <TouchableOpacity>
-            <Image
-              style={styles.heartImageStyle}
-              source={Icons.FAVORITE_SELECTED}
-            />
-          </TouchableOpacity> */}
         </View>
-        <RemoveButton />
+        <RemoveButton onPress={remove} />
       </Pressable>
     </View>
   );

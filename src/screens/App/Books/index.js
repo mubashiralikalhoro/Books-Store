@@ -13,7 +13,7 @@ const BooksScreen = () => {
       <Header title={catName} />
       <FlatList
         data={books}
-        renderItem={item => <BooksScreenItem item={item.item} />}
+        renderItem={item => <BooksScreenItem book={item.item} />}
         keyExtractor={item => item.id}
       />
     </SafeAreaView>

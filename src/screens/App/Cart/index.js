@@ -8,6 +8,7 @@ import Size from '../../../constants/Size';
 import color from '../../../constants/color';
 import Icons from '../../../assets/Icons';
 import GlobalStyle from '../../../constants/GlobalStyle';
+import {useSelector} from 'react-redux';
 
 const NoItems = () => (
   <View style={{alignItems: 'center', marginTop: Size.PADDING * 2}}>
@@ -22,17 +23,22 @@ const NoItems = () => (
 );
 
 const CartScreen = () => {
+  const cartData = useSelector(state => state.cart);
   return (
     <SafeAreaView style={styles.container}>
-      {Cart.length === 0 && <NoItems />}
-      {Cart.length > 0 && (
+      {cartData.length === 0 && <NoItems />}
+      {cartData.length > 0 && (
         <>
           <ScrollView>
-            {Cart.map((item, index) => (
-              <CartItem book={item} key={index} />
+            {cartData.map((item, index) => (
+              <CartItem
+                book={item.book}
+                numberOfItems={item.noOfItems}
+                key={index}
+              />
             ))}
           </ScrollView>
-          <CartScreenFooter cartData={Cart} />
+          <CartScreenFooter cartData={cartData} />
         </>
       )}
     </SafeAreaView>

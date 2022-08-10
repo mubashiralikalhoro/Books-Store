@@ -7,6 +7,9 @@ import {Cart, Favorite} from '../dummy/data';
 import style from '../screens/App/Home/style';
 import GlobalStyle from '../constants/GlobalStyle';
 import {useNavigation} from '@react-navigation/native';
+import {addItem} from '../store/reducer/cart';
+import {useDispatch, useSelector} from 'react-redux';
+import {addFav, removeFav} from '../store/reducer/favorite';
 
 const IconButton = ({icon, onPress, style, imageStyle}) => {
   return (
@@ -19,26 +22,54 @@ const IconButton = ({icon, onPress, style, imageStyle}) => {
 };
 
 const BookDetailsScreenFooter = ({book}) => {
-  const [heartImage, setHeartImage] = useState(Icons.FAVORITE);
-
   const navigation = useNavigation();
-  const openCart = () => {};
+  const dispatch = useDispatch();
+  const state = useSelector(state => state);
+  const searchBookInCart = () => {
+    let r = false;
+    state.cart.forEach(element => {
+      if (element.book == book) {
+        r = true;
+      }
+    });
+    return r;
+  };
+  const heartImage = () => {
+    let r = Icons.FAVORITE;
+    state.fav.forEach(element => {
+      if (element == book) {
+        r = Icons.FAVORITE_SELECTED;
+      }
+    });
+    return r;
+  };
+
+  const openCart = () => {
+    if (!searchBookInCart()) {
+      dispatch(addItem({noOfItems: 1, book: book}));
+    }
+    navigation.navigate('BottomNavigator', {screen: 'CartScreen'});
+  };
 
   const heartPressed = () => {
-    if (heartImage === Icons.FAVORITE) {
-      setHeartImage(Icons.FAVORITE_SELECTED);
+    if (heartImage() === Icons.FAVORITE) {
+      dispatch(addFav(book));
     } else {
-      setHeartImage(Icons.FAVORITE);
+      dispatch(removeFav(book));
     }
   };
 
-  const cartPressed = () => {};
+  const cartPressed = () => {
+    if (!searchBookInCart()) {
+      dispatch(addItem({noOfItems: 1, book: book}));
+    }
+  };
 
   return (
     <View style={styles.container}>
       {/*Add to favorite*/}
       <IconButton
-        icon={heartImage}
+        icon={heartImage()}
         onPress={heartPressed}
         style={styles.iconView}
         imageStyle={[

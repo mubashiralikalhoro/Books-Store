@@ -3,20 +3,28 @@ import React from 'react';
 import Size from '../constants/Size';
 import color from '../constants/color';
 import GlobalStyle from '../constants/GlobalStyle';
+import Pressable from 'react-native/Libraries/Components/Pressable/Pressable';
+import {useNavigation} from '@react-navigation/native';
 
 const Author = ({author}) => {
+  const navigation = useNavigation();
   return (
     <>
-      <View style={styles.container}>
-        <Image
-          source={author.image}
-          style={styles.image}
-          resizeMode="contain"
-        />
-        <Text style={[GlobalStyle.TEXT_STYLE]} numberOfLines={2}>
-          {author.name}
-        </Text>
-      </View>
+      <Pressable
+        onPress={() => {
+          navigation.navigate('AuthorScreen', author);
+        }}>
+        <View style={styles.container}>
+          <Image
+            source={author.image}
+            style={styles.image}
+            resizeMode="contain"
+          />
+          <Text style={[GlobalStyle.TEXT_STYLE]} numberOfLines={2}>
+            {author.name}
+          </Text>
+        </View>
+      </Pressable>
     </>
   );
 };

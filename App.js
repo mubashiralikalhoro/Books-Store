@@ -15,11 +15,11 @@ export default App = () => {
     <>
       {/* <UserContext.Provider value={{user, setUser}}> */}
       <Provider store={store}>
-        <PersistGate loading={null} persistor={persistor}>
-          <NavigationContainer>
-            <RootNavigator />
-          </NavigationContainer>
-        </PersistGate>
+        {/* <PersistGate loading={null} persistor={persistor}> */}
+        <NavigationContainer>
+          <RootNavigator />
+        </NavigationContainer>
+        {/* </PersistGate> */}
       </Provider>
       {/* </UserContext.Provider> */}
     </>

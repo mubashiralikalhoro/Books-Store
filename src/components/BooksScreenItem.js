@@ -12,8 +12,9 @@ import Size from '../constants/Size';
 import GlobalStyle from '../constants/GlobalStyle';
 import color from '../constants/color';
 import Icons from '../assets/Icons';
-import {Colors} from 'react-native/Libraries/NewAppScreen';
 import {useNavigation} from '@react-navigation/native';
+import {useDispatch, useSelector} from 'react-redux';
+import {addItem} from '../store/reducer/cart';
 
 const Genre = ({name, index}) => {
   const textColor = () => {
@@ -78,25 +79,46 @@ const getThree = items => {
   return items;
 };
 
-const BooksScreenItem = ({item}) => {
-  const addToCart = () => {};
-  const buyNow = () => {};
+const BooksScreenItem = ({book}) => {
+  const dispatch = useDispatch();
+  const state = useSelector(state => state);
   const navigation = useNavigation();
+  const searchBookInCart = () => {
+    let r = false;
+    state.cart.forEach(element => {
+      if (element.book == book) {
+        r = true;
+      }
+    });
+    return r;
+  };
+  const addToCart = () => {
+    if (!searchBookInCart()) {
+      dispatch(addItem({noOfItems: 1, book: book}));
+    }
+  };
+
+  const buyNow = () => {
+    if (!searchBookInCart()) {
+      dispatch(addItem({noOfItems: 1, book: book}));
+    }
+    navigation.navigate('BottomNavigator', {screen: 'CartScreen'});
+  };
   const toBookDetailsScreen = () => {
-    navigation.navigate('BookDetailsScreen', item);
+    navigation.navigate('BookDetailsScreen', book);
   };
   return (
     <View style={styles.container}>
       <View style={{flex: 1, flexDirection: 'row'}}>
         <Pressable onPress={toBookDetailsScreen} style={styles.imageBack}>
           <Image
-            source={item.bookCover}
+            source={book.bookCover}
             style={[styles.imageBack, {opacity: 1}]}></Image>
         </Pressable>
         <Pressable onPress={toBookDetailsScreen}>
           {/* Book Cover */}
           <Image
-            source={item.bookCover}
+            source={book.bookCover}
             resizeMode="cover"
             style={styles.bookCover}
           />
@@ -106,39 +128,39 @@ const BooksScreenItem = ({item}) => {
           <Pressable onPress={toBookDetailsScreen}>
             <View>
               <Text style={[GlobalStyle.TEXT_STYLE, styles.bookName]}>
-                {item.bookName}
+                {book.bookName}
               </Text>
               <Text style={[GlobalStyle.TEXT_STYLE, styles.bookAuthorName]}>
-                {item.author}
+                {book.author}
               </Text>
             </View>
             {/* Book Info */}
             <View style={styles.bookInfo}>
-              <InfoComponent icon={Icons.PAGE} text={item.pages} left={0} />
-              <InfoComponent icon={Icons.READS} text={item.sells} left={20} />
-              <InfoComponent icon={Icons.DOLLAR} text={item.price} left={40} />
+              <InfoComponent icon={Icons.PAGE} text={book.pages} left={0} />
+              <InfoComponent icon={Icons.READS} text={book.sells} left={20} />
+              <InfoComponent icon={Icons.DOLLAR} text={book.price} left={40} />
             </View>
             {/* Genre */}
             <ScrollView
               style={styles.allGenresView}
               horizontal
               showsHorizontalScrollIndicator={false}>
-              {getThree(item.genre).map((gen, index) => (
+              {getThree(book.genre).map((gen, index) => (
                 <Genre name={gen} key={index} index={index} />
               ))}
             </ScrollView>
           </Pressable>
 
           <View style={styles.viewCart}>
-            <Pressable style={styles.iconsView} onPress={addToCart}>
+            <TouchableOpacity style={styles.iconsView} onPress={addToCart}>
               <Text style={[GlobalStyle.TEXT_STYLE, styles.text]}>
                 Add to cart
               </Text>
               <Image source={Icons.CART} style={styles.viewIcon} />
-            </Pressable>
-            <Pressable style={styles.iconsView} onPress={buyNow}>
+            </TouchableOpacity>
+            <TouchableOpacity style={styles.iconsView} onPress={buyNow}>
               <Text style={[GlobalStyle.TEXT_STYLE, styles.text]}>Buy Now</Text>
-            </Pressable>
+            </TouchableOpacity>
           </View>
         </View>
       </View>

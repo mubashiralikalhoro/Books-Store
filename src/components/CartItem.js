@@ -12,9 +12,14 @@ import Icons from '../assets/Icons';
 import Size from '../constants/Size';
 import color from '../constants/color';
 import GlobalStyle from '../constants/GlobalStyle';
-import {Cart} from '../dummy/data';
 import Pressable from 'react-native/Libraries/Components/Pressable/Pressable';
 import {useNavigation} from '@react-navigation/native';
+import {
+  decreaseNoOfCartItem,
+  increaseNoOfCartItem,
+  removeItem,
+} from '../store/reducer/cart';
+import {useDispatch} from 'react-redux';
 
 const RemoveButton = ({onPress}) => (
   <View style={styles.RemoveButton}>
@@ -25,12 +30,13 @@ const RemoveButton = ({onPress}) => (
 );
 
 const NumberOfItems = ({no, setNo, book}) => {
+  const dispatch = useDispatch();
   const plusItem = () => {
-    setNo(no + 1);
+    dispatch(increaseNoOfCartItem({book: book}));
   };
   const minusItem = () => {
     if (no !== 0) {
-      setNo(no - 1);
+      dispatch(decreaseNoOfCartItem({book: book}));
     }
   };
   return (
@@ -53,13 +59,12 @@ const NumberOfItems = ({no, setNo, book}) => {
 };
 // borderRadius for every place
 const borderRadius = Size.BORDER_RADIUS * 5;
-const CartItem = ({book}) => {
+const CartItem = ({book, numberOfItems}) => {
+  const dispatch = useDispatch();
   const navigation = useNavigation();
   const remove = () => {
-    Cart.splice(Cart.indexOf(book), 1);
+    dispatch(removeItem({book: book}));
   };
-
-  const [numberOfItems, setNumberOfItems] = useState(1);
 
   const openBook = () => {
     navigation.navigate('BookDetailsScreen', book);
@@ -77,11 +82,7 @@ const CartItem = ({book}) => {
           <View style={styles.disView}>
             <Text style={[GlobalStyle.TEXT_STYLE]}>{book.bookName}</Text>
             <View style={styles.priceSection}>
-              <NumberOfItems
-                no={numberOfItems}
-                setNo={setNumberOfItems}
-                book={book}
-              />
+              <NumberOfItems no={numberOfItems} book={book} />
               <Text
                 style={[
                   GlobalStyle.TEXT_STYLE,
@@ -179,5 +180,5 @@ const styles = StyleSheet.create({
     width: Size.FONTSIZE,
     tintColor: color.PRIMARY_TEXT,
   },
-  NumberOfItemsText: {},
+  NumberOfItemsText: {marginHorizontal: Size.PADDING / 2},
 });

@@ -24,7 +24,7 @@ const styles = StyleSheet.create({
     color: color.GRAY,
   },
   description: {
-    textAlign: 'center',
+    textAlign: 'justify',
   },
   descriptionView: {
     width: Size.WIDTH * 0.9,

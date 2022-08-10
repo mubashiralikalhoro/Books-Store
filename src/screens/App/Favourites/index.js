@@ -8,6 +8,7 @@ import GlobalStyle from '../../../constants/GlobalStyle';
 import Size from '../../../constants/Size';
 import Icons from '../../../assets/Icons';
 import color from '../../../constants/color';
+import {useSelector} from 'react-redux';
 
 const NoItems = () => (
   <View style={{alignItems: 'center', marginTop: Size.PADDING * 2}}>
@@ -22,11 +23,12 @@ const NoItems = () => (
 );
 
 const FavoriteScreen = () => {
+  const fav = useSelector(state => state.fav);
   return (
     <View style={styles.container}>
       <ScrollView style={styles.ScrollView}>
-        {Favorite.length === 0 && <NoItems />}
-        {Favorite.map((item, index) => (
+        {fav.length === 0 && <NoItems />}
+        {fav.map((item, index) => (
           <FavoriteScreenItem book={item} key={index} />
         ))}
       </ScrollView>
