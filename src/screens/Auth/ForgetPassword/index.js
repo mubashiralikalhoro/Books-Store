@@ -9,9 +9,11 @@ import color from '../../../constants/color';
 import GlobalStyle from '../../../constants/GlobalStyle';
 
 const ForgetPassword = ({navigation}) => {
+  //after submission
   const navigate = () => {
     navigation.goBack();
   };
+  // onSubmit of the form
   const getMail = () => {
     Alert.alert('Sent!', 'Recovery mail has been send check your inbox', [
       {text: 'Ok', onPress: navigate},
@@ -22,6 +24,7 @@ const ForgetPassword = ({navigation}) => {
     <SafeAreaView style={styles.container}>
       <Header title="Forget password" />
       <View style={styles.mainView}>
+        {/*Input Fields*/}
         <View style={styles.outerView}>
           <CustomInputField
             icon={Icons.ACCOUNT}
@@ -35,6 +38,7 @@ const ForgetPassword = ({navigation}) => {
             placeholder="Email"
             placeholderTextColor={color.TEXT}
           />
+          {/*Submit Button*/}
           <Pressable onPress={getMail}>
             <View style={styles.buttonView}>
               <Text style={[GlobalStyle.TEXT_STYLE, styles.text]}>

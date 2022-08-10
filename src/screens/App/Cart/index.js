@@ -2,7 +2,6 @@ import {View, Text, ScrollView, SafeAreaView, Image} from 'react-native';
 import React from 'react';
 import styles from './style';
 import CartScreenFooter from '../../../components/CartScreenFooter';
-import {Cart} from '../../../dummy/data';
 import CartItem from '../../../components/CartItem';
 import Size from '../../../constants/Size';
 import color from '../../../constants/color';

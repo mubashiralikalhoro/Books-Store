@@ -8,6 +8,30 @@ import Pressable from 'react-native/Libraries/Components/Pressable/Pressable';
 import BookDetailsScreenFooter from '../../../components/BookDetailsScreenFooter';
 import color from '../../../constants/color';
 import Icons from '../../../assets/Icons';
+import Size from '../../../constants/Size';
+
+const DesignView = ({book}) => (
+  <View
+    style={{
+      alignSelf: 'center',
+      borderRadius: Size.ICON,
+      position: 'absolute',
+      width: Size.WIDTH * 0.7,
+      backgroundColor: color.PRIMARY,
+      height: Size.WIDTH * 0.5 * 1.45,
+    }}>
+    <Image
+      source={book.bookCover}
+      style={{
+        width: '100%',
+        height: '100%',
+        borderRadius: Size.ICON,
+        opacity: 0.2,
+      }}
+      resizeMode="cover"
+    />
+  </View>
+);
 
 const InfoComponent = ({icon, text, left}) => (
   <>
@@ -37,6 +61,7 @@ const BookDetailsScreen = () => {
     <SafeAreaView style={style.container}>
       <Header title={'Book Details'} />
       <ScrollView>
+        <DesignView book={book} />
         <View style={style.imageView}>
           {/*Book Cover*/}
           <Image

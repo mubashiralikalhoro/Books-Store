@@ -2,6 +2,7 @@ import React from 'react';
 import {
   SafeAreaView,
   Text,
+  TextInput,
   Image,
   View,
   TouchableOpacity,
@@ -15,10 +16,40 @@ import color from '../../../constants/color';
 import Icon from '../../../assets/Icons/index';
 import GlobalStyle from '../../../constants/GlobalStyle';
 import CustomInputField from '../../../components/CustomInputField';
-import AnimatedLogoSigInScreen from '../../../components/AnimatedLogoSignInScreen';
 import Icons from '../../../assets/Icons/index';
+import * as Yup from 'yup';
+import {Formik} from 'formik';
+
+// Validation
+let schema = Yup.object().shape({
+  fullName: Yup.string()
+    .min(3, '*Name is too small')
+    .trim()
+    .required('*Full name is required'),
+  email: Yup.string()
+    .email('*Enter a valid email')
+    .required('*Email is required'),
+  password: Yup.string()
+    .min(8, '*Short password')
+    .required('*Password is a required field'),
+  confirmPassword: Yup.string().equals(
+    [Yup.ref('password'), null],
+    '*Passwords must match',
+  ),
+});
+
+// initial State for the form
+let initialState = {
+  fullName: '',
+  email: '',
+  password: '',
+  confirmPassword: '',
+};
 
 const SignUp = ({navigation}) => {
+  const onSubmit = values => {
+    navigation.navigate('BottomNavigator');
+  };
   return (
     <SafeAreaView style={styles.container}>
       {/* Header Section*/}
@@ -32,37 +63,68 @@ const SignUp = ({navigation}) => {
 
       {/* InputField*/}
       <KeyboardAvoidingView style={{marginTop: Size.PADDING}}>
-        <CustomInputField
-          icon={Icon.ACCOUNT}
-          placeholder="Full name"
-          placeholderTextColor={color.TEXT}
-        />
-        <CustomInputField
-          icon={Icon.EMAIL}
-          placeholder="Email"
-          placeholderTextColor={color.TEXT}
-          keyboardType="email-address"
-        />
-        <CustomInputField
-          icon={Icon.LOCK}
-          placeholder="Password"
-          placeholderTextColor={color.TEXT}
-          secureTextEntry={true}
-        />
-        <CustomInputField
-          icon={Icon.CONFIRM}
-          placeholder="Confirm password"
-          placeholderTextColor={color.TEXT}
-          secureTextEntry={true}
-        />
+        <Formik
+          initialValues={initialState}
+          onSubmit={onSubmit}
+          validationSchema={schema}>
+          {({
+            handleChange,
+            values,
+            handleBlur,
+            handleSubmit,
+            errors,
+            touched,
+          }) => (
+            <>
+              <CustomInputField
+                icon={Icon.ACCOUNT}
+                placeholder="Full name"
+                onChangeText={handleChange('fullName')}
+                onBlur={handleBlur('fullName')}
+                placeholderTextColor={color.TEXT}
+                value={values.fullName}
+                error={touched.fullName && errors.fullName}
+              />
+              <CustomInputField
+                icon={Icon.EMAIL}
+                placeholder="Email"
+                placeholderTextColor={color.TEXT}
+                onChangeText={handleChange('email')}
+                onBlur={handleBlur('email')}
+                keyboardType="email-address"
+                value={values.email}
+                error={touched.fullName && errors.email}
+              />
+              <CustomInputField
+                icon={Icon.LOCK}
+                placeholder="Password"
+                onChangeText={handleChange('password')}
+                onBlur={handleBlur('password')}
+                placeholderTextColor={color.TEXT}
+                secureTextEntry={true}
+                value={values.password}
+                error={touched.password && errors.password}
+              />
+              <CustomInputField
+                icon={Icon.CONFIRM}
+                placeholder="Confirm password"
+                onChangeText={handleChange('confirmPassword')}
+                onBlur={handleBlur('confirmPassword')}
+                placeholderTextColor={color.TEXT}
+                secureTextEntry={true}
+                value={values.confirmPassword}
+                error={touched.password && errors.confirmPassword}
+              />
+              {/*SIGN IN BUTTON*/}
+              <TouchableOpacity onPress={handleSubmit} style={styles.signInCon}>
+                <Text style={[GlobalStyle.TEXT_STYLE, styles.txt4]}>
+                  SIGN UP
+                </Text>
+              </TouchableOpacity>
+            </>
+          )}
+        </Formik>
       </KeyboardAvoidingView>
-
-      {/*SIGN IN BUTTON*/}
-      <TouchableOpacity
-        onPress={() => navigation.navigate('BottomNavigator')}
-        style={styles.signInCon}>
-        <Text style={[GlobalStyle.TEXT_STYLE, styles.txt4]}>SIGN UP</Text>
-      </TouchableOpacity>
 
       {/*SIGN UP BUTTON*/}
       <View style={styles.lastCon}>

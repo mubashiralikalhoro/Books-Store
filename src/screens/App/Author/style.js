@@ -37,6 +37,17 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
     textAlign: 'center',
   },
+  bookView: {
+    justifyContent: 'space-around',
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+  },
+  line: {
+    marginTop: Size.PADDING * 2,
+    width: '100%',
+    height: 1,
+    backgroundColor: color.TEXT,
+  },
 });
 
 export default styles;

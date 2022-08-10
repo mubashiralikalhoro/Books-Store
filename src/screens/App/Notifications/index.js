@@ -8,6 +8,7 @@ import GlobalStyle from '../../../constants/GlobalStyle';
 import {Notifications} from '../../../dummy/data';
 import Notification from '../../../components/Notification';
 
+// Zero notifications
 const NoItems = () => (
   <SafeAreaView style={{alignItems: 'center', marginTop: Size.PADDING * 2}}>
     <Image
@@ -24,6 +25,7 @@ const NotificationScreen = () => {
   return (
     <View style={styles.container}>
       {Notifications.length == 0 && <NoItems />}
+      {/*Showing notifications*/}
       {Notifications.length > 0 && (
         <Notification notification={Notifications[0]} />
       )}

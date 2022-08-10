@@ -1,10 +1,6 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState} from 'react';
 import {SafeAreaView, ScrollView} from 'react-native';
-
-//local imports
-
 import styles from './style';
-
 import HomeScreenHeader from '../../../components/HomeScreenHeader';
 import HomeScreenPromo from '../../../components/HomeScreenPromo';
 import {Images} from '../../../assets/images';
@@ -12,12 +8,9 @@ import HomeScreenShowCat from '../../../components/HomeScreenShowCat';
 import Books from '../../../dummy/Books';
 import HomeScreenShowAuth from '../../../components/HomeScreenShowAuth';
 import AnimatedLogo from '../../../components/AnimatedLogo';
-import {useNavigation} from '@react-navigation/native';
-
-//third party library
 
 const HomeScreen = ({navigation}) => {
-  navigation.canGoBack(false);
+  // for header animation
   const [headerShown, setHeaderShown] = useState(false);
   const onScroll = e => {
     if (e.nativeEvent.contentOffset.y > 0) {
@@ -27,6 +20,7 @@ const HomeScreen = ({navigation}) => {
     }
   };
 
+  // main View
   return (
     <>
       <SafeAreaView style={styles.container}>

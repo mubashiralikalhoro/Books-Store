@@ -74,7 +74,7 @@ const BookDetailsScreenFooter = ({book}) => {
         style={styles.iconView}
         imageStyle={[
           styles.iconStyle,
-          heartImage === Icons.FAVORITE ? {tintColor: 'white'} : {},
+          heartImage() === Icons.FAVORITE ? {tintColor: color.TEXT} : {},
         ]}
       />
       {/*Add to cart*/}
@@ -118,7 +118,8 @@ const styles = StyleSheet.create({
     width: Size.ICON * 0.9,
     height: Size.ICON * 0.9,
     borderRadius: Size.BORDER_RADIUS,
-    backgroundColor: color.PRIMARY,
+    backgroundColor: color.BACKGROUND,
+    ...GlobalStyle.SHADOW_STYLE,
   },
   buyNow: {
     width: Size.WIDTH * 0.4,
@@ -126,7 +127,8 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     borderRadius: Size.BORDER_RADIUS,
-    backgroundColor: color.PRIMARY,
+    backgroundColor: color.BACKGROUND,
+    ...GlobalStyle.SHADOW_STYLE,
   },
   addToCart: {
     width: Size.WIDTH * 0.4,
@@ -135,16 +137,16 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     borderRadius: Size.BORDER_RADIUS,
-    backgroundColor: color.PRIMARY,
+    backgroundColor: color.BACKGROUND,
+    ...GlobalStyle.SHADOW_STYLE,
   },
   addToCartItem: {
     height: Size.ICON * 0.35,
     width: Size.ICON * 0.35,
-    tintColor: color.PRIMARY_TEXT,
+    tintColor: color.TEXT,
     marginLeft: 2,
   },
   buyNowText: {
-    color: color.PRIMARY_TEXT,
     fontSize: Size.ICON * 0.3,
   },
   addJustingView: fl => ({flex: fl}),

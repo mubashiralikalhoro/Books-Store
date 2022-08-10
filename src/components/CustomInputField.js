@@ -1,4 +1,4 @@
-import {View, TextInput, Image, StyleSheet} from 'react-native';
+import {View, TextInput, Image, StyleSheet, Text} from 'react-native';
 import React from 'react';
 import color from '../constants/color';
 import Size from '../constants/Size';
@@ -15,27 +15,33 @@ const CustomInputField = ({
   secureTextEntry,
   value,
   keyboardType,
+  onBlur,
+  error,
 }) => {
   return (
-    <View style={[styles.inputCon, style]}>
-      <Image
-        source={icon}
-        resizeMode="contain"
-        style={[styles.imageIcon, iconStyle]}
-      />
-      <TextInput
-        style={[GlobalStyle.TEXT_STYLE, styles.input, inputStyle]}
-        onChangeText={onChangeText}
-        value={value}
-        autoCapitalize={false}
-        autoCorrect={false}
-        spellCheck={false}
-        placeholder={placeholder}
-        keyboardType={keyboardType}
-        placeholderTextColor={placeholderTextColor}
-        secureTextEntry={secureTextEntry}
-      />
-    </View>
+    <>
+      <View style={[styles.inputCon, style]}>
+        <Image
+          source={icon}
+          resizeMode="contain"
+          style={[styles.imageIcon, iconStyle]}
+        />
+        <Text style={styles.errorMessage}>{error && error}</Text>
+        <TextInput
+          style={[GlobalStyle.TEXT_STYLE, styles.input, inputStyle]}
+          onChangeText={onChangeText}
+          value={value}
+          onBlur={onBlur}
+          autoCapitalize={false}
+          autoCorrect={false}
+          spellCheck={false}
+          placeholder={placeholder}
+          keyboardType={keyboardType}
+          placeholderTextColor={placeholderTextColor}
+          secureTextEntry={secureTextEntry}
+        />
+      </View>
+    </>
   );
 };
 
@@ -61,5 +67,12 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     padding: Size.PADDING / 2,
+  },
+  errorMessage: {
+    position: 'absolute',
+    width: '100%',
+    textAlign: 'right',
+    color: 'red',
+    right: Size.PADDING * 2,
   },
 });

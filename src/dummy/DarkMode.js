@@ -10,4 +10,4 @@
 // };
 
 // const darkMode = getMode();
-export default darkMode = 0;
+export default darkMode = 1;

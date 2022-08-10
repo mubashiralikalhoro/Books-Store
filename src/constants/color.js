@@ -2,7 +2,7 @@ import darkMode from '../dummy/DarkMode';
 
 const defaultColors = {
   // PRIMARY: '#5D2DFF',
-  PRIMARY: '#00599d',
+  PRIMARY: '#03646b',
   PRIMARY_TEXT: 'white',
   SHOW_MORE: '#3db6fc',
 };

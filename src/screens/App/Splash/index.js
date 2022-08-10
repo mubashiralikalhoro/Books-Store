@@ -1,16 +1,13 @@
-import {View, Text, Image, Animated, Button} from 'react-native';
+import {View, Text, Image, Animated} from 'react-native';
 import React, {useState} from 'react';
 import Icons from '../../../assets/Icons';
 import {Images} from '../../../assets/images';
 import style from './style';
 import Size from '../../../constants/Size';
-import color from '../../../constants/color';
-import AnimatedLogo from '../../../components/AnimatedLogo';
-import {useNavigation} from '@react-navigation/native';
 
 const SplashScreen = ({navigation}) => {
+  // animations
   const logoSize = useState(new Animated.Value(0))[0];
-
   const moveIn = () => {
     Animated.spring(logoSize, {
       toValue: Size.ICON * 2.5,
@@ -19,19 +16,21 @@ const SplashScreen = ({navigation}) => {
   };
   moveIn();
 
+  // navigate to signIn
   const navigate = () => {
     navigation.replace('SignInScreen');
   };
-  setTimeout(navigate, 2000);
 
+  setTimeout(navigate, 2000);
   return (
     <View style={style.container}>
-      {/*Logo*/}
+      {/*backGround book Image*/}
       <Image
         source={Images.SplashScreenBook}
         style={style.imageStyle}
         resizeMode={'stretch'}
       />
+      {/*Logo*/}
       <Animated.View
         style={[
           {

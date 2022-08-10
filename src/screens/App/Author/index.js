@@ -6,6 +6,7 @@ import {useRoute} from '@react-navigation/native';
 import Header from '../../../components/Header';
 import HomeScreenShowCat from '../../../components/HomeScreenShowCat';
 import Size from '../../../constants/Size';
+import Book from '../../../components/Book';
 
 // id, name, image, info, booksId, totalSells
 
@@ -27,11 +28,15 @@ const AuthorScreen = () => {
             {author.info}
           </Text>
         </View>
+        <View style={styles.line} />
         <View style={{marginTop: Size.PADDING * 2}} />
-        <HomeScreenShowCat
-          books={author.books}
-          catName={'Books by ' + author.name}
-        />
+        <View style={styles.bookView}>
+          {author.books.map((book, index) => (
+            <View key={index} style={{marginTop: Size.PADDING}}>
+              <Book book={book} key={index} />
+            </View>
+          ))}
+        </View>
       </ScrollView>
     </View>
   );

@@ -8,8 +8,9 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   bookCover: {
-    width: Size.WIDTH * 0.7,
-    height: Size.WIDTH * 0.7 * 1.4,
+    marginTop: Size.PADDING / 2,
+    width: Size.WIDTH * 0.5,
+    height: Size.WIDTH * 0.5 * 1.4,
     borderRadius: Size.BORDER_RADIUS * 3,
   },
   imageView: {

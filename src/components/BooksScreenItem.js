@@ -238,17 +238,17 @@ const styles = StyleSheet.create({
     marginLeft: Size.PADDING / 2,
     height: Size.WIDTH * 0.035,
     width: Size.WIDTH * 0.035,
-    tintColor: color.PRIMARY_TEXT,
+    tintColor: color.TEXT,
   },
   iconsView: {
     flexDirection: 'row',
-
     paddingVertical: Size.PADDING,
     width: Size.WIDTH * 0.3,
-    backgroundColor: color.PRIMARY,
+    backgroundColor: color.BACKGROUND,
     borderRadius: Size.BORDER_RADIUS,
     justifyContent: 'center',
     alignItems: 'center',
+    ...GlobalStyle.SHADOW_STYLE,
   },
   heartView: {
     width: Size.ICON * 0.8,
@@ -264,6 +264,6 @@ const styles = StyleSheet.create({
   },
   text: {
     fontSize: Size.WIDTH * 0.035,
-    color: color.PRIMARY_TEXT,
+    color: color.TEXT,
   },
 });
