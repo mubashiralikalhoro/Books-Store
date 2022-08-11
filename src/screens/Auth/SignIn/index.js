@@ -9,16 +9,32 @@ import {
   KeyboardAvoidingView,
   Pressable,
 } from 'react-native';
-
+import {useDispatch} from 'react-redux';
 import styles from './style';
 import Size from '../../../constants/Size';
 import color from '../../../constants/color';
 import Icon from '../../../assets/Icons/index';
+import {Images} from '../../../assets/images/index';
 import GlobalStyle from '../../../constants/GlobalStyle';
 import CustomInputField from '../../../components/CustomInputField';
 import AnimatedLogoSigInScreen from '../../../components/AnimatedLogoSignInScreen';
+import {userLoggedIn} from '../../../store/reducer/user';
+import {useSelector} from 'react-redux';
+const tempUser = {
+  name: 'John Henry',
+  image: {
+    uri: 'https://www.jeancoutu.com/globalassets/revamp/photo/conseils-photo/20160302-01-reseaux-sociaux-profil/photo-profil_301783868.jpg',
+  },
+  email: 'johnHenry@gmail.com',
+  phoneNo: '+010000000000',
+  address: 'California/USA',
+};
 
 const SignIn = ({navigation}) => {
+  const dispatch = useDispatch();
+  const signIn = () => {
+    dispatch(userLoggedIn(tempUser));
+  };
   return (
     <SafeAreaView style={styles.container}>
       {/* Header Section*/}
@@ -84,9 +100,7 @@ const SignIn = ({navigation}) => {
       </View>
 
       {/*SIGN IN BUTTON*/}
-      <TouchableOpacity
-        onPress={() => navigation.navigate('BottomNavigator')}
-        style={styles.signInCon}>
+      <TouchableOpacity onPress={signIn} style={styles.signInCon}>
         <Text style={[GlobalStyle.TEXT_STYLE, styles.txt4]}>SIGN IN</Text>
       </TouchableOpacity>
 

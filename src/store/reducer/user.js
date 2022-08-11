@@ -51,19 +51,18 @@
 // };
 
 import {createSlice} from '@reduxjs/toolkit';
-import {act} from 'react-test-renderer';
-
-const initialState = {};
 
 const userSlice = createSlice({
   name: 'user',
-  initialState: initialState,
+  initialState: [],
   reducers: {
     userLoggedIn: (state, action) => {
-      state = action.payload;
+      if (state.length == 0) {
+        state.push(action.payload);
+      }
     },
-    userLoggedOut: (state, action) => {
-      state = null;
+    userLoggedOut: state => {
+      state.pop();
     },
   },
 });

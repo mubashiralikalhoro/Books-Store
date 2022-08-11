@@ -1,4 +1,4 @@
-import {NavigationContainer} from '@react-navigation/native';
+import {NavigationContainer, ThemeProvider} from '@react-navigation/native';
 import React from 'react';
 import {RootNavigator} from './src/navigators/stack.navigator';
 
@@ -6,6 +6,7 @@ import {RootNavigator} from './src/navigators/stack.navigator';
 import {Provider} from 'react-redux';
 import {PersistGate} from 'redux-persist/integration/react';
 import {store, persistor} from './src/store/store';
+import {ColorConnect} from './src/constants/color';
 // export const UserContext = React.CreateContext({});
 
 export default App = () => {
@@ -15,11 +16,10 @@ export default App = () => {
     <>
       {/* <UserContext.Provider value={{user, setUser}}> */}
       <Provider store={store}>
-        {/* <PersistGate loading={null} persistor={persistor}> */}
         <NavigationContainer>
           <RootNavigator />
         </NavigationContainer>
-        {/* </PersistGate> */}
+        <PersistGate loading={null} persistor={persistor}></PersistGate>
       </Provider>
       {/* </UserContext.Provider> */}
     </>

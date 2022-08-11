@@ -1,39 +1,36 @@
 import {createStore, combineReducers, applyMiddleware} from 'redux';
 import thunk from 'redux-thunk';
-// import AsyncStorage from '@react-native-async-storage/async-storage';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import {persistStore, persistReducer} from 'redux-persist';
-import {configureStore} from '@reduxjs/toolkit';
+
+// reducers
 import user from './reducer/user';
 import cart from './reducer/cart';
 import favorite from './reducer/favorite';
+import notification from './reducer/notification';
+import resources from './reducer/resources';
 
 // local imp
 // import userReducer from './reducer/user';
 // import resources from './reducer/resources';
 
-// // config
-// const persistConfig = {
-//   key: 'root',
-//   storage: AsyncStorage,
-//   whitelist: ['userReducer', 'resources'],
-// };
+// config
+const persistConfig = {
+  key: 'root',
+  storage: AsyncStorage,
+  whitelist: ['user', 'cart', 'fav', 'notification'],
+};
 
-// //  root reducer
-// const rootReducer = combineReducers({
-//   userReducer: userReducer,
-//   resources: resources,
-// });
-
-// const persiReducer = persistReducer(persistConfig, rootReducer);
-
-// export const store = createStore(persiReducer, applyMiddleware(thunk));
-// export const persistor = persistStore(store);
-
-export const store = configureStore({
-  reducer: {
-    user: user,
-    cart: cart,
-    fav: favorite,
-  },
-  middleware: [thunk],
+//  root reducer
+const rootReducer = combineReducers({
+  user: user,
+  cart: cart,
+  fav: favorite,
+  notification: notification,
 });
+
+const persiReducer = persistReducer(persistConfig, rootReducer);
+
+export const store = createStore(persiReducer, applyMiddleware(thunk));
+
+export const persistor = persistStore(store);

@@ -1,3 +1,4 @@
+import {Appearance} from 'react-native';
 import darkMode from '../dummy/DarkMode';
 
 const defaultColors = {
@@ -5,6 +6,7 @@ const defaultColors = {
   PRIMARY: '#03646b',
   PRIMARY_TEXT: 'white',
   SHOW_MORE: '#3db6fc',
+  RED: '#ff1605',
 };
 
 const colorsDark = {
@@ -24,4 +26,4 @@ const colors = {
   GRAY: 'grey',
 };
 
-export default darkMode ? colorsDark : colors;
+export default Appearance.getColorScheme() == 'dark' ? colorsDark : colors;

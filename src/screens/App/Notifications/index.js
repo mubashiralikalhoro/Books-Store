@@ -6,7 +6,7 @@ import Icons from '../../../assets/Icons';
 import Size from '../../../constants/Size';
 import GlobalStyle from '../../../constants/GlobalStyle';
 import {Notifications} from '../../../dummy/data';
-import Notification from '../../../components/Notification';
+import {useSelector} from 'react-redux';
 
 // Zero notifications
 const NoItems = () => (
@@ -22,6 +22,7 @@ const NoItems = () => (
 );
 
 const NotificationScreen = () => {
+  const Notifications = useSelector(state => state.notification);
   return (
     <View style={styles.container}>
       {Notifications.length == 0 && <NoItems />}

@@ -7,7 +7,7 @@ const book3 = require('./the_tiny_dragon.jpg');
 const bookAd = require('./booksadd.jpeg');
 const bookAd2 = require('./booksadd2.jpeg');
 const SplashScreenBook = require('./book.png');
-
+const user = require('./user.png');
 export const Images = {
   a3,
   a2,
@@ -18,4 +18,5 @@ export const Images = {
   bookAd,
   bookAd2,
   SplashScreenBook,
+  user,
 };

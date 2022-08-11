@@ -16,7 +16,7 @@ const Icons = {
   FAVORITE_SELECTED: require('./favourite2.png'),
   PAGE: require('./page.png'),
   READS: require('./reads.png'),
-  LOGO: require('./drawer.png'),
+  LOGO: require('./books.png'),
   SEARCH: require('./search.png'),
   DISCOVER: require('./discover.png'),
   BACK: require('./back.png'),
@@ -28,6 +28,8 @@ const Icons = {
   LOCK: require('./lock.png'),
   EMAIL: require('./email.png'),
   CONFIRM: require('./check-mark.png'),
+  DRAWER: require('./drawer.png'),
+  PENCIL: require('./pencil.png'),
 };
 
 export default Icons;

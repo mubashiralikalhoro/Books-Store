@@ -4,6 +4,7 @@ import Icons from '../../../assets/Icons';
 import {Images} from '../../../assets/images';
 import style from './style';
 import Size from '../../../constants/Size';
+import CartScreen from '../Cart';
 
 const SplashScreen = ({navigation}) => {
   // animations
@@ -25,11 +26,11 @@ const SplashScreen = ({navigation}) => {
   return (
     <View style={style.container}>
       {/*backGround book Image*/}
-      <Image
+      {/* <Image
         source={Images.SplashScreenBook}
         style={style.imageStyle}
         resizeMode={'stretch'}
-      />
+      /> */}
       {/*Logo*/}
       <Animated.View
         style={[
