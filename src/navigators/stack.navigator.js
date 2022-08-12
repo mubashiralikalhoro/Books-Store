@@ -16,7 +16,6 @@ import ForgetPassword from '../screens/Auth/ForgetPassword';
 import AuthorScreen from '../screens/App/Author';
 //bottom tab
 import {BottomNavigator} from './bottom.navigator';
-import {ThemeProvider} from '@react-navigation/native';
 
 const Stack = createNativeStackNavigator();
 

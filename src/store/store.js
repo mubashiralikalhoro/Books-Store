@@ -18,7 +18,7 @@ import resources from './reducer/resources';
 const persistConfig = {
   key: 'root',
   storage: AsyncStorage,
-  whitelist: ['user', 'cart', 'fav', 'notification'],
+  whitelist: ['user', 'cart', 'fav', 'notification', 'resources'],
 };
 
 //  root reducer
@@ -27,6 +27,7 @@ const rootReducer = combineReducers({
   cart: cart,
   fav: favorite,
   notification: notification,
+  resources: resources,
 });
 
 const persiReducer = persistReducer(persistConfig, rootReducer);

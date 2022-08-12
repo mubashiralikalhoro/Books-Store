@@ -7,6 +7,7 @@ const defaultColors = {
   PRIMARY_TEXT: 'white',
   SHOW_MORE: '#3db6fc',
   RED: '#ff1605',
+  GREEN: '#18c900',
 };
 
 const colorsDark = {

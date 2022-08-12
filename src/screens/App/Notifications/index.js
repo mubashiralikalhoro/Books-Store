@@ -24,13 +24,13 @@ const NoItems = () => (
 const NotificationScreen = () => {
   const Notifications = useSelector(state => state.notification);
   return (
-    <View style={styles.container}>
+    <SafeAreaView style={styles.container}>
       {Notifications.length == 0 && <NoItems />}
       {/*Showing notifications*/}
       {Notifications.length > 0 && (
         <Notification notification={Notifications[0]} />
       )}
-    </View>
+    </SafeAreaView>
   );
 };
 

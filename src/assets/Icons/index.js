@@ -30,6 +30,9 @@ const Icons = {
   CONFIRM: require('./check-mark.png'),
   DRAWER: require('./drawer.png'),
   PENCIL: require('./pencil.png'),
+  LOCK_OPENED: require('./lockopened.png'),
+  ARROW_DOWN: require('./arrowDown.png'),
+  MESSAGE: require('./comment.png'),
 };
 
 export default Icons;

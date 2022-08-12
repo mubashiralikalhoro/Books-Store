@@ -3,17 +3,26 @@ import React, {useState} from 'react';
 import Size from '../constants/Size';
 import color from '../constants/color';
 
-const BottomTabIcons = ({icon, iconSelected, focused}) => {
+const BottomTabIcons = ({
+  icon,
+  iconSelected,
+  focused,
+  IconStyle,
+  IconStyleSelected,
+}) => {
   if (focused) {
     return (
       <Animated.View style={styles.focusedView}>
-        <Image source={iconSelected} style={styles.IconStyle} />
+        <Image
+          source={iconSelected}
+          style={[styles.IconStyle, IconStyleSelected]}
+        />
       </Animated.View>
     );
   } else {
     return (
       <Animated.View style={styles.normalView}>
-        <Image source={icon} style={styles.IconStyle} />
+        <Image source={icon} style={[styles.IconStyle, IconStyle]} />
       </Animated.View>
     );
   }

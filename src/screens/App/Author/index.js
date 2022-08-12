@@ -1,4 +1,4 @@
-import {View, Text, Image, ScrollView} from 'react-native';
+import {View, Text, Image, ScrollView, SafeAreaView} from 'react-native';
 import React from 'react';
 import styles from './style';
 import GlobalStyle from '../../../constants/GlobalStyle';
@@ -13,7 +13,7 @@ import Book from '../../../components/Book';
 const AuthorScreen = () => {
   const author = useRoute().params;
   return (
-    <View style={styles.container}>
+    <SafeAreaView style={styles.container}>
       <Header title={'Author Details'} />
       <ScrollView>
         <Image source={author.image} style={styles.authorImage} />
@@ -38,7 +38,7 @@ const AuthorScreen = () => {
           ))}
         </View>
       </ScrollView>
-    </View>
+    </SafeAreaView>
   );
 };
 

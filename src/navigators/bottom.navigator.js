@@ -50,8 +50,18 @@ const cartIcon = ({focused}) => (
 const profileIcon = ({focused}) => (
   <BottomTabIcons
     focused={focused}
-    icon={Icon.ACCOUNT}
-    iconSelected={Icon.ACCOUNT_SELECTED}
+    icon={Icon.DRAWER}
+    iconSelected={Icon.DRAWER}
+    IconStyle={{
+      height: Size.ICON * 0.6,
+      width: Size.ICON * 0.6,
+      tintColor: '#656565',
+    }}
+    IconStyleSelected={{
+      height: Size.ICON * 0.6,
+      width: Size.ICON * 0.6,
+      tintColor: 'white',
+    }}
   />
 );
 const notiIcon = ({focused}) => (

@@ -1,21 +1,73 @@
-import React, {useState, useEffect} from 'react';
-import {Text, Dimensions, SafeAreaView, ScrollView} from 'react-native';
+import React from 'react';
+import {Text, View, ScrollView} from 'react-native';
 
 //local imports
 import Header from '../../../components/Header';
+import GlobalStyle from '../../../constants/GlobalStyle';
 import styles from './style';
 
-const Index = ({navigation, ...props}) => {
+const AboutUsScreen = () => {
   return (
-    <SafeAreaView style={styles.container}>
-      <Header title={'About us'} />
-      <ScrollView
-        contentContainerStyle={styles.contStyle}
-        showsVerticalScrollIndicator={false}>
-        <Text style={styles.txt1}>About</Text>
+    <View style={styles.container}>
+      <ScrollView style={styles.contStyle} showsVerticalScrollIndicator={false}>
+        <Text style={[GlobalStyle.TEXT_STYLE, {textAlign: 'justify'}]}>
+          Mobile industry has been a boon for businesses willing to expand and
+          grow. If you own an online bookstore, you must complement it with an
+          app and strengthen your future prospects. Mobile industry has been a
+          boon for businesses willing to expand and grow. If you own an online
+          bookstore, you must complement it with an app and strengthen your
+          future prospects. Mobile industry has been a boon for businesses
+          willing to expand and grow. If you own an online bookstore, you must
+          complement it with an app and strengthen your future prospects. Mobile
+          industry has been a boon for businesses willing to expand and grow. If
+          you own an online bookstore, you must complement it with an app and
+          strengthen your future prospects. Mobile industry has been a boon for
+          businesses willing to expand and grow. If you own an online bookstore,
+          you must complement it with an app and strengthen your future
+          prospects. Mobile industry has been a boon for businesses willing to
+          expand and grow. If you own an online bookstore, you must complement
+          it with an app and strengthen your future prospects. Mobile industry
+          has been a boon for businesses willing to expand and grow. If you own
+          an online bookstore, you must complement it with an app and strengthen
+          your future prospects. Mobile industry has been a boon for businesses
+          willing to expand and grow. If you own an online bookstore, you must
+          complement it with an app and strengthen your future prospects. Mobile
+          industry has been a boon for businesses willing to expand and grow. If
+          you own an online bookstore, you must complement it with an app and
+          strengthen your future prospects. Mobile industry has been a boon for
+          businesses willing to expand and grow. If you own an online bookstore,
+          you must complement it with an app and strengthen your future
+          prospects. Mobile industry has been a boon for businesses willing to
+          expand and grow. If you own an online bookstore, you must complement
+          it with an app and strengthen your future prospects. Mobile industry
+          has been a boon for businesses willing to expand and grow. If you own
+          an online bookstore, you must complement it with an app and strengthen
+          your future prospects. Mobile industry has been a boon for businesses
+          willing to expand and grow. If you own an online bookstore, you must
+          complement it with an app and strengthen your future prospects. Mobile
+          industry has been a boon for businesses willing to expand and grow. If
+          you own an online bookstore, you must complement it with an app and
+          strengthen your future prospects. Mobile industry has been a boon for
+          businesses willing to expand and grow. If you own an online bookstore,
+          you must complement it with an app and strengthen your future
+          prospects. Mobile industry has been a boon for businesses willing to
+          expand and grow. If you own an online bookstore, you must complement
+          it with an app and strengthen your future prospects. Mobile industry
+          has been a boon for businesses willing to expand and grow. If you own
+          an online bookstore, you must complement it with an app and strengthen
+          your future prospects. Mobile industry has been a boon for businesses
+          willing to expand and grow. If you own an online bookstore, you must
+          complement it with an app and strengthen your future prospects. Mobile
+          industry has been a boon for businesses willing to expand and grow. If
+          you own an online bookstore, you must complement it with an app and
+          strengthen your future prospects. Mobile industry has been a boon for
+          businesses willing to expand and grow. If you own an online bookstore,
+          you must complement it with an app and strengthen your future
+          prospects. Mobile industry has been a boon for businesses will
+        </Text>
       </ScrollView>
-    </SafeAreaView>
+    </View>
   );
 };
 
-export default Index;
+export default AboutUsScreen;

@@ -17,6 +17,7 @@ const CustomInputField = ({
   keyboardType,
   onBlur,
   error,
+  multiline,
 }) => {
   return (
     <>
@@ -36,6 +37,7 @@ const CustomInputField = ({
           keyboardType={keyboardType}
           placeholderTextColor={placeholderTextColor}
           secureTextEntry={secureTextEntry}
+          multiline={multiline}
         />
       </View>
     </>

@@ -15,18 +15,24 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     paddingHorizontal: Size.PADDING * 2,
   },
-  detailsContainer: {
+  detailsContainer: margin => ({
+    marginTop: margin,
     flex: 1,
     width: '100%',
     backgroundColor: color.BACKGROUND,
     borderTopLeftRadius: Size.BORDER_RADIUS * 6,
     borderTopRightRadius: Size.BORDER_RADIUS * 6,
     ...GlobalStyle.SHADOW_STYLE,
-  },
+  }),
   line: {
     width: '100%',
     height: 1,
     backgroundColor: color.LIGHT_GRAY,
+  },
+  topBorder: {
+    borderTopLeftRadius: Size.BORDER_RADIUS * 6,
+    borderTopRightRadius: Size.BORDER_RADIUS * 6,
+    height: Size.BORDER_RADIUS * 6,
   },
 });
 export default styles;

@@ -8,6 +8,9 @@ const bookAd = require('./booksadd.jpeg');
 const bookAd2 = require('./booksadd2.jpeg');
 const SplashScreenBook = require('./book.png');
 const user = require('./user.png');
+const pakistan = require('./pakistan.png');
+const saudi = require('./saudi-arabia.png');
+const usa = require('./usa.png');
 export const Images = {
   a3,
   a2,
@@ -19,4 +22,7 @@ export const Images = {
   bookAd2,
   SplashScreenBook,
   user,
+  usa,
+  pakistan,
+  saudi,
 };

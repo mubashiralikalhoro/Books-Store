@@ -1,4 +1,4 @@
-import {View, ScrollView, Text, Image} from 'react-native';
+import {View, ScrollView, Text, Image, SafeAreaView} from 'react-native';
 import React from 'react';
 import styles from './style';
 import FavoriteScreenItem from '../../../components/FavoriteScreenItem';
@@ -24,7 +24,7 @@ const NoItems = () => (
 const FavoriteScreen = () => {
   const fav = useSelector(state => state.fav);
   return (
-    <View style={styles.container}>
+    <SafeAreaView style={styles.container}>
       <ScrollView style={styles.ScrollView}>
         {fav.length === 0 && <NoItems />}
         {/*Showing Fav*/}
@@ -32,7 +32,7 @@ const FavoriteScreen = () => {
           <FavoriteScreenItem book={item} key={index} />
         ))}
       </ScrollView>
-    </View>
+    </SafeAreaView>
   );
 };
 
