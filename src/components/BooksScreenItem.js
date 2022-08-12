@@ -80,8 +80,11 @@ const getThree = items => {
 };
 
 const BooksScreenItem = ({book}) => {
+  // hooks
   const dispatch = useDispatch();
   const state = useSelector(state => state);
+  const reversed = state.resources.langID.reversed;
+
   const navigation = useNavigation();
   const searchBookInCart = () => {
     let r = false;
@@ -109,7 +112,7 @@ const BooksScreenItem = ({book}) => {
   };
   return (
     <View style={styles.container}>
-      <View style={{flex: 1, flexDirection: 'row'}}>
+      <View style={{flex: 1, flexDirection: reversed ? 'row-reverse' : 'row'}}>
         <Pressable onPress={toBookDetailsScreen} style={styles.imageBack}>
           <Image
             source={book.bookCover}
@@ -127,28 +130,32 @@ const BooksScreenItem = ({book}) => {
           {/* Book name and author */}
           <Pressable onPress={toBookDetailsScreen}>
             <View>
-              <Text style={[GlobalStyle.TEXT_STYLE, styles.bookName]}>
+              <Text style={[GlobalStyle.TEXT_STYLE, styles.bookName(reversed)]}>
                 {book.bookName}
               </Text>
-              <Text style={[GlobalStyle.TEXT_STYLE, styles.bookAuthorName]}>
+              <Text
+                style={[
+                  GlobalStyle.TEXT_STYLE,
+                  styles.bookAuthorName(reversed),
+                ]}>
                 {book.author}
               </Text>
             </View>
             {/* Book Info */}
-            <View style={styles.bookInfo}>
+            <View style={styles.bookInfo(reversed)}>
               <InfoComponent icon={Icons.PAGE} text={book.pages} left={0} />
               <InfoComponent icon={Icons.READS} text={book.sells} left={20} />
               <InfoComponent icon={Icons.DOLLAR} text={book.price} left={40} />
             </View>
             {/* Genre */}
-            <ScrollView
-              style={styles.allGenresView}
+            <View
+              style={styles.allGenresView(reversed)}
               horizontal
               showsHorizontalScrollIndicator={false}>
               {getThree(book.genre).map((gen, index) => (
                 <Genre name={gen} key={index} index={index} />
               ))}
-            </ScrollView>
+            </View>
           </Pressable>
 
           <View style={styles.viewCart}>
@@ -201,27 +208,33 @@ const styles = StyleSheet.create({
     height: '100%',
     borderRadius: Size.BORDER_RADIUS,
   },
-  allGenresView: {
+  allGenresView: reversed => ({
+    justifyContent: reversed ? 'flex-end' : 'flex-start',
     marginTop: Size.PADDING,
     flexDirection: 'row',
     flexWrap: 'wrap',
     width: '100%',
-  },
+  }),
   detailsView: {
     flex: 1,
-    marginLeft: Size.PADDING,
+    marginHorizontal: Size.PADDING,
   },
-  bookName: {
+  bookName: reversed => ({
     fontSize: Size.FONTSIZE + 10,
-  },
-  bookAuthorName: {
+    marginRight: Size.PADDING,
+    alignSelf: reversed ? 'flex-end' : 'flex-start',
+  }),
+  bookAuthorName: reversed => ({
     color: color.GRAY,
-  },
-  bookInfo: {
-    flexDirection: 'row',
+    marginRight: Size.PADDING,
+    alignSelf: reversed ? 'flex-end' : 'flex-start',
+  }),
+  bookInfo: reversed => ({
+    flexDirection: reversed ? 'row-reverse' : 'row',
     marginTop: Size.FONTSIZE / 2,
     alignItems: 'center',
-  },
+    alignSelf: reversed ? 'flex-end' : 'flex-start',
+  }),
   IconStyle: {
     width: 20,
     height: 20,

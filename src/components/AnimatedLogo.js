@@ -3,9 +3,11 @@ import React, {useState} from 'react';
 import Size from '../constants/Size';
 import color from '../constants/color';
 import Icons from '../assets/Icons';
+import {useSelector} from 'react-redux';
 import {useNavigation, useRoute} from '@react-navigation/native';
 
 const AnimatedLogo = () => {
+  const reversed = useSelector(state => state.resources.langID.reversed);
   const intialValue = () => {
     if (1)
       return {
@@ -30,16 +32,22 @@ const AnimatedLogo = () => {
     }).start();
 
     Animated.timing(position, {
-      toValue: {
-        y: 0,
-        x: 0,
-      },
+      toValue: reversed
+        ? {
+            y: 0,
+            x: Size.WIDTH - Size.ICON,
+          }
+        : {
+            y: 0,
+            x: 0,
+          },
       duration: duration,
       useNativeDriver: false,
     }).start();
   };
 
   moveLogo();
+
   return (
     <Animated.View
       style={[

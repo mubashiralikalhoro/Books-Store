@@ -3,10 +3,9 @@ import React from 'react';
 import GlobalStyle from '../constants/GlobalStyle';
 import Authors from '../dummy/Authors';
 import Size from '../constants/Size';
-import Icon from '../assets/Icons';
-import {Images} from '../assets/images';
 import Author from './Author';
 import color from '../constants/color';
+import {useSelector} from 'react-redux';
 
 const getTen = authors => {
   if (authors.length > 10) {
@@ -21,10 +20,11 @@ const getTen = authors => {
 };
 
 const HomeScreenShowAuth = () => {
+  const reversed = useSelector(state => state.resources.langID.reversed);
   return (
     <View style={styles.container}>
       {/*Header*/}
-      <View style={styles.header}>
+      <View style={styles.header(reversed)}>
         <Text style={[GlobalStyle.TEXT_STYLE, {fontSize: Size.FONTSIZE + 5}]}>
           Authors
         </Text>
@@ -62,13 +62,13 @@ const styles = StyleSheet.create({
   showMore: {
     color: color.SHOW_MORE,
   },
-  header: {
+  header: reversed => ({
     paddingHorizontal: Size.PADDING,
     height: Size.FONTSIZE + 8,
     alignItems: 'center',
     justifyContent: 'center',
-    flexDirection: 'row',
-  },
+    flexDirection: reversed ? 'row-reverse' : 'row',
+  }),
   managingView: {
     flex: 1,
   },

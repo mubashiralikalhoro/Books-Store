@@ -17,6 +17,7 @@ import CustomInputField from '../../../components/CustomInputField';
 import Icons from '../../../assets/Icons/index';
 import * as Yup from 'yup';
 import {Formik} from 'formik';
+import {useSelector} from 'react-redux';
 
 // Validation
 let schema = Yup.object().shape({
@@ -43,13 +44,14 @@ const SignUp = ({navigation}) => {
   const onSubmit = values => {
     navigation.navigate('BottomNavigator');
   };
+  const reversed = useSelector(state => state.resources.langID.reversed);
   return (
     <SafeAreaView style={styles.container}>
       {/* Header Section*/}
       <View style={{minHeight: Size.HEIGHT * 0.2}}>
         <Image source={Icons.LOGO} style={styles.logo} />
       </View>
-      <View style={styles.welcomeCon}>
+      <View style={styles.welcomeCon(reversed)}>
         <Text style={[GlobalStyle.TEXT_STYLE, {color: color.GRAY}]}>
           Welcome
         </Text>
@@ -121,15 +123,16 @@ const SignUp = ({navigation}) => {
         </Formik>
       </KeyboardAvoidingView>
 
-      {/*SIGN UP BUTTON*/}
-      <View style={styles.lastCon}>
+      {/*SIGN IN BUTTON*/}
+      <View style={styles.lastCon(reversed)}>
         <Text style={[GlobalStyle.TEXT_STYLE, styles.lastTxt]}>
+          {' '}
           Already have an account?{' '}
-          <Text
-            onPress={() => navigation.navigate('SignInScreen')}
-            style={{color: color.PRIMARY}}>
-            Sign in
-          </Text>
+        </Text>
+        <Text
+          onPress={() => navigation.navigate('SignInScreen')}
+          style={[styles.lastTxt, {color: color.PRIMARY}]}>
+          Sign in
         </Text>
       </View>
     </SafeAreaView>

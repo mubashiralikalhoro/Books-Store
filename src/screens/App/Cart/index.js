@@ -28,6 +28,7 @@ const CartScreen = () => {
       {cartData.length === 0 && <NoItems />}
       {cartData.length > 0 && (
         <>
+          <Text style={styles.myCart}>My Cart</Text>
           <ScrollView>
             {cartData.map((item, index) => (
               <CartItem

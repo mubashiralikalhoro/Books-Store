@@ -20,6 +20,7 @@ import CustomInputField from '../../../components/CustomInputField';
 import AnimatedLogoSigInScreen from '../../../components/AnimatedLogoSignInScreen';
 import {userLoggedIn} from '../../../store/reducer/user';
 import {useSelector} from 'react-redux';
+import NormalLogoSigInScreen from '../../../components/NormalLogoSignInScreen';
 const tempUser = {
   name: 'John Henry',
   image: {
@@ -32,6 +33,8 @@ const tempUser = {
 
 const SignIn = ({navigation}) => {
   const dispatch = useDispatch();
+  const reversed = useSelector(state => state.resources.langID.reversed);
+  const animation = useSelector(state => state.resources.animation);
   const signIn = () => {
     dispatch(userLoggedIn(tempUser));
   };
@@ -40,10 +43,17 @@ const SignIn = ({navigation}) => {
       {/* Header Section*/}
       <View style={styles.logo} />
       <View style={styles.welcomeCon}>
-        <Text style={[GlobalStyle.TEXT_STYLE, {color: color.GRAY}]}>
+        <Text
+          style={[
+            GlobalStyle.TEXT_STYLE,
+            {
+              color: color.GRAY,
+              alignSelf: reversed ? 'flex-end' : 'flex-start',
+            },
+          ]}>
           Welcome Back
         </Text>
-        <Text style={styles.txt3}>
+        <Text style={styles.txt3(reversed)}>
           Log in to your existing account of BookStore
         </Text>
       </View>
@@ -65,7 +75,7 @@ const SignIn = ({navigation}) => {
       </KeyboardAvoidingView>
 
       {/* FORGET PASSWORD */}
-      <Pressable style={styles.forgotCon}>
+      <Pressable style={styles.forgotCon(reversed)}>
         <Text
           onPress={() => navigation.navigate('ForgetPasswordScreen')}
           style={[GlobalStyle.TEXT_STYLE, styles.forgotTxt]}>
@@ -105,17 +115,18 @@ const SignIn = ({navigation}) => {
       </TouchableOpacity>
 
       {/*SIGN UP BUTTON*/}
-      <View style={styles.lastCon}>
+      <View style={styles.lastCon(reversed)}>
         <Text style={[GlobalStyle.TEXT_STYLE, styles.lastTxt]}>
+          {' '}
           Don't have an account?{' '}
-          <Text
-            onPress={() => navigation.navigate('SignUpScreen')}
-            style={{color: color.PRIMARY}}>
-            Sign up
-          </Text>
+        </Text>
+        <Text
+          onPress={() => navigation.navigate('SignUpScreen')}
+          style={[styles.lastTxt, {color: color.PRIMARY}]}>
+          Sign up
         </Text>
       </View>
-      <AnimatedLogoSigInScreen />
+      {animation ? <AnimatedLogoSigInScreen /> : <NormalLogoSigInScreen />}
     </SafeAreaView>
   );
 };

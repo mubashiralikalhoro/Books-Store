@@ -17,7 +17,7 @@ const ProfileScreen = ({navigation}) => {
   const [screen, setScreen] = useState('main');
   const user = useSelector(state => state.user[0]);
   const dispatch = useDispatch();
-
+  const animationEnabled = useSelector(state => state.resources.animation);
   // Actions
   const signOut = () => {
     dispatch(clearCart());
@@ -29,26 +29,38 @@ const ProfileScreen = ({navigation}) => {
   // animations
   const margin = useState(new Animated.Value(0))[0];
   const animation = props => {
-    // going out
-    Animated.spring(margin, {
-      toValue: Size.HEIGHT * 0.8 - Size.HEADER_FOOTER_SIZE,
-      useNativeDriver: false,
-    }).start();
-
-    // coming in
-    setTimeout(() => {
-      setScreen(props);
+    if (animationEnabled) {
+      // going out
       Animated.spring(margin, {
-        toValue: 0,
+        toValue: Size.HEIGHT * 0.8 - Size.HEADER_FOOTER_SIZE,
         useNativeDriver: false,
       }).start();
-    }, 100);
+
+      // coming in
+      setTimeout(() => {
+        setScreen(props);
+        Animated.spring(margin, {
+          toValue: 0,
+          useNativeDriver: false,
+        }).start();
+      }, 100);
+    } else {
+      setScreen(props);
+    }
   };
   // Screens
   const Options = () => (
     <>
-      <View style={styles.topBorder} />
-      <View style={{flex: 1}} />
+      {/* <View style={styles.topBorder} /> */}
+      <Option
+        style={styles.topBorder}
+        title="View your profile"
+        titleColor={color.TEXT}
+      />
+      <View style={styles.line} />
+      <Option title="Add new address" titleColor={color.TEXT} />
+      <View style={styles.line} />
+
       <Option
         title="Change Password"
         titleColor={color.TEXT}
@@ -56,11 +68,12 @@ const ProfileScreen = ({navigation}) => {
       />
       <View style={styles.line} />
       <Option
-        title="Language"
+        title="Languages"
         titleColor={color.TEXT}
         onPress={() => animation('language')}
       />
-      <View style={[styles.line, {height: 3}]} />
+      <View style={styles.line} />
+
       <Option
         title="Contact us"
         titleColor={color.TEXT}
@@ -72,11 +85,16 @@ const ProfileScreen = ({navigation}) => {
         titleColor={color.TEXT}
         onPress={() => animation('aboutUs')}
       />
-      <View style={[styles.line, {height: 3}]} />
-      <Option title="Settings" titleColor={color.TEXT} />
+      <View style={styles.line} />
+
+      <Option
+        title="Settings"
+        titleColor={color.TEXT}
+        onPress={() => animation('settings')}
+      />
       <View style={styles.line} />
       <Option title="Sign Out" titleColor={color.RED} onPress={signOut} />
-      <View style={[styles.line, {height: 3}]} />
+      <View style={styles.line} />
     </>
   );
 

@@ -5,6 +5,7 @@ import ScreenHeader from './ScreenHeader';
 import ChangePasswordScreen from '../ChangePassword';
 import AboutUsScreen from '../About';
 import ContactUsScreen from '../contactUs';
+import SettingsScreen from '../Settings';
 
 const Screens = ({screen, setScreen}) => {
   const setMainScreen = () => {
@@ -36,6 +37,13 @@ const Screens = ({screen, setScreen}) => {
       <>
         <ScreenHeader title={'Contact Us'} onPress={setMainScreen} />
         <ContactUsScreen />
+      </>
+    );
+  } else if (screen == 'settings') {
+    return (
+      <>
+        <ScreenHeader title={'Settings'} onPress={setMainScreen} />
+        <SettingsScreen />
       </>
     );
   }

@@ -9,8 +9,7 @@ const favoriteSlice = createSlice({
     },
     removeFav: (state, action) => {
       state.forEach((item, index) => {
-        console.log(item);
-        if (item.bookId == action.payload.bookId) {
+        if (item.bookId === action.payload.bookId) {
           state.splice(index, 1);
         }
       });

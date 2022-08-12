@@ -4,14 +4,20 @@ import Size from '../constants/Size';
 import GlobalStyle from '../constants/GlobalStyle';
 import color from '../constants/color';
 import Icons from '../assets/Icons';
+import {useSelector} from 'react-redux';
 
 const UserProfile = ({user}) => {
+  const reversed = useSelector(state => state.resources.langID.reversed);
   return (
-    <View style={styles.container}>
+    <View style={styles.container(reversed)}>
       <Image source={user.image} style={styles.imageStyle} />
       <View style={styles.detailsView}>
-        <Text style={[GlobalStyle.TEXT_STYLE, styles.hello]}>Hello,</Text>
-        <Text style={[GlobalStyle.TEXT_STYLE, styles.name]}>{user.name}</Text>
+        <Text style={[GlobalStyle.TEXT_STYLE, styles.hello(reversed)]}>
+          Hello,
+        </Text>
+        <Text style={[GlobalStyle.TEXT_STYLE, styles.name(reversed)]}>
+          {user.name}
+        </Text>
       </View>
       <TouchableOpacity style={styles.pencilView}>
         <Image source={Icons.PENCIL} style={styles.pencil} />
@@ -22,10 +28,10 @@ const UserProfile = ({user}) => {
 
 export default UserProfile;
 const styles = StyleSheet.create({
-  container: {
-    flexDirection: 'row',
+  container: reversed => ({
+    flexDirection: reversed ? 'row-reverse' : 'row',
     alignItems: 'center',
-  },
+  }),
   imageStyle: {
     width: Size.ICON * 1.5,
     height: Size.ICON * 1.5,
@@ -36,11 +42,15 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     paddingHorizontal: Size.PADDING,
   },
-  hello: {color: color.PRIMARY_TEXT},
-  name: {
+  hello: reversed => ({
+    color: color.PRIMARY_TEXT,
+    textAlign: reversed ? 'right' : 'left',
+  }),
+  name: reversed => ({
     fontSize: Size.WIDTH * 0.05,
     color: color.PRIMARY_TEXT,
-  },
+    textAlign: reversed ? 'right' : 'left',
+  }),
   pencilView: {
     justifyContent: 'center',
     alignItems: 'center',

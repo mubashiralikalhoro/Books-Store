@@ -19,24 +19,15 @@ import {
   increaseNoOfCartItem,
   removeItem,
 } from '../store/reducer/cart';
-import {useDispatch} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 
-const RemoveButton = ({onPress}) => (
-  <TouchableOpacity onPress={onPress} style={styles.RemoveButton}>
+const RemoveButton = ({onPress, reversed}) => (
+  <TouchableOpacity onPress={onPress} style={styles.RemoveButton(reversed)}>
     <Image source={Icons.DELETE} style={styles.deleteIcon} />
   </TouchableOpacity>
 );
 
-const NumberOfItems = ({no, setNo, book}) => {
-  const dispatch = useDispatch();
-  const plusItem = () => {
-    dispatch(increaseNoOfCartItem({book: book}));
-  };
-  const minusItem = () => {
-    if (no !== 0) {
-      dispatch(decreaseNoOfCartItem({book: book}));
-    }
-  };
+const NumberOfItems = ({no, plusItem, minusItem}) => {
   return (
     <View style={styles.NumberOfItemsView}>
       <TouchableOpacity onPress={minusItem}>
@@ -59,6 +50,15 @@ const NumberOfItems = ({no, setNo, book}) => {
 const borderRadius = Size.BORDER_RADIUS * 5;
 const CartItem = ({book, numberOfItems}) => {
   const dispatch = useDispatch();
+  const plusItem = () => {
+    dispatch(increaseNoOfCartItem({book: book}));
+  };
+  const minusItem = () => {
+    if (numberOfItems !== 0) {
+      dispatch(decreaseNoOfCartItem({book: book}));
+    }
+  };
+  const reversed = useSelector(state => state.resources.langID.reversed);
   const navigation = useNavigation();
   const remove = () => {
     dispatch(removeItem({book: book}));
@@ -70,18 +70,28 @@ const CartItem = ({book, numberOfItems}) => {
 
   return (
     <View style={styles.container}>
-      <View style={styles.containerMain}>
+      <View style={styles.containerMain(reversed)}>
         <Image
           source={book.bookCover}
-          style={styles.image}
+          style={styles.image(reversed)}
           resizeMode="stretch"
         />
         <View style={styles.disView}>
           <Pressable onPress={openBook}>
-            <Text style={[GlobalStyle.TEXT_STYLE]}>{book.bookName}</Text>
+            <Text
+              style={[
+                GlobalStyle.TEXT_STYLE,
+                {alignSelf: reversed ? 'flex-end' : 'flex-start'},
+              ]}>
+              {book.bookName}
+            </Text>
           </Pressable>
-          <View style={styles.priceSection}>
-            <NumberOfItems no={numberOfItems} book={book} />
+          <View style={styles.priceSection(reversed)}>
+            <NumberOfItems
+              no={numberOfItems}
+              plusItem={plusItem}
+              minusItem={minusItem}
+            />
             <Text
               style={[
                 GlobalStyle.TEXT_STYLE,
@@ -91,7 +101,7 @@ const CartItem = ({book, numberOfItems}) => {
             </Text>
           </View>
         </View>
-        <RemoveButton onPress={remove} />
+        <RemoveButton onPress={remove} reversed={reversed} />
       </View>
     </View>
   );
@@ -106,42 +116,35 @@ const styles = StyleSheet.create({
     minHeight: Size.ICON * 1.8,
     alignItems: 'center',
   },
-  containerMain: {
-    flexDirection: 'row',
+  containerMain: reversed => ({
+    flexDirection: reversed ? 'row-reverse' : 'row',
     width: Size.WIDTH * 0.9,
     minHeight: Size.ICON * 1.8,
     borderRadius: borderRadius,
     backgroundColor: color.BACKGROUND,
-    shadowColor: color.TEXT,
-    shadowOffset: {
-      width: 0,
-      height: 3,
-    },
-    shadowOpacity: 0.29,
-    shadowRadius: 4.65,
-    elevation: 7,
-    borderWidth: color.isDark && Platform.OS == 'android' ? 0.5 : 0,
-    borderColor: color.GRAY,
-  },
-  image: {
+    ...GlobalStyle.SHADOW_STYLE,
+  }),
+  image: reversed => ({
     height: '100%',
     width: Size.ICON * 1.4,
-    borderTopLeftRadius: borderRadius,
-    borderBottomLeftRadius: borderRadius,
-  },
+    borderTopLeftRadius: reversed ? 0 : borderRadius,
+    borderBottomLeftRadius: reversed ? 0 : borderRadius,
+    borderTopRightRadius: reversed ? borderRadius : 0,
+    borderBottomRightRadius: reversed ? borderRadius : 0,
+  }),
   disView: {
     flex: 1,
     justifyContent: 'center',
     paddingHorizontal: Size.PADDING,
   },
-  priceSection: {
+  priceSection: reversed => ({
     justifyContent: 'space-between',
     alignItems: 'center',
     marginRight: Size.FONTSIZE,
     marginTop: Size.FONTSIZE,
-    flexDirection: 'row',
-  },
-  RemoveButton: {
+    flexDirection: reversed ? 'row-reverse' : 'row',
+  }),
+  RemoveButton: reversed => ({
     justifyContent: 'center',
     alignItems: 'center',
     position: 'absolute',
@@ -149,9 +152,11 @@ const styles = StyleSheet.create({
     width: Size.ICON * 0.7,
     height: Size.ICON * 0.7,
     left: Size.WIDTH * 0.9 - Size.ICON * 0.7,
-    borderTopRightRadius: borderRadius,
-    borderBottomLeftRadius: borderRadius,
-  },
+    borderTopRightRadius: reversed ? 0 : borderRadius,
+    borderBottomLeftRadius: reversed ? 0 : borderRadius,
+    borderTopLeftRadius: reversed ? borderRadius : 0,
+    borderBottomRightRadius: reversed ? borderRadius : 0,
+  }),
   deleteIcon: {
     width: Size.ICON * 0.3,
     height: Size.ICON * 0.3,

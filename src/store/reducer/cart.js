@@ -16,7 +16,10 @@ const cartSlice = createSlice({
     },
     increaseNoOfCartItem: (state, action) => {
       state.forEach((item, index) => {
-        if (item.book.bookId == action.payload.book.bookId) {
+        if (item.book.bookId === action.payload.book.bookId) {
+          console.log(item.book);
+          console.log(action.payload.book);
+          console.log('true');
           state[index].noOfItems = state[index].noOfItems + 1;
         }
       });

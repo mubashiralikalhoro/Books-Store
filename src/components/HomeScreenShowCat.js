@@ -3,9 +3,9 @@ import React from 'react';
 import Size from '../constants/Size';
 import GlobalStyle from '../constants/GlobalStyle';
 import Book from './Book';
-import Books from '../dummy/Books';
 import color from '../constants/color';
 import {useNavigation} from '@react-navigation/native';
+import {useSelector} from 'react-redux';
 
 const getTen = books => {
   if (books.length > 10) {
@@ -21,6 +21,7 @@ const getTen = books => {
 
 const HomeScreenShowCat = ({catName, books}) => {
   const navigation = useNavigation();
+  const reversed = useSelector(state => state.resources.langID.reversed);
   return (
     <View style={styles.container}>
       <Pressable
@@ -28,7 +29,7 @@ const HomeScreenShowCat = ({catName, books}) => {
           navigation.push('BooksScreen', {catName, books});
         }}>
         {/*Header*/}
-        <View style={styles.header}>
+        <View style={styles.header(reversed)}>
           <Text style={[GlobalStyle.TEXT_STYLE, {fontSize: Size.FONTSIZE + 5}]}>
             {catName}
           </Text>
@@ -68,12 +69,12 @@ const styles = StyleSheet.create({
     color: color.SHOW_MORE,
   },
 
-  header: {
+  header: reversed => ({
     paddingHorizontal: Size.PADDING,
     height: Size.FONTSIZE + 8,
     alignItems: 'center',
-    flexDirection: 'row',
-  },
+    flexDirection: reversed ? 'row-reverse' : 'row',
+  }),
   managingView: {
     flex: 1,
   },

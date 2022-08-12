@@ -20,23 +20,24 @@ export default StyleSheet.create({
     width: Size.WIDTH * 0.85,
   },
 
-  txt3: {
-    fontFamily: 'DMSans-Regular',
+  txt3: reversed => ({
     fontSize: Size.WIDTH * 0.04,
     color: color.TEXT,
     width: Size.WIDTH * 0.7,
-  },
+    textAlign: reversed ? 'right' : 'left',
+    alignSelf: reversed ? 'flex-end' : 'flex-start',
+  }),
 
   eyeCon: {
     height: Size.HEIGHT * 0.03,
     width: Size.WIDTH * 0.2,
   },
 
-  forgotCon: {
+  forgotCon: reversed => ({
     width: Size.WIDTH * 0.9,
     marginVertical: Size.PADDING,
-    alignItems: 'flex-end',
-  },
+    alignItems: reversed ? 'flex-start' : 'flex-end',
+  }),
 
   forgotTxt: {
     color: color.PRIMARY,
@@ -59,15 +60,15 @@ export default StyleSheet.create({
     fontSize: Size.WIDTH * 0.04,
   },
 
-  lastCon: {
+  lastCon: reversed => ({
+    flexDirection: reversed ? 'row-reverse' : 'row',
     alignSelf: 'center',
     marginTop: Size.HEIGHT * 0.015,
-  },
+  }),
 
   lastTxt: {
     fontSize: Size.FONTSIZE + 4,
     textAlign: 'center',
-    width: Size.WIDTH * 0.9,
   },
   icon: {
     height: Size.ICON * 0.8,

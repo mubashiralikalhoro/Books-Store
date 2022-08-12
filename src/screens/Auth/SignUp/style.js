@@ -16,16 +16,15 @@ export default StyleSheet.create({
     resizeMode: 'contain',
   },
 
-  welcomeCon: {
+  welcomeCon: reversed => ({
     marginTop: Size.PADDING,
     width: Size.WIDTH * 0.85,
-  },
+    alignItems: reversed ? 'flex-end' : 'flex-start',
+  }),
 
   txt3: {
-    fontFamily: 'DMSans-Regular',
     fontSize: Size.WIDTH * 0.04,
     color: color.TEXT,
-    width: Size.WIDTH * 0.7,
   },
 
   eyeCon: {
@@ -60,15 +59,15 @@ export default StyleSheet.create({
     fontSize: Size.WIDTH * 0.04,
   },
 
-  lastCon: {
+  lastCon: reversed => ({
+    flexDirection: reversed ? 'row-reverse' : 'row',
     alignSelf: 'center',
     marginTop: Size.HEIGHT * 0.015,
-  },
+  }),
 
   lastTxt: {
     fontSize: Size.FONTSIZE + 4,
     textAlign: 'center',
-    width: Size.WIDTH * 0.9,
   },
   icon: {
     height: Size.ICON * 0.8,

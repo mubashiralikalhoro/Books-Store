@@ -1,5 +1,6 @@
 import {StyleSheet} from 'react-native';
 import color from '../../../constants/color';
+import GlobalStyle from '../../../constants/GlobalStyle';
 import Size from '../../../constants/Size';
 
 const styles = StyleSheet.create({
@@ -16,6 +17,13 @@ const styles = StyleSheet.create({
   checkOutText: {
     fontSize: Size.ICON * 0.3,
     color: color.PRIMARY_TEXT,
+  },
+  myCart: {
+    ...GlobalStyle.TEXT_STYLE,
+    marginTop: Size.PADDING,
+    fontSize: Size.WIDTH * 0.04,
+    color: color.PRIMARY,
+    fontWeight: '800',
   },
 });
 export default styles;

@@ -24,22 +24,36 @@ import {createSlice} from '@reduxjs/toolkit';
 const resources = createSlice({
   name: 'res',
   initialState: {
-    langID: 'en',
-    animations: true,
+    langID: {id: 'English-US', language: 'strings', reversed: false},
+    animation: true,
   },
   reducers: {
     changeLanguage: (state, action) => {
-      state.langID = action.payload;
+      if (action.payload == 'English-US') {
+        state.langID = {id: 'English-US', language: 'strings', reversed: false};
+      } else if (action.payload == 'Urdu-Pakistan') {
+        state.langID = {
+          id: 'Urdu-Pakistan',
+          language: 'strings',
+          reversed: true,
+        };
+      } else if (action.payload == 'Arabic-Saudi Arabia') {
+        state.langID = {
+          id: 'Arabic-Saudi Arabia',
+          language: 'strings',
+          reversed: true,
+        };
+      }
     },
     restore: state => {
-      state.langID = 'en';
-      state.animations = true;
+      state.langID = 'English-US';
+      state.animation = true;
     },
     disableAnimations: state => {
-      state.animations = false;
+      state.animation = false;
     },
     enableAnimations: state => {
-      state.animations = true;
+      state.animation = true;
     },
   },
 });

@@ -25,13 +25,16 @@ const FavoriteScreen = () => {
   const fav = useSelector(state => state.fav);
   return (
     <SafeAreaView style={styles.container}>
-      <ScrollView style={styles.ScrollView}>
-        {fav.length === 0 && <NoItems />}
-        {/*Showing Fav*/}
-        {fav.map((item, index) => (
-          <FavoriteScreenItem book={item} key={index} />
-        ))}
-      </ScrollView>
+      {fav.length === 0 && <NoItems />}
+      {/*Showing Fav*/}
+      {fav.length > 0 && (
+        <ScrollView>
+          <Text style={styles.myFav}>My Favorites</Text>
+          {fav.map((item, index) => (
+            <FavoriteScreenItem book={item} key={index} />
+          ))}
+        </ScrollView>
+      )}
     </SafeAreaView>
   );
 };

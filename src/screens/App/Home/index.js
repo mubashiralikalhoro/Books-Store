@@ -8,10 +8,13 @@ import HomeScreenShowCat from '../../../components/HomeScreenShowCat';
 import Books from '../../../dummy/Books';
 import HomeScreenShowAuth from '../../../components/HomeScreenShowAuth';
 import AnimatedLogo from '../../../components/AnimatedLogo';
+import NormalLogo from '../../../components/NormalLogo';
+import {useSelector} from 'react-redux';
 
 const HomeScreen = ({navigation}) => {
   // for header animation
   const [headerShown, setHeaderShown] = useState(false);
+  const animation = useSelector(state => state.resources.animation);
   const onScroll = e => {
     if (e.nativeEvent.contentOffset.y > 0) {
       setHeaderShown(true);
@@ -35,7 +38,7 @@ const HomeScreen = ({navigation}) => {
           {/* ==================== */}
         </ScrollView>
         <HomeScreenHeader opacity={headerShown} />
-        <AnimatedLogo />
+        {animation ? <AnimatedLogo /> : <NormalLogo />}
       </SafeAreaView>
     </>
   );

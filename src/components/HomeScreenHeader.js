@@ -3,9 +3,10 @@ import React, {useState} from 'react';
 import Size from '../constants/Size';
 import Icon from '../assets/Icons';
 import color from '../constants/color';
-import darkMode from '../dummy/DarkMode';
+import {useSelector} from 'react-redux';
 
 const HomeScreenHeader = ({opacity}) => {
+  const reversed = useSelector(state => state.resources.langID.reversed);
   const opacityLevel = useState(new Animated.Value(0.3))[0];
 
   const [lastHeaderShow, setLastHeaderShow] = useState(false);
@@ -36,9 +37,8 @@ const HomeScreenHeader = ({opacity}) => {
   }
 
   return (
-    <View style={styles.container}>
+    <View style={styles.container(reversed)}>
       <Animated.View style={styles.shadowEffect(opacityLevel)}></Animated.View>
-      {/* <Image source={Icon.LOGO} style={styles.logo} /> */}
       <View style={styles.logo} />
       <Image source={Icon.DISCOVER} style={styles.discover} />
       <View style={styles.arrange}></View>
@@ -50,13 +50,13 @@ const HomeScreenHeader = ({opacity}) => {
 export default HomeScreenHeader;
 
 const styles = StyleSheet.create({
-  container: {
+  container: reversed => ({
     position: 'absolute',
     width: '100%',
     height: Size.HEADER_FOOTER_SIZE,
-    flexDirection: 'row',
+    flexDirection: reversed ? 'row-reverse' : 'row',
     alignItems: 'center',
-  },
+  }),
   logo: {
     width: Size.ICON,
     height: Size.ICON,
@@ -65,7 +65,7 @@ const styles = StyleSheet.create({
   search: {
     width: Size.ICON * 0.65,
     height: Size.ICON * 0.65,
-    marginRight: Size.PADDING,
+    marginHorizontal: Size.PADDING,
     tintColor: color.TEXT,
   },
   discover: {

@@ -1,12 +1,12 @@
-import {View, Text, Image, SafeAreaView} from 'react-native';
+import {View, Text, Image, SafeAreaView, ScrollView} from 'react-native';
 import React from 'react';
 import styles from './style';
 import color from '../../../constants/color';
 import Icons from '../../../assets/Icons';
 import Size from '../../../constants/Size';
 import GlobalStyle from '../../../constants/GlobalStyle';
-import {Notifications} from '../../../dummy/data';
 import {useSelector} from 'react-redux';
+import Notification from '../../../components/Notification';
 
 // Zero notifications
 const NoItems = () => (
@@ -22,13 +22,20 @@ const NoItems = () => (
 );
 
 const NotificationScreen = () => {
-  const Notifications = useSelector(state => state.notification);
+  const notifications = useSelector(state => state.notification);
   return (
     <SafeAreaView style={styles.container}>
-      {Notifications.length == 0 && <NoItems />}
+      {notifications.length == 0 && <NoItems />}
       {/*Showing notifications*/}
-      {Notifications.length > 0 && (
-        <Notification notification={Notifications[0]} />
+      {notifications.length > 0 && (
+        <>
+          <ScrollView>
+            <Text style={styles.myNot}>My Notifications</Text>
+            {notifications.map((item, index) => (
+              <Notification notification={item} key={index} />
+            ))}
+          </ScrollView>
+        </>
       )}
     </SafeAreaView>
   );

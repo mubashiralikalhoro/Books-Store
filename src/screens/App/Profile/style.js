@@ -32,7 +32,6 @@ const styles = StyleSheet.create({
   topBorder: {
     borderTopLeftRadius: Size.BORDER_RADIUS * 6,
     borderTopRightRadius: Size.BORDER_RADIUS * 6,
-    height: Size.BORDER_RADIUS * 6,
   },
 });
 export default styles;

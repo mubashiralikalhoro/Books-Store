@@ -2,7 +2,7 @@ import {Images} from '../assets/images';
 
 export class Book {
   constructor(
-    id,
+    bookId,
     bookName,
     bookCover,
     rating,
@@ -15,8 +15,9 @@ export class Book {
     description,
     price,
   ) {
-    this.id = id;
-    (this.bookName = bookName), (this.bookCover = bookCover);
+    this.bookId = bookId;
+    this.bookName = bookName;
+    this.bookCover = bookCover;
     this.rating = rating;
     this.language = language;
     this.pages = pages;
