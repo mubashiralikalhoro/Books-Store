@@ -28,7 +28,6 @@ const SignedInStack = () => {
         headerShown: false,
         animationEnabled: false,
       }}>
-      <Stack.Screen name="ForgetPasswordScreen" component={ForgetPassword} />
       <Stack.Screen name="ProfileScreen" component={ProfileScreen} />
       <Stack.Screen name="NotificationScreen" component={NotificationScreen} />
       <Stack.Screen name="HomeScreen" component={HomeScreen} />
@@ -53,6 +52,7 @@ const SignedOutStack = () => {
       <Stack.Screen name="SplashScreen" component={SplashScreen} />
       <Stack.Screen name="SignInScreen" component={SignIn} />
       <Stack.Screen name="SignUpScreen" component={SignUp} />
+      <Stack.Screen name="ForgetPasswordScreen" component={ForgetPassword} />
     </Stack.Navigator>
   );
 };

@@ -39,6 +39,7 @@ const styles = StyleSheet.create({
   hello: {color: color.PRIMARY_TEXT},
   name: {
     fontSize: Size.WIDTH * 0.05,
+    color: color.PRIMARY_TEXT,
   },
   pencilView: {
     justifyContent: 'center',

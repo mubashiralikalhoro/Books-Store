@@ -34,7 +34,7 @@ const styles = StyleSheet.create({
   },
   inputField: {
     width: '95%',
-    borderRadius: Size.BORDER_RADIUS * 3,
+    borderRadius: Size.ICON,
   },
   buttonView: {
     alignItems: 'center',
@@ -42,7 +42,7 @@ const styles = StyleSheet.create({
     width: Size.WIDTH * 0.6,
     paddingVertical: Size.PADDING,
     backgroundColor: color.PRIMARY,
-    borderRadius: Size.BORDER_RADIUS * 2,
+    borderRadius: Size.WIDTH * 0.1,
   },
   text: {
     color: color.PRIMARY_TEXT,

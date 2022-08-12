@@ -22,11 +22,9 @@ import {
 import {useDispatch} from 'react-redux';
 
 const RemoveButton = ({onPress}) => (
-  <View style={styles.RemoveButton}>
-    <TouchableOpacity onPress={onPress}>
-      <Image source={Icons.DELETE} style={styles.deleteIcon} />
-    </TouchableOpacity>
-  </View>
+  <TouchableOpacity onPress={onPress} style={styles.RemoveButton}>
+    <Image source={Icons.DELETE} style={styles.deleteIcon} />
+  </TouchableOpacity>
 );
 
 const NumberOfItems = ({no, setNo, book}) => {

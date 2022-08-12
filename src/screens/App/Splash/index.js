@@ -1,5 +1,5 @@
 import {View, Text, Image, Animated} from 'react-native';
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import Icons from '../../../assets/Icons';
 import {Images} from '../../../assets/images';
 import style from './style';
@@ -10,19 +10,22 @@ const SplashScreen = ({navigation}) => {
   // animations
   const logoSize = useState(new Animated.Value(0))[0];
   const moveIn = () => {
-    Animated.spring(logoSize, {
+    Animated.timing(logoSize, {
       toValue: Size.ICON * 2.5,
+      duration: 1800,
       useNativeDriver: false,
     }).start();
   };
-  moveIn();
 
   // navigate to signIn
   const navigate = () => {
     navigation.replace('SignInScreen');
   };
 
-  setTimeout(navigate, 2000);
+  useEffect(() => {
+    setTimeout(navigate, 2000);
+    moveIn();
+  }, []);
   return (
     <View style={style.container}>
       {/*backGround book Image*/}

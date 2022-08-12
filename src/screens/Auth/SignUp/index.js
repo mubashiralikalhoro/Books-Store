@@ -23,17 +23,12 @@ let schema = Yup.object().shape({
   fullName: Yup.string()
     .min(3, '*Name is too small')
     .trim()
-    .required('*Full name is required'),
-  email: Yup.string()
-    .email('*Enter a valid email')
-    .required('*Email is required'),
-  password: Yup.string()
-    .min(8, '*Short password')
-    .required('*Password is a required field'),
-  confirmPassword: Yup.string().equals(
-    [Yup.ref('password'), null],
-    '*Passwords must match',
-  ),
+    .required('*Required'),
+  email: Yup.string().email('*Email').required('*Required'),
+  password: Yup.string().min(8, '*Short password').required('*Required'),
+  confirmPassword: Yup.string()
+    .equals([Yup.ref('password'), null], '*Passwords must match')
+    .required('*Required'),
 });
 
 // initial State for the form

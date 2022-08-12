@@ -18,11 +18,9 @@ import {useDispatch} from 'react-redux';
 const borderRadius = Size.BORDER_RADIUS * 5;
 
 const RemoveButton = ({onPress}) => (
-  <View style={styles.RemoveButton}>
-    <TouchableOpacity onPress={onPress}>
-      <Image source={Icons.BROKEN_HEART} style={styles.deleteIcon} />
-    </TouchableOpacity>
-  </View>
+  <TouchableOpacity style={styles.RemoveButton} onPress={onPress}>
+    <Image source={Icons.BROKEN_HEART} style={styles.deleteIcon} />
+  </TouchableOpacity>
 );
 
 const InfoComponent = ({icon, text, left}) => (

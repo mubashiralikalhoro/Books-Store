@@ -1,5 +1,6 @@
 import {StyleSheet} from 'react-native';
 import color from '../../../constants/color';
+import GlobalStyle from '../../../constants/GlobalStyle';
 import Size from '../../../constants/Size';
 
 const styles = StyleSheet.create({
@@ -20,6 +21,7 @@ const styles = StyleSheet.create({
     backgroundColor: color.BACKGROUND,
     borderTopLeftRadius: Size.BORDER_RADIUS * 6,
     borderTopRightRadius: Size.BORDER_RADIUS * 6,
+    ...GlobalStyle.SHADOW_STYLE,
   },
   line: {
     width: '100%',
