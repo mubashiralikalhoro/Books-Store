@@ -3,8 +3,6 @@ import React, {useState} from 'react';
 import Size from '../constants/Size';
 import color from '../constants/color';
 import Icons from '../assets/Icons';
-import {Cart, Favorite} from '../dummy/data';
-import style from '../screens/App/Home/style';
 import GlobalStyle from '../constants/GlobalStyle';
 import {useNavigation} from '@react-navigation/native';
 import {addItem, removeItem} from '../store/reducer/cart';
@@ -12,6 +10,7 @@ import {useDispatch, useSelector} from 'react-redux';
 import {addFav, removeFav} from '../store/reducer/favorite';
 
 const IconButton = ({icon, onPress, style, imageStyle}) => {
+  const strings = useSelector(state => state.resources.langID.strings);
   return (
     <TouchableOpacity onPress={onPress}>
       <View style={style}>
@@ -22,6 +21,8 @@ const IconButton = ({icon, onPress, style, imageStyle}) => {
 };
 
 const BookDetailsScreenFooter = ({book}) => {
+  const strings = useSelector(state => state.resources.langID.strings);
+
   const navigation = useNavigation();
   const dispatch = useDispatch();
   const state = useSelector(state => state);
@@ -83,7 +84,9 @@ const BookDetailsScreenFooter = ({book}) => {
       <TouchableOpacity onPress={cartPressed}>
         <View style={styles.addToCart}>
           <Text style={[GlobalStyle.TEXT_STYLE, styles.buyNowText]}>
-            {searchBookInCart() ? 'Remove from cart' : 'Add to cart'}
+            {searchBookInCart()
+              ? strings.REMOVE_FROM_CART
+              : strings.ADD_TO_CART}
           </Text>
           <Image source={Icons.CART} style={styles.addToCartItem} />
         </View>
@@ -92,7 +95,7 @@ const BookDetailsScreenFooter = ({book}) => {
       <TouchableOpacity onPress={openCart}>
         <View style={styles.buyNow}>
           <Text style={[GlobalStyle.TEXT_STYLE, styles.buyNowText]}>
-            Buy Now
+            {strings.BUY_NOW}
           </Text>
         </View>
       </TouchableOpacity>
