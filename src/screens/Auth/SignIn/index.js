@@ -27,7 +27,7 @@ const tempUser = {
     uri: 'https://www.jeancoutu.com/globalassets/revamp/photo/conseils-photo/20160302-01-reseaux-sociaux-profil/photo-profil_301783868.jpg',
   },
   email: 'johnHenry@gmail.com',
-  phoneNo: '+010000000000',
+  phoneNo: '412492140149',
   address: 'California/USA',
 };
 

@@ -64,9 +64,13 @@ const userSlice = createSlice({
     userLoggedOut: state => {
       state.pop();
     },
+    userUpdate: (state, action) => {
+      state[0] = action.payload;
+    },
   },
 });
 
 export const userLoggedIn = userSlice.actions.userLoggedIn;
+export const userUpdate = userSlice.actions.userUpdate;
 export const userLoggedOut = userSlice.actions.userLoggedOut;
 export default userSlice.reducer;

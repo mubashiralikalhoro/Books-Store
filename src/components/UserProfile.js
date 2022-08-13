@@ -1,16 +1,47 @@
 import {View, Text, StyleSheet, Image, TouchableOpacity} from 'react-native';
-import React from 'react';
+import React, {useState} from 'react';
 import Size from '../constants/Size';
 import GlobalStyle from '../constants/GlobalStyle';
 import color from '../constants/color';
 import Icons from '../assets/Icons';
 import {useSelector} from 'react-redux';
+import Pressable from 'react-native/Libraries/Components/Pressable/Pressable';
+import ImagePicker from 'react-native-image-crop-picker';
 
-const UserProfile = ({user}) => {
+const UserProfile = ({
+  user,
+  editProfile,
+  editable,
+  setPickedImage,
+  pickedImage,
+}) => {
   const reversed = useSelector(state => state.resources.langID.reversed);
+  const chooseImageFromGallery = async () => {
+    try {
+      await ImagePicker.openPicker({
+        cropping: true,
+        mediaType: 'photo',
+        maxFiles: 1,
+        height: 300,
+        width: 300,
+      }).then(image => {
+        setPickedImage({uri: image.path});
+      });
+    } catch (e) {}
+  };
   return (
     <View style={styles.container(reversed)}>
-      <Image source={user.image} style={styles.imageStyle} />
+      <Pressable onPress={editable ? chooseImageFromGallery : () => {}}>
+        <Image
+          source={pickedImage ? pickedImage : user.image}
+          style={styles.imageStyle}
+        />
+        {editable ? (
+          <Image source={Icons.CAMERA} style={styles.camera} />
+        ) : (
+          <></>
+        )}
+      </Pressable>
       <View style={styles.detailsView}>
         <Text style={[GlobalStyle.TEXT_STYLE, styles.hello(reversed)]}>
           Hello,
@@ -19,7 +50,7 @@ const UserProfile = ({user}) => {
           {user.name}
         </Text>
       </View>
-      <TouchableOpacity style={styles.pencilView}>
+      <TouchableOpacity style={styles.pencilView} onPress={editProfile}>
         <Image source={Icons.PENCIL} style={styles.pencil} />
       </TouchableOpacity>
     </View>
@@ -65,5 +96,13 @@ const styles = StyleSheet.create({
     height: '40%',
     width: '40%',
     tintColor: color.PRIMARY_TEXT,
+  },
+  camera: {
+    left: Size.ICON * 1.5 - Size.ICON / 2,
+    top: Size.ICON * 1.5 - Size.ICON / 2,
+    position: 'absolute',
+    height: Size.ICON / 2,
+    width: Size.ICON / 2,
+    tintColor: color.GREEN,
   },
 });

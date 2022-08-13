@@ -6,8 +6,16 @@ import ChangePasswordScreen from '../ChangePassword';
 import AboutUsScreen from '../About';
 import ContactUsScreen from '../contactUs';
 import SettingsScreen from '../Settings';
+import ViewProfileScreen from '../ViewProfile';
+import PasswordVerificationScreen from '../PasswordVarification';
 
-const Screens = ({screen, setScreen}) => {
+const Screens = ({
+  screen,
+  setScreen,
+  setEditable,
+  pickedImage,
+  setPickedImage,
+}) => {
   const setMainScreen = () => {
     setScreen('main');
   };
@@ -44,6 +52,40 @@ const Screens = ({screen, setScreen}) => {
       <>
         <ScreenHeader title={'Settings'} onPress={setMainScreen} />
         <SettingsScreen />
+      </>
+    );
+  } else if (screen == 'viewProfile') {
+    return (
+      <>
+        <ScreenHeader title={'Your Profile'} onPress={setMainScreen} />
+        <ViewProfileScreen
+          setMainScreen={setMainScreen}
+          setScreen={setScreen}
+        />
+      </>
+    );
+  } else if (screen == 'passwordVerification') {
+    return (
+      <>
+        <ScreenHeader title={"Verify it's you"} onPress={setMainScreen} />
+        <PasswordVerificationScreen
+          setScreen={setScreen}
+          setEditable={setEditable}
+        />
+      </>
+    );
+  } else if (screen == 'editProfile') {
+    return (
+      <>
+        <ScreenHeader title={'Edit your profile'} onPress={setMainScreen} />
+        <ViewProfileScreen
+          setMainScreen={setMainScreen}
+          setScreen={setScreen}
+          edit={true}
+          setEditableImage={setEditable}
+          pickedImage={pickedImage}
+          setPickedImage={setPickedImage}
+        />
       </>
     );
   }

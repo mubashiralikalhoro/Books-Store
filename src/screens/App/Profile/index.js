@@ -43,7 +43,7 @@ const ProfileScreen = ({navigation}) => {
           toValue: 0,
           useNativeDriver: false,
         }).start();
-      }, 100);
+      }, 50);
     } else {
       setScreen(props);
     }
@@ -56,6 +56,7 @@ const ProfileScreen = ({navigation}) => {
         style={styles.topBorder}
         title="View your profile"
         titleColor={color.TEXT}
+        onPress={() => animation('viewProfile')}
       />
       <View style={styles.line} />
       <Option title="Add new address" titleColor={color.TEXT} />
@@ -97,18 +98,33 @@ const ProfileScreen = ({navigation}) => {
       <View style={styles.line} />
     </>
   );
+  // editable
+  const [editable, setEditable] = useState(false);
+  const [pickedImage, setPickedImage] = useState(false);
 
   // main View
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.profileContainer}>
-        <UserProfile user={user} />
+        <UserProfile
+          user={user}
+          editProfile={() => animation('passwordVerification')}
+          editable={editable}
+          setPickedImage={setPickedImage}
+          pickedImage={pickedImage}
+        />
       </View>
       <Animated.View style={styles.detailsContainer(margin)}>
         {screen == 'main' ? (
           <Options />
         ) : (
-          <Screens screen={screen} setScreen={animation} />
+          <Screens
+            screen={screen}
+            setScreen={animation}
+            setEditable={setEditable}
+            pickedImage={pickedImage}
+            setPickedImage={setPickedImage}
+          />
         )}
       </Animated.View>
     </SafeAreaView>

@@ -33,6 +33,7 @@ const Icons = {
   LOCK_OPENED: require('./lockopened.png'),
   ARROW_DOWN: require('./arrowDown.png'),
   MESSAGE: require('./comment.png'),
+  CAMERA: require('./camera.png'),
 };
 
 export default Icons;
