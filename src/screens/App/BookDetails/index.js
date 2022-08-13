@@ -55,8 +55,6 @@ const InfoComponent = ({icon, text, left}) => (
 );
 
 const BookDetailsScreen = () => {
-  const strings = useSelector(state => state.resources.langID.strings);
-
   const navigation = useNavigation();
   const book = useRoute().params;
 
