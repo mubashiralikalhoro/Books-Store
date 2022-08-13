@@ -6,23 +6,25 @@ import CustomInputField from '../../../components/CustomInputField';
 import Icons from '../../../assets/Icons';
 import color from '../../../constants/color';
 import * as Yup from 'yup';
-import Header from '../../../components/Header';
 import GlobalStyle from '../../../constants/GlobalStyle';
+import {useSelector} from 'react-redux';
 const initialValues = {
   oldPassword: '',
   newPassword: '',
   confirmNewPassword: '',
 };
 
-const validationSchema = Yup.object().shape({
-  oldPassword: Yup.string().required('*Required'),
-  newPassword: Yup.string().min(8, '*Short password').required('*Required'),
-  confirmNewPassword: Yup.string()
-    .equals([Yup.ref('newPassword'), null], "*Passwords don't match")
-    .required('*Required'),
-});
-
 const ChangePasswordScreen = () => {
+  const strings = useSelector(state => state.resources.langID.strings);
+  const validationSchema = Yup.object().shape({
+    oldPassword: Yup.string().required(strings.REQUIRED),
+    newPassword: Yup.string()
+      .min(8, strings.SHORT_PASSWORD)
+      .required(strings.REQUIRED),
+    confirmNewPassword: Yup.string()
+      .equals([Yup.ref('newPassword'), null], strings.PASSWORD_MUST_MATCH)
+      .required(strings.REQUIRED),
+  });
   return (
     <View style={styles.container}>
       <View style={{flex: 1}} />
@@ -32,7 +34,7 @@ const ChangePasswordScreen = () => {
             <CustomInputField
               icon={Icons.LOCK_OPENED}
               style={styles.inputField}
-              placeholder="old password"
+              placeholder={strings.OLD_PASSWORD}
               placeholderTextColor={color.TEXT}
               onChangeText={handleChange('oldPassword')}
               onBlur={handleBlur('oldPassword')}
@@ -41,7 +43,7 @@ const ChangePasswordScreen = () => {
             <CustomInputField
               icon={Icons.LOCK}
               style={styles.inputField}
-              placeholder="new password"
+              placeholder={strings.NEW_PASSWORD}
               placeholderTextColor={color.TEXT}
               onChangeText={handleChange('newPassword')}
               onBlur={handleBlur('newPassword')}
@@ -50,7 +52,7 @@ const ChangePasswordScreen = () => {
             <CustomInputField
               icon={Icons.CONFIRM}
               style={styles.inputField}
-              placeholder="confirm new password"
+              placeholder={strings.CONFIRM_NEW_PASSWORD}
               placeholderTextColor={color.TEXT}
               onChangeText={handleChange('confirmNewPassword')}
               onBlur={handleBlur('confirmNewPassword')}
@@ -59,7 +61,7 @@ const ChangePasswordScreen = () => {
             <TouchableOpacity onPress={handleSubmit}>
               <View style={styles.buttonView}>
                 <Text style={[GlobalStyle.TEXT_STYLE, styles.text]}>
-                  Submit
+                  {strings.SUBMIT}
                 </Text>
               </View>
             </TouchableOpacity>

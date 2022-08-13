@@ -9,6 +9,7 @@ import BookDetailsScreenFooter from '../../../components/BookDetailsScreenFooter
 import color from '../../../constants/color';
 import Icons from '../../../assets/Icons';
 import Size from '../../../constants/Size';
+import {useSelector} from 'react-redux';
 
 const DesignView = ({book}) => (
   <View
@@ -54,12 +55,14 @@ const InfoComponent = ({icon, text, left}) => (
 );
 
 const BookDetailsScreen = () => {
+  const strings = useSelector(state => state.resources.langID.strings);
+
   const navigation = useNavigation();
   const book = useRoute().params;
 
   return (
     <SafeAreaView style={style.container}>
-      <Header title={'Book Details'} />
+      <Header title={strings.BOOK_DETAILS} />
       <ScrollView>
         <DesignView book={book} />
         <View style={style.imageView}>
@@ -76,7 +79,7 @@ const BookDetailsScreen = () => {
           {/*Author Name*/}
           <Pressable>
             <Text style={[GlobalStyle.TEXT_STYLE, style.authorName]}>
-              by {book.author}
+              {book.author}
             </Text>
           </Pressable>
           {/*Details*/}

@@ -14,7 +14,7 @@ import color from '../constants/color';
 import Icons from '../assets/Icons';
 import {useNavigation} from '@react-navigation/native';
 import {useDispatch, useSelector} from 'react-redux';
-import {addItem} from '../store/reducer/cart';
+import {addItem, removeItem} from '../store/reducer/cart';
 
 const Genre = ({name, index}) => {
   const textColor = () => {
@@ -81,6 +81,7 @@ const getThree = items => {
 
 const BooksScreenItem = ({book}) => {
   // hooks
+  const strings = useSelector(state => state.resources.langID.strings);
   const dispatch = useDispatch();
   const state = useSelector(state => state);
   const reversed = state.resources.langID.reversed;
@@ -89,7 +90,7 @@ const BooksScreenItem = ({book}) => {
   const searchBookInCart = () => {
     let r = false;
     state.cart.forEach(element => {
-      if (element.book == book) {
+      if (element.book.bookId == book.bookId) {
         r = true;
       }
     });
@@ -98,6 +99,8 @@ const BooksScreenItem = ({book}) => {
   const addToCart = () => {
     if (!searchBookInCart()) {
       dispatch(addItem({noOfItems: 1, book: book}));
+    } else {
+      dispatch(removeItem({book: book}));
     }
   };
 
@@ -161,12 +164,16 @@ const BooksScreenItem = ({book}) => {
           <View style={styles.viewCart}>
             <TouchableOpacity style={styles.iconsView} onPress={addToCart}>
               <Text style={[GlobalStyle.TEXT_STYLE, styles.text]}>
-                Add to cart
+                {searchBookInCart()
+                  ? strings.REMOVE_FROM_CART
+                  : strings.ADD_TO_CART}
               </Text>
               <Image source={Icons.CART} style={styles.viewIcon} />
             </TouchableOpacity>
             <TouchableOpacity style={styles.iconsView} onPress={buyNow}>
-              <Text style={[GlobalStyle.TEXT_STYLE, styles.text]}>Buy Now</Text>
+              <Text style={[GlobalStyle.TEXT_STYLE, styles.text]}>
+                {strings.BUY_NOW}
+              </Text>
             </TouchableOpacity>
           </View>
         </View>
@@ -276,7 +283,7 @@ const styles = StyleSheet.create({
     height: Size.ICON * 0.8,
   },
   text: {
-    fontSize: Size.WIDTH * 0.035,
+    fontSize: Size.WIDTH * 0.025,
     color: color.TEXT,
   },
 });

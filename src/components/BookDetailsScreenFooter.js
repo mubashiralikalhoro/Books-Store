@@ -7,7 +7,7 @@ import {Cart, Favorite} from '../dummy/data';
 import style from '../screens/App/Home/style';
 import GlobalStyle from '../constants/GlobalStyle';
 import {useNavigation} from '@react-navigation/native';
-import {addItem} from '../store/reducer/cart';
+import {addItem, removeItem} from '../store/reducer/cart';
 import {useDispatch, useSelector} from 'react-redux';
 import {addFav, removeFav} from '../store/reducer/favorite';
 
@@ -28,7 +28,7 @@ const BookDetailsScreenFooter = ({book}) => {
   const searchBookInCart = () => {
     let r = false;
     state.cart.forEach(element => {
-      if (element.book == book) {
+      if (element.book.bookId == book.bookId) {
         r = true;
       }
     });
@@ -37,7 +37,7 @@ const BookDetailsScreenFooter = ({book}) => {
   const heartImage = () => {
     let r = Icons.FAVORITE;
     state.fav.forEach(element => {
-      if (element == book) {
+      if (element.bookId == book.bookId) {
         r = Icons.FAVORITE_SELECTED;
       }
     });
@@ -62,6 +62,8 @@ const BookDetailsScreenFooter = ({book}) => {
   const cartPressed = () => {
     if (!searchBookInCart()) {
       dispatch(addItem({noOfItems: 1, book: book}));
+    } else {
+      dispatch(removeItem({book: book}));
     }
   };
 
@@ -81,7 +83,7 @@ const BookDetailsScreenFooter = ({book}) => {
       <TouchableOpacity onPress={cartPressed}>
         <View style={styles.addToCart}>
           <Text style={[GlobalStyle.TEXT_STYLE, styles.buyNowText]}>
-            Add to cart
+            {searchBookInCart() ? 'Remove from cart' : 'Add to cart'}
           </Text>
           <Image source={Icons.CART} style={styles.addToCartItem} />
         </View>
@@ -147,7 +149,7 @@ const styles = StyleSheet.create({
     marginLeft: 2,
   },
   buyNowText: {
-    fontSize: Size.ICON * 0.3,
+    fontSize: Size.ICON * 0.25,
   },
   addJustingView: fl => ({flex: fl}),
 });

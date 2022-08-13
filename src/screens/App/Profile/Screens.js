@@ -1,4 +1,3 @@
-import {View, Text} from 'react-native';
 import React from 'react';
 import LanguageScreen from '../Language/index';
 import ScreenHeader from './ScreenHeader';
@@ -7,7 +6,8 @@ import AboutUsScreen from '../About';
 import ContactUsScreen from '../contactUs';
 import SettingsScreen from '../Settings';
 import ViewProfileScreen from '../ViewProfile';
-import PasswordVerificationScreen from '../PasswordVarification';
+import PasswordVerificationScreen from '../PasswordVerification';
+import {useSelector} from 'react-redux';
 
 const Screens = ({
   screen,
@@ -16,48 +16,49 @@ const Screens = ({
   pickedImage,
   setPickedImage,
 }) => {
+  const strings = useSelector(state => state.resources.langID.strings);
   const setMainScreen = () => {
     setScreen('main');
   };
   if (screen == 'language') {
     return (
       <>
-        <ScreenHeader title={'Change Language'} onPress={setMainScreen} />
+        <ScreenHeader title={strings.CHANGE_LANGUAGE} onPress={setMainScreen} />
         <LanguageScreen />
       </>
     );
   } else if (screen == 'changePassword') {
     return (
       <>
-        <ScreenHeader title={'Change Password'} onPress={setMainScreen} />
+        <ScreenHeader title={strings.CHANGE_PASSWORD} onPress={setMainScreen} />
         <ChangePasswordScreen />
       </>
     );
   } else if (screen == 'aboutUs') {
     return (
       <>
-        <ScreenHeader title={'About Us'} onPress={setMainScreen} />
+        <ScreenHeader title={strings.ABOUT_US} onPress={setMainScreen} />
         <AboutUsScreen />
       </>
     );
   } else if (screen == 'contactUs') {
     return (
       <>
-        <ScreenHeader title={'Contact Us'} onPress={setMainScreen} />
+        <ScreenHeader title={strings.CONTACT_US} onPress={setMainScreen} />
         <ContactUsScreen />
       </>
     );
   } else if (screen == 'settings') {
     return (
       <>
-        <ScreenHeader title={'Settings'} onPress={setMainScreen} />
+        <ScreenHeader title={strings.SETTINGS} onPress={setMainScreen} />
         <SettingsScreen />
       </>
     );
   } else if (screen == 'viewProfile') {
     return (
       <>
-        <ScreenHeader title={'Your Profile'} onPress={setMainScreen} />
+        <ScreenHeader title={strings.YOUR_PROFILE} onPress={setMainScreen} />
         <ViewProfileScreen
           setMainScreen={setMainScreen}
           setScreen={setScreen}
@@ -67,7 +68,7 @@ const Screens = ({
   } else if (screen == 'passwordVerification') {
     return (
       <>
-        <ScreenHeader title={"Verify it's you"} onPress={setMainScreen} />
+        <ScreenHeader title={strings.VERIFY_ITS_YOU} onPress={setMainScreen} />
         <PasswordVerificationScreen
           setScreen={setScreen}
           setEditable={setEditable}
@@ -77,7 +78,10 @@ const Screens = ({
   } else if (screen == 'editProfile') {
     return (
       <>
-        <ScreenHeader title={'Edit your profile'} onPress={setMainScreen} />
+        <ScreenHeader
+          title={strings.EDIT_YOUR_PROFILE}
+          onPress={setMainScreen}
+        />
         <ViewProfileScreen
           setMainScreen={setMainScreen}
           setScreen={setScreen}

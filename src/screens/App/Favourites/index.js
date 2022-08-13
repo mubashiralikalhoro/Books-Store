@@ -7,29 +7,31 @@ import Size from '../../../constants/Size';
 import Icons from '../../../assets/Icons';
 import color from '../../../constants/color';
 import {useSelector} from 'react-redux';
+import englishStrings from '../../../constants/englishStrings';
 
 // Zero favorites
-const NoItems = () => (
+const NoItems = ({strings}) => (
   <View style={{alignItems: 'center', marginTop: Size.PADDING * 2}}>
     <Image
       source={Icons.FAVORITE}
       style={{height: Size.ICON, width: Size.ICON, tintColor: color.TEXT}}
     />
     <Text style={[GlobalStyle.TEXT_STYLE, {marginTop: Size.PADDING}]}>
-      No Favorites
+      {strings.NO_FAV}
     </Text>
   </View>
 );
 
 const FavoriteScreen = () => {
+  const strings = useSelector(state => state.resources.langID.strings);
   const fav = useSelector(state => state.fav);
   return (
     <SafeAreaView style={styles.container}>
-      {fav.length === 0 && <NoItems />}
+      {fav.length === 0 && <NoItems strings={strings} />}
       {/*Showing Fav*/}
       {fav.length > 0 && (
         <ScrollView>
-          <Text style={styles.myFav}>My Favorites</Text>
+          <Text style={styles.myFav}>{strings.MY_FAV}</Text>
           {fav.map((item, index) => (
             <FavoriteScreenItem book={item} key={index} />
           ))}

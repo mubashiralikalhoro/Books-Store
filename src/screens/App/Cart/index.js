@@ -9,26 +9,30 @@ import Icons from '../../../assets/Icons';
 import GlobalStyle from '../../../constants/GlobalStyle';
 import {useSelector} from 'react-redux';
 
-const NoItems = () => (
-  <View style={{alignItems: 'center', marginTop: Size.PADDING * 2}}>
-    <Image
-      source={Icons.CART}
-      style={{height: Size.ICON, width: Size.ICON, tintColor: color.TEXT}}
-    />
-    <Text style={[GlobalStyle.TEXT_STYLE, {marginTop: Size.PADDING}]}>
-      No Items in cart
-    </Text>
-  </View>
-);
+const NoItems = () => {
+  const strings = useSelector(state => state.resources.langID.strings);
+  return (
+    <View style={{alignItems: 'center', marginTop: Size.PADDING * 2}}>
+      <Image
+        source={Icons.CART}
+        style={{height: Size.ICON, width: Size.ICON, tintColor: color.TEXT}}
+      />
+      <Text style={[GlobalStyle.TEXT_STYLE, {marginTop: Size.PADDING}]}>
+        {strings.NO_ITEMS_IN_CART}
+      </Text>
+    </View>
+  );
+};
 
 const CartScreen = () => {
+  const strings = useSelector(state => state.resources.langID.strings);
   const cartData = useSelector(state => state.cart);
   return (
     <SafeAreaView style={styles.container}>
       {cartData.length === 0 && <NoItems />}
       {cartData.length > 0 && (
         <>
-          <Text style={styles.myCart}>My Cart</Text>
+          <Text style={styles.myCart}>{strings.MY_CART}</Text>
           <ScrollView>
             {cartData.map((item, index) => (
               <CartItem

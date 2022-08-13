@@ -20,6 +20,7 @@ const getTen = books => {
 };
 
 const HomeScreenShowCat = ({catName, books}) => {
+  const strings = useSelector(state => state.resources.langID.strings);
   const navigation = useNavigation();
   const reversed = useSelector(state => state.resources.langID.reversed);
   return (
@@ -35,7 +36,7 @@ const HomeScreenShowCat = ({catName, books}) => {
           </Text>
           <View style={styles.managingView}></View>
           <Text style={[GlobalStyle.TEXT_STYLE, styles.showMore]}>
-            Show more...
+            {strings.SHOW_MORE}
           </Text>
         </View>
       </Pressable>

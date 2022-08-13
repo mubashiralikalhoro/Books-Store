@@ -4,6 +4,7 @@ import Size from '../constants/Size';
 import GlobalStyle from '../constants/GlobalStyle';
 import Pressable from 'react-native/Libraries/Components/Pressable/Pressable';
 import {useNavigation} from '@react-navigation/native';
+import color from '../constants/color';
 
 const Book = ({book}) => {
   const navigation = useNavigation();
@@ -11,6 +12,9 @@ const Book = ({book}) => {
     <Pressable onPress={() => navigation.navigate('BookDetailsScreen', book)}>
       <View style={styles.container}>
         <Image source={book.bookCover} style={styles.bookCover} />
+        <Text style={[GlobalStyle.TEXT_STYLE, {color: color.PRIMARY}]}>
+          ( ${book.price} )
+        </Text>
         <Text style={[GlobalStyle.TEXT_STYLE, styles.title]} numberOfLines={2}>
           {book.bookName}
         </Text>

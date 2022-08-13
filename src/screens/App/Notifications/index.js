@@ -7,30 +7,32 @@ import Size from '../../../constants/Size';
 import GlobalStyle from '../../../constants/GlobalStyle';
 import {useSelector} from 'react-redux';
 import Notification from '../../../components/Notification';
+import englishStrings from '../../../constants/englishStrings';
 
 // Zero notifications
-const NoItems = () => (
+const NoItems = ({strings}) => (
   <SafeAreaView style={{alignItems: 'center', marginTop: Size.PADDING * 2}}>
     <Image
       source={Icons.NOTIFICATION}
       style={{height: Size.ICON, width: Size.ICON, tintColor: color.TEXT}}
     />
     <Text style={[GlobalStyle.TEXT_STYLE, {marginTop: Size.PADDING}]}>
-      No Notifications
+      {strings.NO_NOTIFICATION}
     </Text>
   </SafeAreaView>
 );
 
 const NotificationScreen = () => {
+  const strings = useSelector(state => state.resources.langID.strings);
   const notifications = useSelector(state => state.notification);
   return (
     <SafeAreaView style={styles.container}>
-      {notifications.length == 0 && <NoItems />}
+      {notifications.length == 0 && <NoItems strings={strings} />}
       {/*Showing notifications*/}
       {notifications.length > 0 && (
         <>
           <ScrollView>
-            <Text style={styles.myNot}>My Notifications</Text>
+            <Text style={styles.myNot}>{strings.MY_NOTIFICATION}</Text>
             {notifications.map((item, index) => (
               <Notification notification={item} key={index} />
             ))}

@@ -1,20 +1,23 @@
 import {View, Text, TouchableOpacity, Image} from 'react-native';
 import React from 'react';
-import styles from './styte';
+import styles from './style';
 import {Formik} from 'formik';
 import CustomInputField from '../../../components/CustomInputField';
 import Icons from '../../../assets/Icons';
 import color from '../../../constants/color';
 import * as Yup from 'yup';
 import GlobalStyle from '../../../constants/GlobalStyle';
+import {useSelector} from 'react-redux';
 
 const initialValues = {name: '', email: '', message: ''};
-const schema = Yup.object().shape({
-  name: Yup.string().min(3, '*Too short').required('*Required'),
-  email: Yup.string().email('*Invalid email').required('*Required'),
-  message: Yup.string().required('*Required'),
-});
 const ContactUsScreen = () => {
+  const strings = useSelector(state => state.resources.langID.strings);
+  // validation
+  const schema = Yup.object().shape({
+    name: Yup.string().min(3, strings.TOO_SHORT).required(strings.REQUIRED),
+    email: Yup.string().email(strings.INVALID_INPUT).required(strings.REQUIRED),
+    message: Yup.string().required(strings.REQUIRED),
+  });
   return (
     <View style={styles.container}>
       <Formik initialValues={initialValues} validationSchema={schema}>
@@ -23,7 +26,7 @@ const ContactUsScreen = () => {
             <CustomInputField
               icon={Icons.ACCOUNT}
               style={styles.inputField}
-              placeholder="Name"
+              placeholder={strings.NAME}
               placeholderTextColor={color.TEXT}
               onChangeText={handleChange('name')}
               onBlur={handleBlur('name')}
@@ -32,7 +35,7 @@ const ContactUsScreen = () => {
             <CustomInputField
               icon={Icons.EMAIL}
               style={styles.inputField}
-              placeholder="Email"
+              placeholder={strings.EMAIL}
               placeholderTextColor={color.TEXT}
               onChangeText={handleChange('email')}
               onBlur={handleBlur('email')}
@@ -43,7 +46,7 @@ const ContactUsScreen = () => {
               style={styles.messageField}
               inputStyle={styles.messageInputField}
               iconStyle={styles.messageIcon}
-              placeholder="Message"
+              placeholder={strings.MESSAGE}
               placeholderTextColor={color.TEXT}
               onChangeText={handleChange('message')}
               onBlur={handleBlur('message')}
@@ -52,7 +55,9 @@ const ContactUsScreen = () => {
             />
             <TouchableOpacity onPress={handleSubmit}>
               <View style={styles.buttonView}>
-                <Text style={[GlobalStyle.TEXT_STYLE, styles.text]}>Send</Text>
+                <Text style={[GlobalStyle.TEXT_STYLE, styles.text]}>
+                  {strings.SEND}
+                </Text>
               </View>
             </TouchableOpacity>
           </>

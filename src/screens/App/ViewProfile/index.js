@@ -8,13 +8,6 @@ import {Formik} from 'formik';
 import * as Yup from 'yup';
 import {userUpdate} from '../../../store/reducer/user';
 
-//validation
-const schema = Yup.object().shape({
-  name: Yup.string().min(3, '*Short name').required('*Required'),
-  email: Yup.string().email('*Invalid email').required('*Required'),
-  phoneNo: Yup.number('*Invalid').min(10, '*Invalid').required('*Required'),
-});
-
 const ViewProfileScreen = ({
   edit = false,
   setMainScreen,
@@ -23,6 +16,7 @@ const ViewProfileScreen = ({
   pickedImage,
   setPickedImage,
 }) => {
+  const strings = useSelector(state => state.resources.langID.strings);
   const dispatch = useDispatch();
   const [editable, setEditable] = useState(edit);
   const user = useSelector(state => state.user[0]);
@@ -30,6 +24,14 @@ const ViewProfileScreen = ({
     setScreen('passwordVerification');
   };
 
+  //validation
+  const schema = Yup.object().shape({
+    name: Yup.string().min(3, strings.TOO_SHORT).required(strings.REQUIRED),
+    email: Yup.string().email(strings.INVALID_INPUT).required(strings.REQUIRED),
+    phoneNo: Yup.number(strings.INVALID_INPUT)
+      .min(10, strings.INVALID_INPUT)
+      .required(strings.REQUIRED),
+  });
   return (
     <View style={styles.container}>
       <Formik
@@ -55,7 +57,7 @@ const ViewProfileScreen = ({
         }) => (
           <>
             <ViewProfileInputField
-              title={'Name'}
+              title={strings.NAME}
               editable={editable}
               value={values.name}
               onChangeText={handleChange('name')}
@@ -63,7 +65,7 @@ const ViewProfileScreen = ({
               error={touched.name && errors.name}
             />
             <ViewProfileInputField
-              title={'Email'}
+              title={strings.EMAIL}
               editable={editable}
               value={values.email}
               onChangeText={handleChange('email')}
@@ -71,7 +73,7 @@ const ViewProfileScreen = ({
               error={touched.email && errors.email}
             />
             <ViewProfileInputField
-              title={'Phone No'}
+              title={strings.PHONE_NUMBER}
               editable={editable}
               value={values.phoneNo}
               onChangeText={handleChange('phoneNo')}
@@ -81,7 +83,7 @@ const ViewProfileScreen = ({
             <TouchableOpacity onPress={editable ? handleSubmit : buttonPressed}>
               <View style={styles.buttonView}>
                 <Text style={[GlobalStyle.TEXT_STYLE, styles.text]}>
-                  {editable ? 'Save' : 'Edit'}
+                  {editable ? strings.SAVE : strings.EDIT}
                 </Text>
               </View>
             </TouchableOpacity>

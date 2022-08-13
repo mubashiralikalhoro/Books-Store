@@ -3,8 +3,10 @@ import React from 'react';
 import Size from '../constants/Size';
 import color from '../constants/color';
 import GlobalStyle from '../constants/GlobalStyle';
+import {useSelector} from 'react-redux';
 
 const CartScreenFooter = ({cartData}) => {
+  const strings = useSelector(state => state.resources.langID.strings);
   const getTotalPrice = () => {
     let total = 0.0;
     cartData.forEach(element => {
@@ -20,12 +22,13 @@ const CartScreenFooter = ({cartData}) => {
     <View style={styles.container}>
       <View style={styles.totalView}>
         <Text style={[GlobalStyle.TEXT_STYLE, styles.textCartItem]}>
-          {getTotalItem() == 0 ? 'No' : getTotalItem()}{' '}
-          {getTotalItem == 1 ? 'Item' : 'Items'} in cart
+          {getTotalItem()} {getTotalItem() == 1 ? strings.ITEM : strings.ITEMS}
         </Text>
       </View>
       <View style={styles.totalView}>
-        <Text style={[GlobalStyle.TEXT_STYLE, styles.text]}>Sub Total</Text>
+        <Text style={[GlobalStyle.TEXT_STYLE, styles.text]}>
+          {strings.SUB_TOTAL}
+        </Text>
         <Text style={[GlobalStyle.TEXT_STYLE, styles.text]}>
           $ {getTotalPrice()}
         </Text>
@@ -33,7 +36,9 @@ const CartScreenFooter = ({cartData}) => {
       <View style={styles.divider}></View>
       <View style={{flex: 1}} />
       <View style={styles.checkOutView}>
-        <Text style={[GlobalStyle.TEXT_STYLE, styles.checkOut]}>Check Out</Text>
+        <Text style={[GlobalStyle.TEXT_STYLE, styles.checkOut]}>
+          {strings.CHECK_OUT}
+        </Text>
       </View>
     </View>
   );

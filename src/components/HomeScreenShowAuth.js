@@ -20,17 +20,20 @@ const getTen = authors => {
 };
 
 const HomeScreenShowAuth = () => {
+  const strings = useSelector(state => state.resources.langID.strings);
   const reversed = useSelector(state => state.resources.langID.reversed);
+
+  // main view
   return (
     <View style={styles.container}>
       {/*Header*/}
       <View style={styles.header(reversed)}>
         <Text style={[GlobalStyle.TEXT_STYLE, {fontSize: Size.FONTSIZE + 5}]}>
-          Authors
+          {strings.AUTHORS}
         </Text>
         <View style={styles.managingView}></View>
         <Text style={[GlobalStyle.TEXT_STYLE, styles.showMore]}>
-          Show more...
+          {strings.SHOW_MORE}
         </Text>
       </View>
       {/*Auth View */}

@@ -9,6 +9,7 @@ import {
 } from '../../../store/reducer/resources';
 
 const SettingsScreen = () => {
+  const strings = useSelector(state => state.resources.langID.strings);
   const animation = useSelector(state => state.resources.animation);
   const dispatch = useDispatch();
   const setAnimationValue = () => {
@@ -23,7 +24,7 @@ const SettingsScreen = () => {
       <View style={[styles.line, {height: 3}]} />
       <SettingsOption
         value={animation}
-        title="Animations"
+        title={strings.ANIMATIONS}
         setValue={setAnimationValue}
       />
       <View style={styles.line} />

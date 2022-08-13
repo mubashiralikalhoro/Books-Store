@@ -20,27 +20,37 @@
 // };
 
 import {createSlice} from '@reduxjs/toolkit';
-
+import english from '../../constants/languages/english';
+import urdu from '../../constants/languages/urdu';
+import arabic from '../../constants/languages/arabic';
 const resources = createSlice({
   name: 'res',
   initialState: {
-    langID: {id: 'English-US', language: 'strings', reversed: false},
+    langID: {
+      id: 'English-US',
+      reversed: false,
+      strings: english,
+    },
     animation: true,
   },
   reducers: {
     changeLanguage: (state, action) => {
       if (action.payload == 'English-US') {
-        state.langID = {id: 'English-US', language: 'strings', reversed: false};
+        state.langID = {
+          id: 'English-US',
+          strings: english,
+          reversed: false,
+        };
       } else if (action.payload == 'Urdu-Pakistan') {
         state.langID = {
           id: 'Urdu-Pakistan',
-          language: 'strings',
           reversed: true,
+          strings: urdu,
         };
       } else if (action.payload == 'Arabic-Saudi Arabia') {
         state.langID = {
           id: 'Arabic-Saudi Arabia',
-          language: 'strings',
+          strings: arabic,
           reversed: true,
         };
       }

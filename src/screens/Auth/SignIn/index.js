@@ -21,6 +21,7 @@ import AnimatedLogoSigInScreen from '../../../components/AnimatedLogoSignInScree
 import {userLoggedIn} from '../../../store/reducer/user';
 import {useSelector} from 'react-redux';
 import NormalLogoSigInScreen from '../../../components/NormalLogoSignInScreen';
+
 const tempUser = {
   name: 'John Henry',
   image: {
@@ -32,6 +33,7 @@ const tempUser = {
 };
 
 const SignIn = ({navigation}) => {
+  const strings = useSelector(state => state.resources.langID.strings);
   const dispatch = useDispatch();
   const reversed = useSelector(state => state.resources.langID.reversed);
   const animation = useSelector(state => state.resources.animation);
@@ -51,24 +53,22 @@ const SignIn = ({navigation}) => {
               alignSelf: reversed ? 'flex-end' : 'flex-start',
             },
           ]}>
-          Welcome Back
+          {strings.WELCOME_BACK}
         </Text>
-        <Text style={styles.txt3(reversed)}>
-          Log in to your existing account of BookStore
-        </Text>
+        <Text style={styles.txt3(reversed)}>{strings.LOG_IN_TO}</Text>
       </View>
 
       {/* InputField*/}
       <KeyboardAvoidingView style={{marginTop: Size.PADDING * 2}}>
         <CustomInputField
           icon={Icon.ACCOUNT}
-          placeholder="Email"
+          placeholder={strings.EMAIL}
           placeholderTextColor={color.TEXT}
           keyboardType="email-address"
         />
         <CustomInputField
           icon={Icon.LOCK}
-          placeholder="Password"
+          placeholder={strings.PASSWORD}
           placeholderTextColor={color.TEXT}
           secureTextEntry={true}
         />
@@ -79,14 +79,14 @@ const SignIn = ({navigation}) => {
         <Text
           onPress={() => navigation.navigate('ForgetPasswordScreen')}
           style={[GlobalStyle.TEXT_STYLE, styles.forgotTxt]}>
-          Forget password?
+          {strings.FORGET_PASSWORD}
         </Text>
       </Pressable>
 
       {/* OR SECTION*/}
       <View style={styles.orView}>
         <View style={styles.line} />
-        <Text style={{color: color.PRIMARY}}>OR</Text>
+        <Text style={{color: color.PRIMARY}}>{strings.OR}</Text>
         <View style={styles.line} />
       </View>
 
@@ -111,19 +111,21 @@ const SignIn = ({navigation}) => {
 
       {/*SIGN IN BUTTON*/}
       <TouchableOpacity onPress={signIn} style={styles.signInCon}>
-        <Text style={[GlobalStyle.TEXT_STYLE, styles.txt4]}>SIGN IN</Text>
+        <Text style={[GlobalStyle.TEXT_STYLE, styles.txt4]}>
+          {strings.SIGN_IN_ALL_CAPS}
+        </Text>
       </TouchableOpacity>
 
       {/*SIGN UP BUTTON*/}
       <View style={styles.lastCon(reversed)}>
         <Text style={[GlobalStyle.TEXT_STYLE, styles.lastTxt]}>
           {' '}
-          Don't have an account?{' '}
+          {strings.DONT_HAVE}{' '}
         </Text>
         <Text
           onPress={() => navigation.navigate('SignUpScreen')}
           style={[styles.lastTxt, {color: color.PRIMARY}]}>
-          Sign up
+          {strings.SIGN_UP}
         </Text>
       </View>
       {animation ? <AnimatedLogoSigInScreen /> : <NormalLogoSigInScreen />}

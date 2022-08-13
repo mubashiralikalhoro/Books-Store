@@ -4,17 +4,16 @@ import styles from './style';
 import GlobalStyle from '../../../constants/GlobalStyle';
 import {useRoute} from '@react-navigation/native';
 import Header from '../../../components/Header';
-import HomeScreenShowCat from '../../../components/HomeScreenShowCat';
 import Size from '../../../constants/Size';
 import Book from '../../../components/Book';
-
-// id, name, image, info, booksId, totalSells
+import {useSelector} from 'react-redux';
 
 const AuthorScreen = () => {
+  const strings = useSelector(state => state.resources.langID.strings);
   const author = useRoute().params;
   return (
     <SafeAreaView style={styles.container}>
-      <Header title={'Author Details'} />
+      <Header title={strings.AUTHOR_DETAILS} />
       <ScrollView>
         <Image source={author.image} style={styles.authorImage} />
         <View style={styles.authorDetailsView}>
@@ -22,7 +21,7 @@ const AuthorScreen = () => {
             {author.name}
           </Text>
           <Text style={[GlobalStyle.TEXT_STYLE, styles.totalSells]}>
-            {author.totalSells + ' books sold'}
+            {author.totalSells + ' ' + strings.BOOKS_SOLD}
           </Text>
           <Text style={[GlobalStyle.TEXT_STYLE, styles.info]}>
             {author.info}

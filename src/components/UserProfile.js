@@ -15,6 +15,7 @@ const UserProfile = ({
   setPickedImage,
   pickedImage,
 }) => {
+  const strings = useSelector(state => state.resources.langID.strings);
   const reversed = useSelector(state => state.resources.langID.reversed);
   const chooseImageFromGallery = async () => {
     try {
@@ -44,7 +45,7 @@ const UserProfile = ({
       </Pressable>
       <View style={styles.detailsView}>
         <Text style={[GlobalStyle.TEXT_STYLE, styles.hello(reversed)]}>
-          Hello,
+          {strings.HELLO}
         </Text>
         <Text style={[GlobalStyle.TEXT_STYLE, styles.name(reversed)]}>
           {user.name}

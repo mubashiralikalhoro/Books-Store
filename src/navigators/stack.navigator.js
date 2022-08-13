@@ -14,6 +14,7 @@ import SignIn from '../screens/Auth/SignIn';
 import SignUp from '../screens/Auth/SignUp';
 import ForgetPassword from '../screens/Auth/ForgetPassword';
 import AuthorScreen from '../screens/App/Author';
+import SearchScreen from '../screens/App/Search';
 //bottom tab
 import {BottomNavigator} from './bottom.navigator';
 
@@ -35,6 +36,7 @@ const SignedInStack = () => {
       <Stack.Screen name="BooksScreen" component={BooksScreen} />
       <Stack.Screen name="AuthorScreen" component={AuthorScreen} />
       <Stack.Screen name="BookDetailsScreen" component={BookDetailsScreen} />
+      <Stack.Screen name="SearchScreen" component={SearchScreen} />
       {/* BOTTOM TAB */}
       <Stack.Screen name="BottomNavigator" component={BottomNavigator} />
     </Stack.Navigator>

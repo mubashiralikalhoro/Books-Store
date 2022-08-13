@@ -1,14 +1,24 @@
-import {View, Pressable, StyleSheet, Image, Animated} from 'react-native';
+import {
+  View,
+  Text,
+  StyleSheet,
+  Image,
+  Animated,
+  TouchableOpacity,
+} from 'react-native';
 import React, {useState} from 'react';
 import Size from '../constants/Size';
 import Icon from '../assets/Icons';
 import color from '../constants/color';
 import {useSelector} from 'react-redux';
+import {useNavigation} from '@react-navigation/native';
+import GlobalStyle from '../constants/GlobalStyle';
 
 const HomeScreenHeader = ({opacity}) => {
+  const strings = useSelector(state => state.resources.langID.strings);
   const reversed = useSelector(state => state.resources.langID.reversed);
   const opacityLevel = useState(new Animated.Value(0.3))[0];
-
+  const navigation = useNavigation();
   const [lastHeaderShow, setLastHeaderShow] = useState(false);
 
   const fadeIn = () => {
@@ -40,9 +50,11 @@ const HomeScreenHeader = ({opacity}) => {
     <View style={styles.container(reversed)}>
       <Animated.View style={styles.shadowEffect(opacityLevel)}></Animated.View>
       <View style={styles.logo} />
-      <Image source={Icon.DISCOVER} style={styles.discover} />
+      <Text style={styles.discover}>{strings.DISCOVER}</Text>
       <View style={styles.arrange}></View>
-      <Image source={Icon.SEARCH} style={styles.search} />
+      <TouchableOpacity onPress={() => navigation.navigate('SearchScreen')}>
+        <Image source={Icon.SEARCH} style={styles.search} />
+      </TouchableOpacity>
     </View>
   );
 };
@@ -69,9 +81,9 @@ const styles = StyleSheet.create({
     tintColor: color.TEXT,
   },
   discover: {
-    height: Size.ICON * 0.75,
-    width: Size.ICON * 2.4,
-    tintColor: color.TEXT,
+    ...GlobalStyle.TEXT_STYLE,
+    fontSize: Size.HEADER_FOOTER_SIZE * 0.7,
+    fontWeight: '900',
   },
   arrange: {
     flex: 1,

@@ -18,19 +18,7 @@ import Icons from '../../../assets/Icons/index';
 import * as Yup from 'yup';
 import {Formik} from 'formik';
 import {useSelector} from 'react-redux';
-
-// Validation
-let schema = Yup.object().shape({
-  fullName: Yup.string()
-    .min(3, '*Name is too small')
-    .trim()
-    .required('*Required'),
-  email: Yup.string().email('*Email').required('*Required'),
-  password: Yup.string().min(8, '*Short password').required('*Required'),
-  confirmPassword: Yup.string()
-    .equals([Yup.ref('password'), null], '*Passwords must match')
-    .required('*Required'),
-});
+import englishStrings from '../../../constants/englishStrings';
 
 // initial State for the form
 let initialState = {
@@ -41,10 +29,27 @@ let initialState = {
 };
 
 const SignUp = ({navigation}) => {
+  const strings = useSelector(state => state.resources.langID.strings);
   const onSubmit = values => {
     navigation.navigate('BottomNavigator');
   };
   const reversed = useSelector(state => state.resources.langID.reversed);
+  // Validation
+  let schema = Yup.object().shape({
+    fullName: Yup.string()
+      .min(3, strings.NAME_IS_TO_SMALL)
+      .trim()
+      .required(strings.REQUIRED),
+    email: Yup.string()
+      .email('*' + strings.EMAIL)
+      .required(strings.REQUIRED),
+    password: Yup.string()
+      .min(8, strings.SHORT_PASSWORD)
+      .required(strings.REQUIRED),
+    confirmPassword: Yup.string()
+      .equals([Yup.ref('password'), null], strings.PASSWORD_MUST_MATCH)
+      .required(strings.REQUIRED),
+  });
   return (
     <SafeAreaView style={styles.container}>
       {/* Header Section*/}
@@ -53,9 +58,9 @@ const SignUp = ({navigation}) => {
       </View>
       <View style={styles.welcomeCon(reversed)}>
         <Text style={[GlobalStyle.TEXT_STYLE, {color: color.GRAY}]}>
-          Welcome
+          {strings.WELCOME}
         </Text>
-        <Text style={styles.txt3}>Create an account to continue : )</Text>
+        <Text style={styles.txt3}>{strings.CREATE_AN}</Text>
       </View>
 
       {/* InputField*/}
@@ -75,7 +80,7 @@ const SignUp = ({navigation}) => {
             <>
               <CustomInputField
                 icon={Icon.ACCOUNT}
-                placeholder="Full name"
+                placeholder={strings.FULL_NAME}
                 onChangeText={handleChange('fullName')}
                 onBlur={handleBlur('fullName')}
                 placeholderTextColor={color.TEXT}
@@ -84,7 +89,7 @@ const SignUp = ({navigation}) => {
               />
               <CustomInputField
                 icon={Icon.EMAIL}
-                placeholder="Email"
+                placeholder={strings.EMAIL}
                 placeholderTextColor={color.TEXT}
                 onChangeText={handleChange('email')}
                 onBlur={handleBlur('email')}
@@ -94,7 +99,7 @@ const SignUp = ({navigation}) => {
               />
               <CustomInputField
                 icon={Icon.LOCK}
-                placeholder="Password"
+                placeholder={strings.PASSWORD}
                 onChangeText={handleChange('password')}
                 onBlur={handleBlur('password')}
                 placeholderTextColor={color.TEXT}
@@ -104,7 +109,7 @@ const SignUp = ({navigation}) => {
               />
               <CustomInputField
                 icon={Icon.CONFIRM}
-                placeholder="Confirm password"
+                placeholder={strings.CONFiRM_PASSWORD}
                 onChangeText={handleChange('confirmPassword')}
                 onBlur={handleBlur('confirmPassword')}
                 placeholderTextColor={color.TEXT}
@@ -115,7 +120,7 @@ const SignUp = ({navigation}) => {
               {/*SIGN IN BUTTON*/}
               <TouchableOpacity onPress={handleSubmit} style={styles.signInCon}>
                 <Text style={[GlobalStyle.TEXT_STYLE, styles.txt4]}>
-                  SIGN UP
+                  {strings.SIGN_UP_ALL_CAPS}
                 </Text>
               </TouchableOpacity>
             </>
@@ -127,12 +132,12 @@ const SignUp = ({navigation}) => {
       <View style={styles.lastCon(reversed)}>
         <Text style={[GlobalStyle.TEXT_STYLE, styles.lastTxt]}>
           {' '}
-          Already have an account?{' '}
+          {strings.ALREADY_HAVE}{' '}
         </Text>
         <Text
           onPress={() => navigation.navigate('SignInScreen')}
           style={[styles.lastTxt, {color: color.PRIMARY}]}>
-          Sign in
+          {strings.SIGN_IN}
         </Text>
       </View>
     </SafeAreaView>

@@ -1,5 +1,5 @@
-import {View, Text, SafeAreaView, Button, Animated} from 'react-native';
-import React, {useEffect, useState} from 'react';
+import {View, SafeAreaView, Animated} from 'react-native';
+import React, {useState} from 'react';
 import styles from './style';
 import UserProfile from '../../../components/UserProfile';
 import {useSelector, useDispatch} from 'react-redux';
@@ -14,6 +14,7 @@ import Size from '../../../constants/Size';
 
 const ProfileScreen = ({navigation}) => {
   // Hooks
+  const strings = useSelector(state => state.resources.langID.strings);
   const [screen, setScreen] = useState('main');
   const user = useSelector(state => state.user[0]);
   const dispatch = useDispatch();
@@ -54,47 +55,51 @@ const ProfileScreen = ({navigation}) => {
       {/* <View style={styles.topBorder} /> */}
       <Option
         style={styles.topBorder}
-        title="View your profile"
+        title={strings.VIEW_YOUR_PROFILE}
         titleColor={color.TEXT}
         onPress={() => animation('viewProfile')}
       />
       <View style={styles.line} />
-      <Option title="Add new address" titleColor={color.TEXT} />
+      <Option title={strings.ADD_NEW_ADDRESS} titleColor={color.TEXT} />
       <View style={styles.line} />
 
       <Option
-        title="Change Password"
+        title={strings.CHANGE_PASSWORD}
         titleColor={color.TEXT}
         onPress={() => animation('changePassword')}
       />
       <View style={styles.line} />
       <Option
-        title="Languages"
+        title={strings.LANGUAGE}
         titleColor={color.TEXT}
         onPress={() => animation('language')}
       />
       <View style={styles.line} />
 
       <Option
-        title="Contact us"
+        title={strings.CONTACT_US}
         titleColor={color.TEXT}
         onPress={() => animation('contactUs')}
       />
       <View style={styles.line} />
       <Option
-        title="About us"
+        title={strings.ABOUT_US}
         titleColor={color.TEXT}
         onPress={() => animation('aboutUs')}
       />
       <View style={styles.line} />
 
       <Option
-        title="Settings"
+        title={strings.SETTINGS}
         titleColor={color.TEXT}
         onPress={() => animation('settings')}
       />
       <View style={styles.line} />
-      <Option title="Sign Out" titleColor={color.RED} onPress={signOut} />
+      <Option
+        title={strings.SIGN_OUT}
+        titleColor={color.RED}
+        onPress={signOut}
+      />
       <View style={styles.line} />
     </>
   );
