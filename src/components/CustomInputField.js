@@ -19,6 +19,7 @@ const CustomInputField = ({
   onBlur,
   error,
   multiline,
+  editable,
 }) => {
   const reversed = useSelector(state => state.resources.langID.reversed);
   return (
@@ -40,6 +41,7 @@ const CustomInputField = ({
           placeholderTextColor={placeholderTextColor}
           secureTextEntry={secureTextEntry}
           multiline={multiline}
+          editable={editable}
         />
       </View>
     </>

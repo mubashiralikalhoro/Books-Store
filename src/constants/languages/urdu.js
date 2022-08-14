@@ -77,4 +77,18 @@ export default {
   GET_RECOVERY_EMAIL: 'بازیابی ای میل حاصل کریں',
   FORGET_PASSWORD_WITHOUT_QUESTION: 'پاس ورڈ بھول جانا',
   OK: 'ٹھیک ہے',
+  ENTER_NEW_ADDRESS: 'نیا پتہ درج کریں',
+  YOUR_ADDRESS: 'آپ کا پتہ',
+  NEW_ADDRESS: 'نیا پتہ',
+  AUTHOR_NAME: 'مصنف کا نام',
+  PLACE_ORDER: 'حکم صادر کریں',
+  _ADD_NOTIFICATION:
+    'آپ کا آرڈر کامیابی کے ساتھ رکھا گیا ہے اور 2-7 کام کے دنوں میں ان کی فراہمی ہوگی',
+  ORDER_PLACED: 'آرڈر رکھا ہوا',
+  _ORDER_PLACED_STRING: 'آپ کا آرڈر ٹریک نمبر کے ساتھ رہا ہے',
+  CONTINUE_SHOPPING: 'خریداری جاری',
+  VERIFY_YOUR_INFO: 'اپنی معلومات کی تصدیق کریں',
+  SELECT_A_PAYMENT_METHOD: 'ادائیگی کا طریقہ منتخب کریں',
+  CASH_ON_DELIVERY: 'ادائیگی وصولی کے وقت',
+  ONLINE_PAYMENT: 'آن لائن ادائیگی',
 };

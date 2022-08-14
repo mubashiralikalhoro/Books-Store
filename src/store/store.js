@@ -10,15 +10,11 @@ import favorite from './reducer/favorite';
 import notification from './reducer/notification';
 import resources from './reducer/resources';
 
-// local imp
-// import userReducer from './reducer/user';
-// import resources from './reducer/resources';
-
 // config
 const persistConfig = {
   key: 'root',
   storage: AsyncStorage,
-  whitelist: ['user', 'cart', 'fav', 'notification', 'resources'],
+  whitelist: ['user', 'cart', 'fav', 'notification'],
 };
 
 //  root reducer

@@ -34,6 +34,11 @@ const Icons = {
   ARROW_DOWN: require('./arrowDown.png'),
   MESSAGE: require('./comment.png'),
   CAMERA: require('./camera.png'),
+  PIN: require('./pin.png'),
+  PHONE: require('./call.png'),
+  CARD: require('./card.png'),
+  CASH: require('./cash.png'),
+  ORDER_PLACED: require('./order.png'),
 };
 
 export default Icons;

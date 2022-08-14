@@ -6,6 +6,7 @@ import Size from '../constants/Size';
 import Author from './Author';
 import color from '../constants/color';
 import {useSelector} from 'react-redux';
+import {useNavigation} from '@react-navigation/native';
 
 const getTen = authors => {
   if (authors.length > 10) {
@@ -22,6 +23,7 @@ const getTen = authors => {
 const HomeScreenShowAuth = () => {
   const strings = useSelector(state => state.resources.langID.strings);
   const reversed = useSelector(state => state.resources.langID.reversed);
+  const navigation = useNavigation();
 
   // main view
   return (
@@ -32,7 +34,9 @@ const HomeScreenShowAuth = () => {
           {strings.AUTHORS}
         </Text>
         <View style={styles.managingView}></View>
-        <Text style={[GlobalStyle.TEXT_STYLE, styles.showMore]}>
+        <Text
+          style={[GlobalStyle.TEXT_STYLE, styles.showMore]}
+          onPress={() => navigation.navigate('ShowAuthorsScreen')}>
           {strings.SHOW_MORE}
         </Text>
       </View>

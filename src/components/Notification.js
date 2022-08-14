@@ -5,18 +5,34 @@ import color from '../constants/color';
 import GlobalStyle from '../constants/GlobalStyle';
 
 const Notification = ({notification}) => {
+  const getTimeDifference = () => {
+    let milliDif = new Date() - new Date(notification.time);
+    let re = milliDif / 1000;
+    if (re < 60) {
+      return '' + re.toFixed() + ' seconds ago';
+    } else if (re < 6000) {
+      return '' + (re / 60).toFixed() + ' mins ago';
+    } else if (re < 86400) {
+      return '' + (re / 6000).toFixed() + ' hours ago';
+    } else if (re < 604800) {
+      return '' + (re / 86400).toFixed() + ' days ago';
+    }
+    return new Date(notification.time).toDateString();
+  };
   return (
     <View style={styles.container}>
       <Image
         source={notification.image}
         style={styles.image}
-        resizeMode="cover"
+        resizeMode="stretch"
       />
       <View style={styles.disView}>
         <Text style={[GlobalStyle.TEXT_STYLE, styles.text]}>
           {notification.text}
         </Text>
-        <Text style={[GlobalStyle.TEXT_STYLE, styles.time]}>2 min ago</Text>
+        <Text style={[GlobalStyle.TEXT_STYLE, styles.time]}>
+          {getTimeDifference()}
+        </Text>
       </View>
     </View>
   );
@@ -38,15 +54,13 @@ const styles = StyleSheet.create({
   image: {
     height: Size.ICON,
     width: Size.ICON * 0.8,
-    borderTopLeftRadius: Size.BORDER_RADIUS,
-    borderBottomLeftRadius: Size.BORDER_RADIUS,
   },
   disView: {
     minHeight: Size.ICON,
     marginHorizontal: Size.PADDING,
     justifyContent: 'center',
   },
-  text: {},
+  text: {width: Size.WIDTH * 0.7},
   time: {
     color: color.PRIMARY,
   },

@@ -52,7 +52,6 @@ const ProfileScreen = ({navigation}) => {
   // Screens
   const Options = () => (
     <>
-      {/* <View style={styles.topBorder} /> */}
       <Option
         style={styles.topBorder}
         title={strings.VIEW_YOUR_PROFILE}
@@ -60,7 +59,11 @@ const ProfileScreen = ({navigation}) => {
         onPress={() => animation('viewProfile')}
       />
       <View style={styles.line} />
-      <Option title={strings.ADD_NEW_ADDRESS} titleColor={color.TEXT} />
+      <Option
+        title={strings.ADD_NEW_ADDRESS}
+        titleColor={color.TEXT}
+        onPress={() => animation('addNewAddress')}
+      />
       <View style={styles.line} />
 
       <Option

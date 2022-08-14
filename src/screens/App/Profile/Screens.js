@@ -8,6 +8,7 @@ import SettingsScreen from '../Settings';
 import ViewProfileScreen from '../ViewProfile';
 import PasswordVerificationScreen from '../PasswordVerification';
 import {useSelector} from 'react-redux';
+import AddNewAddressScreen from '../AddNewAddress';
 
 const Screens = ({
   screen,
@@ -73,6 +74,13 @@ const Screens = ({
           setScreen={setScreen}
           setEditable={setEditable}
         />
+      </>
+    );
+  } else if (screen == 'addNewAddress') {
+    return (
+      <>
+        <ScreenHeader title={strings.ADD_NEW_ADDRESS} onPress={setMainScreen} />
+        <AddNewAddressScreen setMainScreen={setMainScreen} />
       </>
     );
   } else if (screen == 'editProfile') {

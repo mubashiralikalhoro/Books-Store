@@ -5,19 +5,12 @@ const notificationSlice = createSlice({
   initialState: [],
   reducers: {
     addNotification: (state, action) => {
-      state.unshift({read: false, notification: action.payload});
+      state.unshift(action.payload);
     },
     removeNotification: (state, action) => {
       state.forEach((element, index) => {
         if (element.notification.id == action.payload.id) {
           state.splice(index, 1);
-        }
-      });
-    },
-    readNotification: (state, action) => {
-      state.forEach((element, index) => {
-        if ((element.notification.id = action.payload.id)) {
-          state[index].read = true;
         }
       });
     },
@@ -32,6 +25,5 @@ const notificationSlice = createSlice({
 
 export const addNotification = notificationSlice.actions.addNotification;
 export const removeNotification = notificationSlice.actions.removeNotification;
-export const readNotification = notificationSlice.actions.readNotification;
 export const clearNotification = notificationSlice.actions.clearNotification;
 export default notificationSlice.reducer;

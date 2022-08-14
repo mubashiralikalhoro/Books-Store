@@ -1,11 +1,11 @@
-import {View, Text, StyleSheet, Platform} from 'react-native';
+import {View, Text, StyleSheet, Platform, TouchableOpacity} from 'react-native';
 import React from 'react';
 import Size from '../constants/Size';
 import color from '../constants/color';
 import GlobalStyle from '../constants/GlobalStyle';
 import {useSelector} from 'react-redux';
 
-const CartScreenFooter = ({cartData}) => {
+const CartScreenFooter = ({cartData, onPress, title}) => {
   const strings = useSelector(state => state.resources.langID.strings);
   const getTotalPrice = () => {
     let total = 0.0;
@@ -35,11 +35,9 @@ const CartScreenFooter = ({cartData}) => {
       </View>
       <View style={styles.divider}></View>
       <View style={{flex: 1}} />
-      <View style={styles.checkOutView}>
-        <Text style={[GlobalStyle.TEXT_STYLE, styles.checkOut]}>
-          {strings.CHECK_OUT}
-        </Text>
-      </View>
+      <TouchableOpacity style={styles.checkOutView} onPress={onPress}>
+        <Text style={[GlobalStyle.TEXT_STYLE, styles.checkOut]}>{title}</Text>
+      </TouchableOpacity>
     </View>
   );
 };

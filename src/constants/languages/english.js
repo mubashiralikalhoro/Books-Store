@@ -77,4 +77,18 @@ export default {
   GET_RECOVERY_EMAIL: 'Get recovery email',
   FORGET_PASSWORD_WITHOUT_QUESTION: 'Forget password',
   OK: 'Ok',
+  ENTER_NEW_ADDRESS: 'Enter new address',
+  YOUR_ADDRESS: 'Your address',
+  NEW_ADDRESS: 'New address',
+  AUTHOR_NAME: 'Author name',
+  PLACE_ORDER: 'Place order',
+  _ADD_NOTIFICATION:
+    'Your order has been placed successfully and will be delivered in 2-7 working days',
+  ORDER_PLACED: 'Order Placed',
+  _ORDER_PLACED_STRING: 'Your order has been place with track number ',
+  CONTINUE_SHOPPING: 'continue shopping',
+  VERIFY_YOUR_INFO: 'Verify your information',
+  SELECT_A_PAYMENT_METHOD: 'Select payment method',
+  CASH_ON_DELIVERY: 'Cash on delivery',
+  ONLINE_PAYMENT: 'Online payment',
 };

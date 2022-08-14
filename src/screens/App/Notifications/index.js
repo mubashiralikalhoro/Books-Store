@@ -1,4 +1,4 @@
-import {View, Text, Image, SafeAreaView, ScrollView} from 'react-native';
+import {Text, Image, SafeAreaView, ScrollView} from 'react-native';
 import React from 'react';
 import styles from './style';
 import color from '../../../constants/color';
@@ -7,7 +7,6 @@ import Size from '../../../constants/Size';
 import GlobalStyle from '../../../constants/GlobalStyle';
 import {useSelector} from 'react-redux';
 import Notification from '../../../components/Notification';
-import englishStrings from '../../../constants/englishStrings';
 
 // Zero notifications
 const NoItems = ({strings}) => (
