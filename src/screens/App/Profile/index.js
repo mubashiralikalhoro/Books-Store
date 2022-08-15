@@ -11,6 +11,7 @@ import {clearNotification} from '../../../store/reducer/notification';
 import {clearFav} from '../../../store/reducer/favorite';
 import Icons from '../../../assets/Icons';
 import {Images} from '../../../assets/images';
+import {clearMyOrders} from '../../../store/reducer/myOrders';
 
 const ProfileScreen = ({navigation}) => {
   // Hooks
@@ -33,6 +34,7 @@ const ProfileScreen = ({navigation}) => {
           dispatch(clearNotification());
           dispatch(clearFav());
           dispatch(userLoggedOut());
+          dispatch(clearMyOrders());
         },
       },
     ]);
@@ -62,6 +64,13 @@ const ProfileScreen = ({navigation}) => {
             icon={Icons.LOCK}
             iconColor={color.GRAY}
             onPress={() => navigation.navigate('ChangePasswordScreen')}
+          />
+          <Option
+            title={strings.MY_ORDERS}
+            titleColor={color.GRAY}
+            icon={Icons.MY_ORDERS}
+            iconColor={color.GRAY}
+            onPress={() => navigation.navigate('MyOrdersScreen')}
           />
         </>
       )}

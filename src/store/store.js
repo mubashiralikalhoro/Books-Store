@@ -9,12 +9,13 @@ import cart from './reducer/cart';
 import favorite from './reducer/favorite';
 import notification from './reducer/notification';
 import resources from './reducer/resources';
+import myOrders from './reducer/myOrders';
 
 // config
 const persistConfig = {
   key: 'root',
   storage: AsyncStorage,
-  whitelist: ['user', 'cart', 'fav', 'notification'],
+  whitelist: ['user', 'cart', 'fav', 'notification', 'resources', 'myOrders'],
 };
 
 //  root reducer
@@ -24,6 +25,7 @@ const rootReducer = combineReducers({
   fav: favorite,
   notification: notification,
   resources: resources,
+  myOrders: myOrders,
 });
 
 const persiReducer = persistReducer(persistConfig, rootReducer);

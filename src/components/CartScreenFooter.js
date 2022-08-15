@@ -5,15 +5,8 @@ import color from '../constants/color';
 import GlobalStyle from '../constants/GlobalStyle';
 import {useSelector} from 'react-redux';
 
-const CartScreenFooter = ({cartData, onPress, title}) => {
+const CartScreenFooter = ({cartData, onPress, title, getTotalPrice}) => {
   const strings = useSelector(state => state.resources.langID.strings);
-  const getTotalPrice = () => {
-    let total = 0.0;
-    cartData.forEach(element => {
-      total += element.noOfItems * element.book.price;
-    });
-    return total;
-  };
 
   const getTotalItem = () => {
     return cartData.length;

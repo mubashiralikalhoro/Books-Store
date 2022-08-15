@@ -12,6 +12,7 @@ import PaymentScreen from '../Paymet';
 import {useNavigation} from '@react-navigation/native';
 import {clearCart} from '../../../store/reducer/cart';
 import {addNotification} from '../../../store/reducer/notification';
+import {addOrder} from '../../../store/reducer/myOrders';
 
 const NoItems = () => {
   const strings = useSelector(state => state.resources.langID.strings);
@@ -51,8 +52,16 @@ const CartScreen = () => {
       ]);
     }
   };
+
+  const getTotalPrice = () => {
+    let total = 0.0;
+    cartData.forEach(element => {
+      total += element.noOfItems * element.book.price;
+    });
+    return total;
+  };
+
   const continueShopping = () => {
-    dispatch(clearCart());
     setPaymentScreen(false);
     dispatch(
       addNotification({
@@ -61,7 +70,9 @@ const CartScreen = () => {
         time: new Date().toISOString(),
       }),
     );
+    dispatch(addOrder({books: cartData, price: getTotalPrice()}));
     navigation.navigate('BottomNavigator', {screen: 'HomeScreen'});
+    dispatch(clearCart());
   };
 
   const placeOrder = () => {
@@ -85,6 +96,7 @@ const CartScreen = () => {
               cartData={cartData}
               onPress={placeOrder}
               title={strings.PLACE_ORDER}
+              getTotalPrice={getTotalPrice}
             />
           </>
         ) : (
@@ -103,6 +115,7 @@ const CartScreen = () => {
               cartData={cartData}
               onPress={checkOut}
               title={strings.CHECK_OUT}
+              getTotalPrice={getTotalPrice}
             />
           </>
         )

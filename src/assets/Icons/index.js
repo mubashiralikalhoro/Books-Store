@@ -44,6 +44,7 @@ const Icons = {
   SETTINGS: require('./settings.png'),
   LANGUAGE: require('./translate.png'),
   LOG_IN: require('./login.png'),
+  MY_ORDERS: require('./clipboard.png'),
 };
 
 export default Icons;

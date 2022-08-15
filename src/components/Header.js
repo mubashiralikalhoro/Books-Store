@@ -39,16 +39,16 @@ const styles = StyleSheet.create({
   },
   back: {
     marginHorizontal: Size.PADDING,
-    width: Size.ICON * 0.6,
-    height: Size.ICON * 0.6,
+    width: Size.ICON * 0.5,
+    height: Size.ICON * 0.5,
     tintColor: color.TEXT,
   },
   arrangingView: {
     marginRight: Size.PADDING,
-    width: Size.ICON * 0.6,
-    height: Size.ICON * 0.6,
+    width: Size.ICON * 0.5,
+    height: Size.ICON * 0.5,
   },
   text: {
-    fontSize: Size.HEADER_FOOTER_SIZE * 0.4,
+    fontSize: Size.HEADER_FOOTER_SIZE * 0.35,
   },
 });

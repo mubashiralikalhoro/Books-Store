@@ -23,13 +23,14 @@ import ContactUsScreen from '../screens/App/contactUs';
 import AboutUsScreen from '../screens/App/About';
 import SettingsScreen from '../screens/App/Settings';
 import AddNewAddressScreen from '../screens/App/AddNewAddress';
+import MyOrdersScreen from '../screens/App/MyOrders';
 import PasswordVerificationScreen from '../screens/App/PasswordVerification';
 //bottom tab
 import {BottomNavigator} from './bottom.navigator';
 
 const Stack = createNativeStackNavigator();
 
-const MainStack = () => {
+export const RootNavigator = () => {
   return (
     <Stack.Navigator
       initialRouteName="SplashScreen"
@@ -68,28 +69,9 @@ const MainStack = () => {
         name="PasswordVerificationScreen"
         component={PasswordVerificationScreen}
       />
+      <Stack.Screen name="MyOrdersScreen" component={MyOrdersScreen} />
       {/* BOTTOM TAB */}
       <Stack.Screen name="BottomNavigator" component={BottomNavigator} />
     </Stack.Navigator>
   );
-};
-const SignedOutStack = () => {
-  return (
-    <Stack.Navigator
-      initialRouteName="SplashScreen"
-      screenOptions={{
-        headerShown: false,
-        animationEnabled: false,
-      }}>
-      <Stack.Screen name="SplashScreen" component={SplashScreen} />
-      <Stack.Screen name="SignInScreen" component={SignIn} />
-      <Stack.Screen name="SignUpScreen" component={SignUp} />
-      <Stack.Screen name="ForgetPasswordScreen" component={ForgetPassword} />
-    </Stack.Navigator>
-  );
-};
-
-export const RootNavigator = () => {
-  const user = useSelector(state => state.user);
-  return <MainStack />;
 };
