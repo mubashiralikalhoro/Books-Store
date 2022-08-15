@@ -39,6 +39,7 @@ const SignIn = ({navigation}) => {
   const animation = useSelector(state => state.resources.animation);
   const signIn = () => {
     dispatch(userLoggedIn(tempUser));
+    navigation.replace('BottomNavigator');
   };
   return (
     <SafeAreaView style={styles.container}>

@@ -90,4 +90,5 @@ export default {
   SELECT_A_PAYMENT_METHOD: 'اختار طريقة الدفع',
   CASH_ON_DELIVERY: 'الدفع عند الاستلام',
   ONLINE_PAYMENT: 'الدفع الالكتروني',
+  USER: 'المستعمل',
 };

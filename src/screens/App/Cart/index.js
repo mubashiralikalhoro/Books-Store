@@ -33,10 +33,22 @@ const CartScreen = () => {
   const strings = useSelector(state => state.resources.langID.strings);
   const cartData = useSelector(state => state.cart);
   const dispatch = useDispatch();
+  const isUser = useSelector(state => state.user).length > 0;
   const [paymentScreen, setPaymentScreen] = useState(false);
   const checkOut = () => {
-    if (cartData.length > 0) {
-      setPaymentScreen(true);
+    if (isUser) {
+      if (cartData.length > 0) {
+        setPaymentScreen(true);
+      }
+    } else {
+      Alert.alert(strings.SIGN_IN, strings._YOU_HAVE_TO, [
+        {
+          text: strings.OK,
+          onPress: () => {
+            navigation.navigate('SignInScreen');
+          },
+        },
+      ]);
     }
   };
   const continueShopping = () => {

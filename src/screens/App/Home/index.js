@@ -16,7 +16,7 @@ const HomeScreen = ({navigation}) => {
   const [headerShown, setHeaderShown] = useState(false);
   const animation = useSelector(state => state.resources.animation);
   const onScroll = e => {
-    if (e.nativeEvent.contentOffset.y > 0) {
+    if (e.nativeEvent.contentOffset.y > 40) {
       setHeaderShown(true);
     } else {
       setHeaderShown(false);
@@ -29,7 +29,7 @@ const HomeScreen = ({navigation}) => {
       <SafeAreaView style={styles.container}>
         <ScrollView showsVerticalScrollIndicator={false} onScroll={onScroll}>
           <HomeScreenPromo source={[Images.bookAd, Images.bookAd2]} />
-          <HomeScreenShowAuth />
+          {/* <HomeScreenShowAuth /> */}
           {/*Make this part dynamic*/}
           <HomeScreenShowCat catName="Latest" books={Books} />
           <HomeScreenShowCat catName="Adventure" books={Books} />

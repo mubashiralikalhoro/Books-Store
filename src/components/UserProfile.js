@@ -7,42 +7,16 @@ import Icons from '../assets/Icons';
 import {useSelector} from 'react-redux';
 import Pressable from 'react-native/Libraries/Components/Pressable/Pressable';
 import ImagePicker from 'react-native-image-crop-picker';
+import {useNavigation} from '@react-navigation/native';
 
-const UserProfile = ({
-  user,
-  editProfile,
-  editable,
-  setPickedImage,
-  pickedImage,
-}) => {
+const UserProfile = ({user, showPencil = true}) => {
+  const navigation = useNavigation();
   const strings = useSelector(state => state.resources.langID.strings);
   const reversed = useSelector(state => state.resources.langID.reversed);
-  const chooseImageFromGallery = async () => {
-    try {
-      await ImagePicker.openPicker({
-        cropping: true,
-        mediaType: 'photo',
-        maxFiles: 1,
-        height: 300,
-        width: 300,
-      }).then(image => {
-        setPickedImage({uri: image.path});
-      });
-    } catch (e) {}
-  };
+
   return (
     <View style={styles.container(reversed)}>
-      <Pressable onPress={editable ? chooseImageFromGallery : () => {}}>
-        <Image
-          source={pickedImage ? pickedImage : user.image}
-          style={styles.imageStyle}
-        />
-        {editable ? (
-          <Image source={Icons.CAMERA} style={styles.camera} />
-        ) : (
-          <></>
-        )}
-      </Pressable>
+      <Image source={user.image} style={styles.imageStyle} />
       <View style={styles.detailsView}>
         <Text style={[GlobalStyle.TEXT_STYLE, styles.hello(reversed)]}>
           {strings.HELLO}
@@ -51,9 +25,13 @@ const UserProfile = ({
           {user.name}
         </Text>
       </View>
-      <TouchableOpacity style={styles.pencilView} onPress={editProfile}>
-        <Image source={Icons.PENCIL} style={styles.pencil} />
-      </TouchableOpacity>
+      {showPencil && (
+        <TouchableOpacity
+          style={styles.pencilView}
+          onPress={() => navigation.navigate('PasswordVerificationScreens')}>
+          <Image source={Icons.PENCIL} style={styles.pencil} />
+        </TouchableOpacity>
+      )}
     </View>
   );
 };
@@ -75,12 +53,10 @@ const styles = StyleSheet.create({
     paddingHorizontal: Size.PADDING,
   },
   hello: reversed => ({
-    color: color.PRIMARY_TEXT,
     textAlign: reversed ? 'right' : 'left',
   }),
   name: reversed => ({
     fontSize: Size.WIDTH * 0.05,
-    color: color.PRIMARY_TEXT,
     textAlign: reversed ? 'right' : 'left',
   }),
   pencilView: {
@@ -90,13 +66,13 @@ const styles = StyleSheet.create({
     width: Size.ICON * 0.6,
     borderWidth: 1,
     borderRadius: Size.ICON * 0.4,
-    borderColor: color.PRIMARY_TEXT,
+    borderColor: color.TEXT,
     marginRight: Size.PADDING,
   },
   pencil: {
     height: '40%',
     width: '40%',
-    tintColor: color.PRIMARY_TEXT,
+    tintColor: color.TEXT,
   },
   camera: {
     left: Size.ICON * 1.5 - Size.ICON / 2,

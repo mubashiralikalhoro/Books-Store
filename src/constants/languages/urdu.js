@@ -91,4 +91,5 @@ export default {
   SELECT_A_PAYMENT_METHOD: 'ادائیگی کا طریقہ منتخب کریں',
   CASH_ON_DELIVERY: 'ادائیگی وصولی کے وقت',
   ONLINE_PAYMENT: 'آن لائن ادائیگی',
+  USER: 'صارف',
 };

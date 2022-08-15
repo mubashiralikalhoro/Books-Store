@@ -1,4 +1,4 @@
-import {View, SafeAreaView, Animated} from 'react-native';
+import {View, SafeAreaView, Animated, Alert} from 'react-native';
 import React, {useState} from 'react';
 import styles from './style';
 import UserProfile from '../../../components/UserProfile';
@@ -9,132 +9,125 @@ import {userLoggedOut} from '../../../store/reducer/user';
 import {clearCart} from '../../../store/reducer/cart';
 import {clearNotification} from '../../../store/reducer/notification';
 import {clearFav} from '../../../store/reducer/favorite';
-import Screens from './Screens';
-import Size from '../../../constants/Size';
+import Icons from '../../../assets/Icons';
+import {Images} from '../../../assets/images';
 
 const ProfileScreen = ({navigation}) => {
   // Hooks
+  const isUser = useSelector(state => state.user).length > 0;
+
   const strings = useSelector(state => state.resources.langID.strings);
-  const [screen, setScreen] = useState('main');
+
   const user = useSelector(state => state.user[0]);
   const dispatch = useDispatch();
-  const animationEnabled = useSelector(state => state.resources.animation);
   // Actions
   const signOut = () => {
-    dispatch(clearCart());
-    dispatch(clearNotification());
-    dispatch(clearFav());
-    dispatch(userLoggedOut());
-  };
-
-  // animations
-  const margin = useState(new Animated.Value(0))[0];
-  const animation = props => {
-    if (animationEnabled) {
-      // going out
-      Animated.spring(margin, {
-        toValue: Size.HEIGHT * 0.8 - Size.HEADER_FOOTER_SIZE,
-        useNativeDriver: false,
-      }).start();
-
-      // coming in
-      setTimeout(() => {
-        setScreen(props);
-        Animated.spring(margin, {
-          toValue: 0,
-          useNativeDriver: false,
-        }).start();
-      }, 50);
-    } else {
-      setScreen(props);
-    }
+    Alert.alert(strings.SIGN_OUT, strings.DO_YOU_WANT_TO_SIGN_OUT, [
+      {
+        text: strings.NO,
+      },
+      {
+        text: strings.YES,
+        onPress: () => {
+          dispatch(clearCart());
+          dispatch(clearNotification());
+          dispatch(clearFav());
+          dispatch(userLoggedOut());
+        },
+      },
+    ]);
   };
   // Screens
   const Options = () => (
     <>
-      <Option
-        style={styles.topBorder}
-        title={strings.VIEW_YOUR_PROFILE}
-        titleColor={color.TEXT}
-        onPress={() => animation('viewProfile')}
-      />
-      <View style={styles.line} />
-      <Option
-        title={strings.ADD_NEW_ADDRESS}
-        titleColor={color.TEXT}
-        onPress={() => animation('addNewAddress')}
-      />
-      <View style={styles.line} />
-
-      <Option
-        title={strings.CHANGE_PASSWORD}
-        titleColor={color.TEXT}
-        onPress={() => animation('changePassword')}
-      />
-      <View style={styles.line} />
+      {isUser && (
+        <>
+          <Option
+            title={strings.VIEW_YOUR_PROFILE}
+            titleColor={color.GRAY}
+            icon={Icons.ACCOUNT}
+            iconColor={color.GRAY}
+            onPress={() => navigation.navigate('ViewProfileScreen')}
+          />
+          <Option
+            title={strings.ADD_NEW_ADDRESS}
+            titleColor={color.GRAY}
+            icon={Icons.PIN}
+            iconColor={color.GRAY}
+            onPress={() => navigation.navigate('AddNewAddressScreen')}
+          />
+          <Option
+            title={strings.CHANGE_PASSWORD}
+            titleColor={color.GRAY}
+            icon={Icons.LOCK}
+            iconColor={color.GRAY}
+            onPress={() => navigation.navigate('ChangePasswordScreen')}
+          />
+        </>
+      )}
       <Option
         title={strings.LANGUAGE}
-        titleColor={color.TEXT}
-        onPress={() => animation('language')}
+        titleColor={color.GRAY}
+        icon={Icons.LANGUAGE}
+        iconColor={color.GRAY}
+        onPress={() => navigation.navigate('LanguageScreen')}
       />
-      <View style={styles.line} />
-
       <Option
         title={strings.CONTACT_US}
-        titleColor={color.TEXT}
-        onPress={() => animation('contactUs')}
+        titleColor={color.GRAY}
+        icon={Icons.MESSAGE}
+        iconColor={color.GRAY}
+        onPress={() => navigation.navigate('ContactUsScreen')}
       />
-      <View style={styles.line} />
       <Option
         title={strings.ABOUT_US}
-        titleColor={color.TEXT}
-        onPress={() => animation('aboutUs')}
+        titleColor={color.GRAY}
+        icon={Icons.ABOUT_US}
+        iconColor={color.GRAY}
+        onPress={() => navigation.navigate('AboutUsScreen')}
       />
-      <View style={styles.line} />
-
       <Option
         title={strings.SETTINGS}
-        titleColor={color.TEXT}
-        onPress={() => animation('settings')}
+        titleColor={color.GRAY}
+        icon={Icons.SETTINGS}
+        iconColor={color.GRAY}
+        onPress={() => navigation.navigate('SettingsScreen')}
       />
-      <View style={styles.line} />
-      <Option
-        title={strings.SIGN_OUT}
-        titleColor={color.RED}
-        onPress={signOut}
-      />
-      <View style={styles.line} />
+      {isUser ? (
+        <Option
+          title={strings.SIGN_OUT}
+          titleColor={color.RED}
+          icon={Icons.LOG_OUT}
+          iconColor={color.RED}
+          onPress={signOut}
+        />
+      ) : (
+        <Option
+          title={strings.SIGN_IN}
+          titleColor={color.GREEN}
+          icon={Icons.LOG_IN}
+          iconColor={color.GREEN}
+          onPress={() => navigation.navigate('SignInScreen')}
+        />
+      )}
     </>
   );
-  // editable
-  const [editable, setEditable] = useState(false);
-  const [pickedImage, setPickedImage] = useState(false);
-
   // main View
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.profileContainer}>
-        <UserProfile
-          user={user}
-          editProfile={() => animation('passwordVerification')}
-          editable={editable}
-          setPickedImage={setPickedImage}
-          pickedImage={pickedImage}
-        />
-      </View>
-      <Animated.View style={styles.detailsContainer(margin)}>
-        {screen == 'main' ? (
-          <Options />
+        {isUser ? (
+          <UserProfile user={user} />
         ) : (
-          <Screens
-            screen={screen}
-            setScreen={animation}
-            setEditable={setEditable}
-            pickedImage={pickedImage}
-            setPickedImage={setPickedImage}
+          <UserProfile
+            user={{name: strings.USER, image: Images.user}}
+            showPencil={false}
           />
         )}
-      </Animated.View>
+      </View>
+      <View style={styles.detailsContainer}>
+        <Options />
+      </View>
     </SafeAreaView>
   );
 };

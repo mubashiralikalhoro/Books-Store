@@ -8,6 +8,7 @@ import color from '../../../constants/color';
 import * as Yup from 'yup';
 import GlobalStyle from '../../../constants/GlobalStyle';
 import {useSelector} from 'react-redux';
+import Header from '../../../components/Header';
 
 const initialValues = {name: '', email: '', message: ''};
 const ContactUsScreen = () => {
@@ -19,55 +20,58 @@ const ContactUsScreen = () => {
     message: Yup.string().required(strings.REQUIRED),
   });
   return (
-    <View style={styles.container}>
-      <Formik initialValues={initialValues} validationSchema={schema}>
-        {({handleChange, handleBlur, handleSubmit, touched, errors}) => (
-          <>
-            <CustomInputField
-              icon={Icons.ACCOUNT}
-              style={styles.inputField}
-              placeholder={strings.NAME}
-              placeholderTextColor={color.TEXT}
-              onChangeText={handleChange('name')}
-              onBlur={handleBlur('name')}
-              error={touched.name && errors.name}
-            />
-            <CustomInputField
-              icon={Icons.EMAIL}
-              style={styles.inputField}
-              placeholder={strings.EMAIL}
-              placeholderTextColor={color.TEXT}
-              onChangeText={handleChange('email')}
-              onBlur={handleBlur('email')}
-              error={touched.email && errors.email}
-            />
-            <CustomInputField
-              icon={Icons.MESSAGE}
-              style={styles.messageField}
-              inputStyle={styles.messageInputField}
-              iconStyle={styles.messageIcon}
-              placeholder={strings.MESSAGE}
-              placeholderTextColor={color.TEXT}
-              onChangeText={handleChange('message')}
-              onBlur={handleBlur('message')}
-              error={touched.message && errors.message}
-              multiline={true}
-            />
-            <TouchableOpacity onPress={handleSubmit}>
-              <View style={styles.buttonView}>
-                <Text style={[GlobalStyle.TEXT_STYLE, styles.text]}>
-                  {strings.SEND}
-                </Text>
-              </View>
-            </TouchableOpacity>
-          </>
-        )}
-      </Formik>
-      <View style={styles.bottom}>
-        <Image source={Icons.EMAIL} style={styles.bottomIcon} />
-        <Text style={[GlobalStyle.TEXT_STYLE]}>company@email.com</Text>
+    <>
+      <Header title={strings.CONTACT_US} />
+      <View style={styles.container}>
+        <Formik initialValues={initialValues} validationSchema={schema}>
+          {({handleChange, handleBlur, handleSubmit, touched, errors}) => (
+            <>
+              <CustomInputField
+                icon={Icons.ACCOUNT}
+                style={styles.inputField}
+                placeholder={strings.NAME}
+                placeholderTextColor={color.TEXT}
+                onChangeText={handleChange('name')}
+                onBlur={handleBlur('name')}
+                error={touched.name && errors.name}
+              />
+              <CustomInputField
+                icon={Icons.EMAIL}
+                style={styles.inputField}
+                placeholder={strings.EMAIL}
+                placeholderTextColor={color.TEXT}
+                onChangeText={handleChange('email')}
+                onBlur={handleBlur('email')}
+                error={touched.email && errors.email}
+              />
+              <CustomInputField
+                icon={Icons.MESSAGE}
+                style={styles.messageField}
+                inputStyle={styles.messageInputField}
+                iconStyle={styles.messageIcon}
+                placeholder={strings.MESSAGE}
+                placeholderTextColor={color.TEXT}
+                onChangeText={handleChange('message')}
+                onBlur={handleBlur('message')}
+                error={touched.message && errors.message}
+                multiline={true}
+              />
+              <TouchableOpacity onPress={handleSubmit}>
+                <View style={styles.buttonView}>
+                  <Text style={[GlobalStyle.TEXT_STYLE, styles.text]}>
+                    {strings.SEND}
+                  </Text>
+                </View>
+              </TouchableOpacity>
+            </>
+          )}
+        </Formik>
+        <View style={styles.bottom}>
+          <Image source={Icons.EMAIL} style={styles.bottomIcon} />
+          <Text style={[GlobalStyle.TEXT_STYLE]}>company@email.com</Text>
+        </View>
       </View>
-    </View>
+    </>
   );
 };
 

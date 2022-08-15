@@ -10,7 +10,7 @@ const SplashScreen = ({navigation}) => {
   const animation = useSelector(state => state.resources.animation);
   // navigate to signIn
   const navigate = () => {
-    navigation.replace('SignInScreen');
+    navigation.replace('BottomNavigator');
   };
 
   // checking if use animations of not

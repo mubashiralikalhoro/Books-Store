@@ -7,6 +7,7 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: color.BACKGROUND,
     alignItems: 'center',
+    justifyContent: 'center',
   },
   inputField: {
     width: Size.WIDTH * 0.95,

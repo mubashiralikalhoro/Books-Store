@@ -126,7 +126,7 @@ const styles = StyleSheet.create({
   }),
   image: reversed => ({
     height: '100%',
-    width: Size.ICON * 1.4,
+    width: Size.ICON * 1.5,
     borderTopLeftRadius: reversed ? 0 : borderRadius,
     borderBottomLeftRadius: reversed ? 0 : borderRadius,
     borderTopRightRadius: reversed ? borderRadius : 0,
@@ -167,7 +167,8 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     alignItems: 'center',
     height: Size.FONTSIZE + 10,
-    backgroundColor: color.GRAY,
+    minWidth: Size.WIDTH * 0.14,
+    backgroundColor: color.LIGHT_GRAY,
     borderRadius: (Size.FONTSIZE + 10) / 2,
   },
   button: {

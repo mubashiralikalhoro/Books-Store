@@ -27,13 +27,7 @@ const Genre = ({name, index}) => {
     }
   };
   const backgroundColor = () => {
-    if (index === 0) {
-      return '#081f07';
-    } else if (index === 2) {
-      return '#330a1b';
-    } else {
-      return '#060729';
-    }
+    return color.FULL_LIGHT_GRAY;
   };
   return (
     <View style={styles.genreView(backgroundColor())}>
@@ -201,6 +195,7 @@ const styles = StyleSheet.create({
     borderRadius: (Size.FONTSIZE + 14) / 2,
     backgroundColor: backgroundColor,
     marginVertical: Size.PADDING * 0.1,
+    ...GlobalStyle.SHADOW_STYLE,
   }),
   imageBack: {
     width: '100%',
@@ -214,6 +209,7 @@ const styles = StyleSheet.create({
     // height: (Size.WIDTH * 0.3 - 10) * 1.5,
     height: '100%',
     borderRadius: Size.BORDER_RADIUS,
+    marginHorizontal: Size.PADDING,
   },
   allGenresView: reversed => ({
     justifyContent: reversed ? 'flex-end' : 'flex-start',
@@ -224,7 +220,8 @@ const styles = StyleSheet.create({
   }),
   detailsView: {
     flex: 1,
-    marginHorizontal: Size.PADDING,
+    marginRight: Size.PADDING,
+    justifyContent: 'center',
   },
   bookName: reversed => ({
     fontSize: Size.FONTSIZE + 10,
@@ -252,7 +249,7 @@ const styles = StyleSheet.create({
     paddingRight: Size.PADDING,
     width: '100%',
     flexDirection: 'row',
-    justifyContent: 'space-around',
+    justifyContent: 'space-between',
   },
   viewIcon: {
     marginLeft: Size.PADDING / 2,

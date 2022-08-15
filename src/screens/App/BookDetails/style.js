@@ -8,7 +8,7 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   bookCover: {
-    marginTop: Size.PADDING / 2,
+    marginTop: Size.PADDING,
     width: Size.WIDTH * 0.5,
     height: Size.WIDTH * 0.5 * 1.4,
     borderRadius: Size.BORDER_RADIUS * 3,

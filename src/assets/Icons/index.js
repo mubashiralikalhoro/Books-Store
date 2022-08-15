@@ -39,6 +39,11 @@ const Icons = {
   CARD: require('./card.png'),
   CASH: require('./cash.png'),
   ORDER_PLACED: require('./order.png'),
+  ABOUT_US: require('./info.png'),
+  LOG_OUT: require('./logout.png'),
+  SETTINGS: require('./settings.png'),
+  LANGUAGE: require('./translate.png'),
+  LOG_IN: require('./login.png'),
 };
 
 export default Icons;

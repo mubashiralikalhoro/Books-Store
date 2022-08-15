@@ -21,11 +21,19 @@ const Notification = ({notification}) => {
   };
   return (
     <View style={styles.container}>
-      <Image
-        source={notification.image}
-        style={styles.image}
-        resizeMode="stretch"
-      />
+      <View
+        style={{
+          height: Size.ICON,
+          width: Size.ICON,
+          justifyContent: 'center',
+          alignItems: 'center',
+        }}>
+        <Image
+          source={notification.image}
+          style={styles.image}
+          resizeMode="stretch"
+        />
+      </View>
       <View style={styles.disView}>
         <Text style={[GlobalStyle.TEXT_STYLE, styles.text]}>
           {notification.text}
@@ -52,8 +60,8 @@ const styles = StyleSheet.create({
     borderRadius: Size.BORDER_RADIUS,
   },
   image: {
-    height: Size.ICON,
-    width: Size.ICON * 0.8,
+    height: Size.ICON * 0.7,
+    width: Size.ICON * 0.7,
   },
   disView: {
     minHeight: Size.ICON,

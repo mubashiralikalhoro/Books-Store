@@ -16,19 +16,31 @@ import ForgetPassword from '../screens/Auth/ForgetPassword';
 import AuthorScreen from '../screens/App/Author';
 import SearchScreen from '../screens/App/Search';
 import ShowAuthorsScreen from '../screens/App/Authors';
+import ViewProfileScreen from '../screens/App/ViewProfile';
+import ChangePasswordScreen from '../screens/App/ChangePassword';
+import LanguageScreen from '../screens/App/Language';
+import ContactUsScreen from '../screens/App/contactUs';
+import AboutUsScreen from '../screens/App/About';
+import SettingsScreen from '../screens/App/Settings';
+import AddNewAddressScreen from '../screens/App/AddNewAddress';
+import PasswordVerificationScreen from '../screens/App/PasswordVerification';
 //bottom tab
 import {BottomNavigator} from './bottom.navigator';
 
 const Stack = createNativeStackNavigator();
 
-const SignedInStack = () => {
+const MainStack = () => {
   return (
     <Stack.Navigator
-      initialRouteName="BottomNavigator"
+      initialRouteName="SplashScreen"
       screenOptions={{
         headerShown: false,
         animationEnabled: false,
       }}>
+      <Stack.Screen name="SplashScreen" component={SplashScreen} />
+      <Stack.Screen name="SignInScreen" component={SignIn} />
+      <Stack.Screen name="SignUpScreen" component={SignUp} />
+      <Stack.Screen name="ForgetPasswordScreen" component={ForgetPassword} />
       <Stack.Screen name="ProfileScreen" component={ProfileScreen} />
       <Stack.Screen name="NotificationScreen" component={NotificationScreen} />
       <Stack.Screen name="HomeScreen" component={HomeScreen} />
@@ -39,6 +51,23 @@ const SignedInStack = () => {
       <Stack.Screen name="BookDetailsScreen" component={BookDetailsScreen} />
       <Stack.Screen name="SearchScreen" component={SearchScreen} />
       <Stack.Screen name="ShowAuthorsScreen" component={ShowAuthorsScreen} />
+      <Stack.Screen name="ViewProfileScreen" component={ViewProfileScreen} />
+      <Stack.Screen
+        name="ChangePasswordScreen"
+        component={ChangePasswordScreen}
+      />
+      <Stack.Screen name="LanguageScreen" component={LanguageScreen} />
+      <Stack.Screen name="ContactUsScreen" component={ContactUsScreen} />
+      <Stack.Screen name="AboutUsScreen" component={AboutUsScreen} />
+      <Stack.Screen name="SettingsScreen" component={SettingsScreen} />
+      <Stack.Screen
+        name="AddNewAddressScreen"
+        component={AddNewAddressScreen}
+      />
+      <Stack.Screen
+        name="PasswordVerificationScreen"
+        component={PasswordVerificationScreen}
+      />
       {/* BOTTOM TAB */}
       <Stack.Screen name="BottomNavigator" component={BottomNavigator} />
     </Stack.Navigator>
@@ -62,5 +91,5 @@ const SignedOutStack = () => {
 
 export const RootNavigator = () => {
   const user = useSelector(state => state.user);
-  return user.length == 0 ? <SignedOutStack /> : <SignedInStack />;
+  return <MainStack />;
 };

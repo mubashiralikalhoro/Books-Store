@@ -14,11 +14,12 @@ import {useSelector} from 'react-redux';
 const DesignView = ({book}) => (
   <View
     style={{
+      top: Size.PADDING / 2,
       alignSelf: 'center',
       borderRadius: Size.ICON,
       position: 'absolute',
       width: Size.WIDTH * 0.7,
-      backgroundColor: color.PRIMARY,
+      backgroundColor: color.FULL_LIGHT_GRAY,
       height: Size.WIDTH * 0.5 * 1.45,
     }}>
     <Image

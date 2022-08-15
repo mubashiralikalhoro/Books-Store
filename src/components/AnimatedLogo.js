@@ -9,16 +9,10 @@ import {useNavigation, useRoute} from '@react-navigation/native';
 const AnimatedLogo = () => {
   const reversed = useSelector(state => state.resources.langID.reversed);
   const intialValue = () => {
-    if (1)
-      return {
-        x: (Size.WIDTH - Size.ICON * 2.5) / 2,
-        y: 0,
-      };
-    else
-      return {
-        x: (Size.WIDTH - Size.ICON * 2.5) / 2,
-        y: (Size.HEIGHT - Size.ICON * 2.5) / 2,
-      };
+    return {
+      x: (Size.WIDTH - Size.ICON * 2.5) / 2,
+      y: (Size.HEIGHT - Size.ICON * 2.5) / 2,
+    };
   };
   const duration = 1000;
   const logoSize = useState(new Animated.Value(Size.ICON * 2.5))[0];

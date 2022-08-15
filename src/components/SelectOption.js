@@ -8,13 +8,7 @@ const SelectOption = ({title, pressed, onPress, Icon}) => {
   return (
     <TouchableOpacity style={styles.container} onPress={onPress}>
       <Image source={Icon} style={styles.icon} />
-      <Text
-        style={[
-          GlobalStyle.TEXT_STYLE,
-          {color: color.PRIMARY, fontWeight: '800'},
-        ]}>
-        {title}
-      </Text>
+      <Text style={[GlobalStyle.TEXT_STYLE, {fontWeight: '800'}]}>{title}</Text>
       <View style={styles.View}>
         <View style={styles.out}>
           <View style={styles.mid}>

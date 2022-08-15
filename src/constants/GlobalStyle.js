@@ -6,6 +6,7 @@ export default StyleSheet.create({
   TEXT_STYLE: {
     fontSize: Size.FONTSIZE,
     color: color.TEXT,
+    fontFamily: 'DMSans-Regular',
   },
   SHADOW_STYLE: {
     shadowColor: color.TEXT,

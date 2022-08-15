@@ -8,7 +8,9 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: color.BACKGROUND,
     alignItems: 'center',
+    paddingTop: Size.HEIGHT * 0.1,
   },
+
   inputField: {
     width: Size.WIDTH * 0.95,
     borderRadius: 10,

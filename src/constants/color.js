@@ -2,12 +2,13 @@ import {Appearance} from 'react-native';
 import darkMode from '../dummy/DarkMode';
 
 const defaultColors = {
-  // PRIMARY: '#5D2DFF',
-  PRIMARY: '#03646b',
+  //  PRIMARY: '#3399ff',
+  PRIMARY: '#00ccff',
   PRIMARY_TEXT: 'white',
   SHOW_MORE: '#3db6fc',
   RED: '#ff1605',
   GREEN: '#18c900',
+  FULL_LIGHT_GRAY: '#e6e6e6',
 };
 
 const colorsDark = {

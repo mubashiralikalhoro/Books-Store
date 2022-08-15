@@ -36,15 +36,15 @@ export default HomeScreenPromo;
 
 const styles = StyleSheet.create({
   container: {
-    height: Size.HEIGHT * 0.3,
+    marginTop: Size.HEADER_FOOTER_SIZE + Size.PADDING,
+    height: Size.HEIGHT * 0.22,
     width: Size.WIDTH,
     // position: 'absolute',
   },
   image: {
-    height: Size.HEIGHT * 0.3,
+    height: Size.HEIGHT * 0.22,
     width: Size.WIDTH - Size.PADDING * 4,
-    borderBottomLeftRadius: Size.BORDER_RADIUS,
-    borderBottomRightRadius: Size.BORDER_RADIUS,
+    borderRadius: Size.BORDER_RADIUS,
   },
   view: {
     height: Size.HEIGHT * 0.3,

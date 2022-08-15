@@ -91,4 +91,9 @@ export default {
   SELECT_A_PAYMENT_METHOD: 'Select payment method',
   CASH_ON_DELIVERY: 'Cash on delivery',
   ONLINE_PAYMENT: 'Online payment',
+  USER: 'User',
+  YES: 'Yes',
+  NO: 'No',
+  DO_YOU_WANT_TO_SIGN_OUT: 'Do you want to sign out?',
+  _YOU_HAVE_TO: 'You have to sign in to proceed.',
 };

@@ -7,6 +7,7 @@ import {
   disableAnimations,
   enableAnimations,
 } from '../../../store/reducer/resources';
+import Header from '../../../components/Header';
 
 const SettingsScreen = () => {
   const strings = useSelector(state => state.resources.langID.strings);
@@ -20,15 +21,18 @@ const SettingsScreen = () => {
     }
   };
   return (
-    <View style={styles.container}>
-      <View style={[styles.line, {height: 3}]} />
-      <SettingsOption
-        value={animation}
-        title={strings.ANIMATIONS}
-        setValue={setAnimationValue}
-      />
-      <View style={styles.line} />
-    </View>
+    <>
+      <Header title={strings.SETTINGS} />
+      <View style={styles.container}>
+        <View style={[styles.line, {height: 3}]} />
+        <SettingsOption
+          value={animation}
+          title={strings.ANIMATIONS}
+          setValue={setAnimationValue}
+        />
+        <View style={styles.line} />
+      </View>
+    </>
   );
 };
 
